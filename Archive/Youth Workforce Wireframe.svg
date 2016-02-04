@@ -1,0 +1,1577 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="950"
+   height="1500"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Youth Workforce Wireframe.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path4134"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="416.54222"
+     inkscape:cy="881.4278"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1617"
+     inkscape:window-height="938"
+     inkscape:window-x="49"
+     inkscape:window-y="47"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,447.63782)">
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#053769;fill-opacity:1;stroke:none;font-family:Sans"
+       x="27"
+       y="-118.63782"
+       id="text2985"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2987"
+         x="27"
+         y="-118.63782">Youth Workforce Indicators</tspan></text>
+    <rect
+       style="fill:#ece9f5;fill-opacity:1;stroke:none"
+       id="rect3783"
+       width="973"
+       height="70"
+       x="-7"
+       y="-102.63782" />
+    <path
+       style="fill:#008080;stroke:#053769;stroke-width:1.02683222px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.43548387"
+       d="m 0.02703705,-102.13782 c 948.94593295,0 948.94593295,0 948.94593295,0"
+       id="path2989"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="608"
+       y="51"
+       id="text3761"
+       sodipodi:linespacing="125%"
+       transform="translate(0,-447.63782)"><tspan
+         sodipodi:role="line"
+         id="tspan3763"
+         x="608"
+         y="51" /></text>
+    <rect
+       style="fill:#000064;fill-opacity:0.09677417;stroke:none"
+       id="rect3759"
+       width="403.90451"
+       height="28.904512"
+       x="30.547743"
+       y="-77.090088"
+       rx="5"
+       ry="5" />
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="41.298576"
+       y="-57.15686"
+       id="text3765"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3767"
+         x="41.298576"
+         y="-57.15686">Metro area search / dropdown area</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:italic;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.4569893;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Italic"
+       x="19.298584"
+       y="-316.15686"
+       id="text3769"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3771"
+         x="19.298584"
+         y="-316.15686"
+         style="fill:#4d4d4d;fill-opacity:1">Notes on Design Requirements </tspan><tspan
+         sodipodi:role="line"
+         x="19.298584"
+         y="-302.40686"
+         id="tspan6828"
+         style="fill:#4d4d4d;fill-opacity:1">+ For users with a modern browser, the default metro area displayed by the interactive will be based on user's current location. Users can link directly to a </tspan><tspan
+         sodipodi:role="line"
+         x="19.298584"
+         y="-288.65686"
+         style="fill:#4d4d4d;fill-opacity:1"
+         id="tspan7477">    metro area profile by selecting a metro area and copying the page link. </tspan><tspan
+         sodipodi:role="line"
+         x="19.298584"
+         y="-274.90686"
+         id="tspan6826"
+         style="fill:#4d4d4d;fill-opacity:1">+ These profiles will print cleanly and will function in place of PDF profiles</tspan><tspan
+         sodipodi:role="line"
+         x="19.298584"
+         y="-261.15686"
+         id="tspan7325"
+         style="fill:#4d4d4d;fill-opacity:1">+ The design will be responsive; when viewed on a mobile device the layout will reorient so that all elements stack vertically for easy scrolling</tspan></text>
+    <g
+       id="g3854"
+       transform="matrix(0.07778401,-0.01615648,0.01615648,0.07778401,378.49665,-44.74385)"
+       style="stroke-width:12.58744812;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         transform="matrix(7.9838838,0,0,7.9838838,-376.57797,-1833.6364)"
+         d="m 118,210.5 c 0,3.03757 -2.46243,5.5 -5.5,5.5 -3.03757,0 -5.5,-2.46243 -5.5,-5.5 0,-3.03757 2.46243,-5.5 5.5,-5.5 3.03757,0 5.5,2.46243 5.5,5.5 z"
+         sodipodi:ry="5.5"
+         sodipodi:rx="5.5"
+         sodipodi:cy="210.5"
+         sodipodi:cx="112.5"
+         id="path3840"
+         style="fill:none;stroke:#053769;stroke-width:1.57660711;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="arc" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3842"
+         d="m 543.73511,-109.61235 44.9091,89.780175"
+         style="fill:none;stroke:#053769;stroke-width:12.58744812;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:15px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.62365591;stroke:none;font-family:Sans"
+       x="474"
+       y="-52.637817"
+       id="text3858"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3860"
+         x="474"
+         y="-52.637817">about the data</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="fill:#000000;fill-opacity:0.62365591;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:0.22580644;stroke-dasharray:1, 3;stroke-dashoffset:0"
+       id="path3864"
+       sodipodi:sides="3"
+       sodipodi:cx="281"
+       sodipodi:cy="185"
+       sodipodi:r1="9.4339809"
+       sodipodi:r2="4.7169905"
+       sodipodi:arg1="-2.6179939"
+       sodipodi:arg2="-1.5707963"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 272.82993,180.28301 8.17007,0 8.17007,0 -4.08504,7.07549 -4.08503,7.07548 -4.08503,-7.07548 z"
+       transform="matrix(0,-0.53798343,0.53798343,0,494.06272,93.87117)"
+       inkscape:transform-center-x="-1.268832" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="46.037109"
+       y="43.737183"
+       id="text3906-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3908-6"
+         x="46.037109"
+         y="43.737183">Youth Employment rate</tspan></text>
+    <rect
+       style="fill:#ffd42a;fill-opacity:0.62365591;stroke:none"
+       id="rect3910-5"
+       width="17"
+       height="17"
+       x="20"
+       y="27.237183" />
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.58602139;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="47.164062"
+       y="66.123657"
+       id="text3914-8-4-6-5-2-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="47.164062"
+         y="66.123657"
+         id="tspan5803-7">The share of the labor force that is employed </tspan><tspan
+         sodipodi:role="line"
+         x="47.164062"
+         y="82.373657"
+         id="tspan6308" /><tspan
+         sodipodi:role="line"
+         x="47.164062"
+         y="98.623657"
+         id="tspan6310">Ranks in parentheses.</tspan><tspan
+         sodipodi:role="line"
+         x="47.164062"
+         y="114.87366"
+         id="tspan6779" /><tspan
+         sodipodi:role="line"
+         x="47.164062"
+         y="131.12366"
+         id="tspan6783">The data for 2009-11 are estimates of the </tspan><tspan
+         sodipodi:role="line"
+         x="47.164062"
+         y="147.37366"
+         id="tspan6787">average value for the entire 3-year period.</tspan><tspan
+         sodipodi:role="line"
+         x="47.164062"
+         y="163.62366"
+         id="tspan7311" /><tspan
+         sodipodi:role="line"
+         x="47.164062"
+         y="179.87366"
+         id="tspan7313"
+         style="font-style:italic;-inkscape-font-specification:Sans Italic;fill:#b3b3b3">This area is for definitions and other information</tspan><tspan
+         sodipodi:role="line"
+         x="47.164062"
+         y="196.12366"
+         style="font-style:italic;fill:#b3b3b3;-inkscape-font-specification:Sans Italic"
+         id="tspan7315">that will help the user interpret the data </tspan></text>
+    <rect
+       style="fill:#81b3ff;fill-opacity:0.26274719;stroke:none"
+       id="rect3759-1-8"
+       width="513.90454"
+       height="37.90451"
+       x="397.5"
+       y="21.409927" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.52380952;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="518.42029"
+       y="46.187576"
+       id="text3914-8-44"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3916-1-1"
+         x="518.42029"
+         y="46.187576">Ages 16-19</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="517.89905"
+       y="95.932281"
+       id="text3918-9-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3920-5-6"
+         x="517.89905"
+         y="95.932281">45% (21st)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.52380952;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="658.42023"
+       y="46.187576"
+       id="text3914-8-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3916-1-91"
+         x="658.42023"
+         y="46.187576">Ages 20-24</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="657.89905"
+       y="95.932281"
+       id="text3918-9-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3920-5-0"
+         x="657.89905"
+         y="95.932281">55% (51st)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.52380952;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="794.42023"
+       y="46.416092"
+       id="text3914-8-18"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3916-1-97"
+         x="794.42023"
+         y="46.416092">All ages (16+)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="793.89905"
+       y="96.160797"
+       id="text3918-9-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3920-5-8"
+         x="793.89905"
+         y="96.160797">87% (20th)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="518.53857"
+       y="141.14441"
+       id="text3918-9-6-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3920-5-6-4"
+         x="518.53857"
+         y="141.14441">31% (50th)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="658.53857"
+       y="141.14441"
+       id="text3918-9-9-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3920-5-0-4"
+         x="658.53857"
+         y="141.14441">45% (61st)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="794.53857"
+       y="141.37292"
+       id="text3918-9-7-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3920-5-8-1"
+         x="794.53857"
+         y="141.37292">77% (70th)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.90015268;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.39247317;stroke-dasharray:0.90015268, 1.80030537;stroke-dashoffset:0"
+       d="m 495.95007,105.81226 412.29144,0"
+       id="path6477"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.90015268;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.39247317;stroke-dasharray:0.90015268, 1.80030537;stroke-dashoffset:0"
+       d="m 496.75849,152.9121 412.29144,0"
+       id="path6477-6"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="517.08203"
+       y="188.27136"
+       id="text3918-9-6-4-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3920-5-6-4-4"
+         x="517.08203"
+         y="188.27136">-6% (50th)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="657.08203"
+       y="188.27136"
+       id="text3918-9-9-7-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3920-5-0-4-0"
+         x="657.08203"
+         y="188.27136">-10% (61st)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="793.08203"
+       y="188.49988"
+       id="text3918-9-7-2-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3920-5-8-1-6"
+         x="793.08203"
+         y="188.49988">-10% (70th)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.52380952;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="443.47876"
+       y="95.834351"
+       id="text3914-8-44-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3916-1-1-7"
+         x="443.47876"
+         y="95.834351">2000</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.52380952;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="448.47876"
+       y="46.834351"
+       id="text3914-8-44-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3916-1-1-4"
+         x="448.47876"
+         y="46.834351">Year</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;opacity:0.52380952;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="475.97095"
+       y="127.09436"
+       id="text3914-8-44-3-7"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="479.79126"
+         y="127.09436"
+         id="tspan6719">2009-11 </tspan><tspan
+         sodipodi:role="line"
+         x="475.97095"
+         y="142.09436"
+         id="tspan6747">(3yr est.)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:end;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:end;opacity:0.52380952;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="478.92114"
+       y="171.96936"
+       id="text3914-8-44-3-7-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="478.92114"
+         y="171.96936"
+         id="tspan6719-5">Change,</tspan><tspan
+         sodipodi:role="line"
+         x="478.92114"
+         y="186.96936"
+         id="tspan6751">2000-2011</tspan></text>
+    <g
+       id="g7018"
+       transform="translate(0,152)">
+      <rect
+         y="243.11218"
+         x="572.34235"
+         height="86"
+         width="157.27777"
+         id="rect3912"
+         style="opacity:0.49523812;fill:#80b2ff;fill-opacity:0.53333543;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914"
+         y="267.36749"
+         x="591.92023"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="267.36749"
+           x="591.92023"
+           id="tspan3916"
+           sodipodi:role="line">Ages 20-24</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3918"
+         y="293.11218"
+         x="591.39905"
+         style="font-size:22px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="293.11218"
+           x="591.39905"
+           id="tspan3920"
+           sodipodi:role="line">300,000</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-6"
+         y="313.18103"
+         x="592.62415"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="313.18103"
+           x="592.62415"
+           id="tspan3916-6"
+           sodipodi:role="line">Rank: 12th</tspan></text>
+      <rect
+         y="243.11218"
+         x="396.5"
+         height="86"
+         width="157.27777"
+         id="rect3912-9"
+         style="opacity:0.49523812;fill:#80b2ff;fill-opacity:0.53333543;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8"
+         y="267.36749"
+         x="417.68826"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="267.36749"
+           x="417.68826"
+           id="tspan3916-1"
+           sodipodi:role="line">Ages 16-19</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3918-9"
+         y="293.11218"
+         x="417.16708"
+         style="font-size:22px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="293.11218"
+           x="417.16708"
+           id="tspan3920-5"
+           sodipodi:role="line">100,000</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-6-6"
+         y="313.18103"
+         x="418.39218"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="313.18103"
+           x="418.39218"
+           id="tspan3916-6-4"
+           sodipodi:role="line">Rank: 20th</tspan></text>
+      <rect
+         y="243.11218"
+         x="748.51764"
+         height="86"
+         width="157.27777"
+         id="rect3912-6"
+         style="opacity:0.49523812;fill:#80b2ff;fill-opacity:0.53333543;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-7"
+         y="267.36749"
+         x="767.94177"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="267.36749"
+           x="767.94177"
+           id="tspan3916-0"
+           sodipodi:role="line">All ages (16+)</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3918-4"
+         y="293.11218"
+         x="767.42059"
+         style="font-size:22px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="293.11218"
+           x="767.42059"
+           id="tspan3920-9"
+           sodipodi:role="line">1,567,000</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-6-8"
+         y="313.18103"
+         x="768.64569"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="313.18103"
+           x="768.64569"
+           id="tspan3916-6-0"
+           sodipodi:role="line">Rank: 3rd</tspan></text>
+    </g>
+    <g
+       id="g7327"
+       transform="translate(0,44)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text3906"
+         y="369.1626"
+         x="45"
+         style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           id="tspan6222"
+           y="369.1626"
+           x="45"
+           sodipodi:role="line">Size of the Youth Workforce</tspan></text>
+      <rect
+         y="353.86218"
+         x="20"
+         height="17"
+         width="17"
+         id="rect3910"
+         style="fill:#ffd42a;fill-opacity:0.62365591;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-6-5-2"
+         y="391.54907"
+         x="47.311768"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.58602139;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan5323"
+           y="391.54907"
+           x="47.311768"
+           sodipodi:role="line">Number of individuals who were employed in a </tspan><tspan
+           id="tspan5803"
+           y="407.79907"
+           x="47.311768"
+           sodipodi:role="line">job or unemployed and actively looking for work, </tspan><tspan
+           id="tspan6216"
+           y="424.04907"
+           x="47.311768"
+           sodipodi:role="line">2012. Is this the correct definition? </tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="46.419922"
+       y="570.45984"
+       id="text3906-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3908-8"
+         x="46.419922"
+         y="570.45984">Workforce by race/ethnicity</tspan></text>
+    <g
+       id="g4579"
+       transform="matrix(0.47222222,0,0,0.80952381,79.583333,654.87844)">
+      <rect
+         y="-21.637821"
+         x="39"
+         height="8.9473686"
+         width="272"
+         id="rect4565"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <rect
+         y="-12.164135"
+         x="39"
+         height="10.526316"
+         width="360"
+         id="rect4567"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <rect
+         y="-1.1115036"
+         x="39"
+         height="9.4736843"
+         width="202"
+         id="rect4569"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+    </g>
+    <g
+       transform="matrix(0.81666667,0,0,0.80952381,66.15,691.05703)"
+       id="g4579-3">
+      <rect
+         y="-21.637821"
+         x="39"
+         height="8.9473686"
+         width="272"
+         id="rect4565-2"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <rect
+         y="-12.164135"
+         x="39"
+         height="10.526316"
+         width="360"
+         id="rect4567-4"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <rect
+         y="-1.1115036"
+         x="39"
+         height="9.4736843"
+         width="202"
+         id="rect4569-8"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+    </g>
+    <g
+       transform="matrix(0.51666667,0,0,0.80952381,77.85,727.23562)"
+       id="g4579-8">
+      <rect
+         y="-21.637821"
+         x="39"
+         height="8.9473686"
+         width="272"
+         id="rect4565-5"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <rect
+         y="-12.164135"
+         x="39"
+         height="10.526316"
+         width="360"
+         id="rect4567-3"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <rect
+         y="-1.1115036"
+         x="39"
+         height="9.4736843"
+         width="202"
+         id="rect4569-1"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+    </g>
+    <g
+       transform="matrix(0.40833333,0,0,0.80952381,82.075,799.5928)"
+       id="g4579-1">
+      <rect
+         y="-21.637821"
+         x="39"
+         height="8.9473686"
+         width="272"
+         id="rect4565-1"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <rect
+         y="-12.164135"
+         x="39"
+         height="10.526316"
+         width="360"
+         id="rect4567-0"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <rect
+         y="-1.1115036"
+         x="39"
+         height="9.4736843"
+         width="202"
+         id="rect4569-9"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+    </g>
+    <g
+       transform="matrix(0.65277778,0,0,0.80952381,72.541667,763.41421)"
+       id="g4579-0">
+      <rect
+         y="-21.637821"
+         x="39"
+         height="8.9473686"
+         width="272"
+         id="rect4565-17"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <rect
+         y="-12.164135"
+         x="39"
+         height="10.526316"
+         width="360"
+         id="rect4567-33"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <rect
+         y="-1.1115036"
+         x="39"
+         height="9.4736843"
+         width="202"
+         id="rect4569-5"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+       x="49.745117"
+       y="653.36218"
+       id="text4650"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4652"
+         x="49.745117"
+         y="653.36218">race a</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+       x="49.047852"
+       y="689.87927"
+       id="text4650-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4652-7"
+         x="49.047852"
+         y="689.87927">race b</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+       x="50.155273"
+       y="723.99988"
+       id="text4650-8"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4652-76"
+         x="50.155273"
+         y="723.99988">race c</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+       x="49.481445"
+       y="760.51697"
+       id="text4650-81"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4652-763"
+         x="49.481445"
+         y="760.51697">race d</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+       x="49.264648"
+       y="794.63757"
+       id="text4650-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4652-4"
+         x="49.264648"
+         y="794.63757">race e</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="60.47876"
+       y="611.83435"
+       id="text3914-8-4-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3916-1-9-2"
+         x="60.47876"
+         y="611.83435">Ages</tspan></text>
+    <g
+       id="g4907"
+       transform="translate(15,626)">
+      <rect
+         y="-22.348759"
+         x="96"
+         height="8"
+         width="8"
+         id="rect4565-7"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4"
+         y="-13.61658"
+         x="108.02118"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="-13.61658"
+           x="108.02118"
+           id="tspan3916-1-9"
+           sodipodi:role="line">16-19</tspan></text>
+      <rect
+         y="-22.348759"
+         x="167.67917"
+         height="8"
+         width="8"
+         id="rect4567-9"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-8"
+         y="-13.61658"
+         x="183.15793"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="-13.61658"
+           x="183.15793"
+           id="tspan3916-1-9-23"
+           sodipodi:role="line">20-24</tspan></text>
+      <rect
+         y="-22.348759"
+         x="243"
+         height="8"
+         width="8"
+         id="rect4569-2"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-9"
+         y="-14.165652"
+         x="256.47876"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="-14.165652"
+           x="256.47876"
+           id="tspan3916-1-9-9"
+           sodipodi:role="line">Total, 16+</tspan></text>
+    </g>
+    <rect
+       style="fill:#000064;fill-opacity:0.09677417;stroke:none"
+       id="rect3759-1"
+       width="359.90451"
+       height="19.904512"
+       x="49.047729"
+       y="597.90991"
+       rx="5"
+       ry="5" />
+    <rect
+       style="fill:#ffd42a;fill-opacity:0.62365591;stroke:none"
+       id="rect3910-8"
+       width="17"
+       height="17"
+       x="22.5"
+       y="553.86218" />
+    <g
+       id="g7086"
+       transform="translate(-11.313708,148.82843)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text3906-5-6"
+         y="422.01602"
+         x="522.34631"
+         style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="422.01602"
+           x="522.34631"
+           id="tspan3908-8-2"
+           sodipodi:role="line">Workforce by educational attainment</tspan></text>
+      <rect
+         ry="5"
+         rx="5"
+         y="449.46613"
+         x="524.97412"
+         height="19.904512"
+         width="359.90451"
+         id="rect3759-1-6"
+         style="fill:#000064;fill-opacity:0.09677417;stroke:none" />
+      <g
+         transform="matrix(0.47222222,0,0,0.80952381,555.50974,506.43463)"
+         id="g4579-7">
+        <rect
+           style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none"
+           id="rect4565-4"
+           width="272"
+           height="8.9473686"
+           x="39"
+           y="-21.637821" />
+        <rect
+           style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none"
+           id="rect4567-5"
+           width="360"
+           height="10.526316"
+           x="39"
+           y="-12.164135" />
+        <rect
+           style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none"
+           id="rect4569-0"
+           width="202"
+           height="9.4736843"
+           x="39"
+           y="-1.1115036" />
+      </g>
+      <g
+         id="g4579-3-4"
+         transform="matrix(0.81666667,0,0,0.80952381,542.07641,542.61322)">
+        <rect
+           style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none"
+           id="rect4565-2-8"
+           width="272"
+           height="8.9473686"
+           x="39"
+           y="-21.637821" />
+        <rect
+           style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none"
+           id="rect4567-4-5"
+           width="360"
+           height="10.526316"
+           x="39"
+           y="-12.164135" />
+        <rect
+           style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none"
+           id="rect4569-8-6"
+           width="202"
+           height="9.4736843"
+           x="39"
+           y="-1.1115036" />
+      </g>
+      <g
+         id="g4579-8-7"
+         transform="matrix(0.51666667,0,0,0.80952381,553.77641,578.79181)">
+        <rect
+           style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none"
+           id="rect4565-5-9"
+           width="272"
+           height="8.9473686"
+           x="39"
+           y="-21.637821" />
+        <rect
+           style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none"
+           id="rect4567-3-0"
+           width="360"
+           height="10.526316"
+           x="39"
+           y="-12.164135" />
+        <rect
+           style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none"
+           id="rect4569-1-8"
+           width="202"
+           height="9.4736843"
+           x="39"
+           y="-1.1115036" />
+      </g>
+      <g
+         id="g4579-1-9"
+         transform="matrix(0.40833333,0,0,0.80952381,558.00141,651.14899)">
+        <rect
+           style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none"
+           id="rect4565-1-9"
+           width="272"
+           height="8.9473686"
+           x="39"
+           y="-21.637821" />
+        <rect
+           style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none"
+           id="rect4567-0-2"
+           width="360"
+           height="10.526316"
+           x="39"
+           y="-12.164135" />
+        <rect
+           style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none"
+           id="rect4569-9-9"
+           width="202"
+           height="9.4736843"
+           x="39"
+           y="-1.1115036" />
+      </g>
+      <g
+         id="g4579-0-5"
+         transform="matrix(0.65277778,0,0,0.80952381,548.46808,614.9704)">
+        <rect
+           style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none"
+           id="rect4565-17-7"
+           width="272"
+           height="8.9473686"
+           x="39"
+           y="-21.637821" />
+        <rect
+           style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none"
+           id="rect4567-33-7"
+           width="360"
+           height="10.526316"
+           x="39"
+           y="-12.164135" />
+        <rect
+           style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none"
+           id="rect4569-5-7"
+           width="202"
+           height="9.4736843"
+           x="39"
+           y="-1.1115036" />
+      </g>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4650-0"
+         y="504.91837"
+         x="525.67151"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="504.91837"
+           x="525.67151"
+           id="tspan4652-9"
+           sodipodi:role="line">race a</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4650-9-9"
+         y="541.43549"
+         x="524.97424"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="541.43549"
+           x="524.97424"
+           id="tspan4652-7-1"
+           sodipodi:role="line">race b</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4650-8-4"
+         y="575.55609"
+         x="526.08167"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="575.55609"
+           x="526.08167"
+           id="tspan4652-76-3"
+           sodipodi:role="line">race c</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4650-81-9"
+         y="612.07318"
+         x="525.40784"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="612.07318"
+           x="525.40784"
+           id="tspan4652-763-8"
+           sodipodi:role="line">race d</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4650-2-4"
+         y="646.19379"
+         x="525.19104"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="646.19379"
+           x="525.19104"
+           id="tspan4652-4-6"
+           sodipodi:role="line">race e</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-6-5"
+         y="463.39053"
+         x="536.40515"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="463.39053"
+           x="536.40515"
+           id="tspan3916-1-9-2-4"
+           sodipodi:role="line">Ages</tspan></text>
+      <rect
+         y="455.20743"
+         x="586.92639"
+         height="8"
+         width="8"
+         id="rect4565-7-2"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-4"
+         y="463.93961"
+         x="598.94757"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="463.93961"
+           x="598.94757"
+           id="tspan3916-1-9-8"
+           sodipodi:role="line">16-19</tspan></text>
+      <rect
+         y="455.20743"
+         x="658.60559"
+         height="8"
+         width="8"
+         id="rect4567-9-0"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-8-9"
+         y="463.93961"
+         x="674.08435"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="463.93961"
+           x="674.08435"
+           id="tspan3916-1-9-23-5"
+           sodipodi:role="line">20-24</tspan></text>
+      <rect
+         y="455.20743"
+         x="733.92639"
+         height="8"
+         width="8"
+         id="rect4569-2-8"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-9-1"
+         y="463.39053"
+         x="747.40515"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="463.39053"
+           x="747.40515"
+           id="tspan3916-1-9-9-7"
+           sodipodi:role="line">Total, 16+</tspan></text>
+      <rect
+         y="406.61954"
+         x="497.92642"
+         height="17"
+         width="17"
+         id="rect3910-12"
+         style="fill:#ffd42a;fill-opacity:0.62365591;stroke:none" />
+    </g>
+    <path
+       style="fill:#008080;stroke:#053769;stroke-width:1.03705001px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.43548387"
+       d="m -2.4627014,-235.15635 c 967.9254014,0 967.9254014,0 967.9254014,0"
+       id="path2989-4"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="17"
+       y="-419.63782"
+       id="text6818"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan6820"
+         x="17"
+         y="-419.63782">Draft design for the youth workforce data interactive                                                                                                       01.14.2014</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:11px;font-style:italic;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.4569893;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Italic"
+       x="18.187988"
+       y="-394.39734"
+       id="text3769-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3771-0"
+         x="18.187988"
+         y="-394.39734"
+         style="fill:#ff0000;fill-opacity:1">Questions </tspan><tspan
+         sodipodi:role="line"
+         x="18.187988"
+         y="-380.64734"
+         id="tspan3773-0"
+         style="fill:#4d4d4d;fill-opacity:1">+ What is the definition of workforce here? Is it equal to the labor force or to the employed population?</tspan><tspan
+         sodipodi:role="line"
+         x="18.187988"
+         y="-366.89734"
+         id="tspan7305"
+         style="fill:#4d4d4d;fill-opacity:1">+ Likewise, what is the denominator for the breakdowns by race, educational attainment, and poverty status?</tspan><tspan
+         sodipodi:role="line"
+         x="18.187988"
+         y="-353.14734"
+         id="tspan7321"
+         style="fill:#4d4d4d;fill-opacity:1">+ I don't understand the categories for the disconnected youth variable: LT Associate's Degree, Not in School, Not Working. What's the universe?</tspan><tspan
+         sodipodi:role="line"
+         x="18.187988"
+         y="-339.39734"
+         id="tspan7471"
+         style="fill:#4d4d4d;fill-opacity:1">+ Will we have data for the overall workforce (all ages 16+) to provide context? If not, should we?</tspan><tspan
+         sodipodi:role="line"
+         x="18.187988"
+         y="-325.64734"
+         id="tspan6826-6" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="45.654263"
+       y="881.30573"
+       id="text3906-5-2"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3908-8-4"
+         x="45.654263"
+         y="881.30573">Workforce by poverty status</tspan></text>
+    <g
+       id="g4579-70"
+       transform="matrix(0.47222222,0,0,0.80952381,78.817674,965.7243)">
+      <rect
+         y="-21.637821"
+         x="39"
+         height="8.9473686"
+         width="272"
+         id="rect4565-73"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <rect
+         y="-12.164135"
+         x="39"
+         height="10.526316"
+         width="360"
+         id="rect4567-43"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <rect
+         y="-1.1115036"
+         x="39"
+         height="9.4736843"
+         width="202"
+         id="rect4569-06"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+    </g>
+    <g
+       transform="matrix(0.81666667,0,0,0.80952381,65.384341,1001.903)"
+       id="g4579-3-0">
+      <rect
+         y="-21.637821"
+         x="39"
+         height="8.9473686"
+         width="272"
+         id="rect4565-2-80"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <rect
+         y="-12.164135"
+         x="39"
+         height="10.526316"
+         width="360"
+         id="rect4567-4-7"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <rect
+         y="-1.1115036"
+         x="39"
+         height="9.4736843"
+         width="202"
+         id="rect4569-8-4"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+       x="48.979458"
+       y="964.20813"
+       id="text4650-22"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4652-6"
+         x="48.979458"
+         y="964.20813">above</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.56451613;stroke:none;font-family:Sans"
+       x="48.282192"
+       y="1000.7252"
+       id="text4650-9-92"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4652-7-3"
+         x="48.282192"
+         y="1000.7252">below</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       x="59.7131"
+       y="922.68024"
+       id="text3914-8-4-6-3"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3916-1-9-2-5"
+         x="59.7131"
+         y="922.68024">Ages</tspan></text>
+    <g
+       id="g4907-6"
+       transform="translate(14.234341,936.84589)">
+      <rect
+         y="-22.348759"
+         x="96"
+         height="8"
+         width="8"
+         id="rect4565-7-9"
+         style="opacity:0.53380953;fill:#0044aa;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-65"
+         y="-13.61658"
+         x="108.02118"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="-13.61658"
+           x="108.02118"
+           id="tspan3916-1-9-22"
+           sodipodi:role="line">16-19</tspan></text>
+      <rect
+         y="-22.348759"
+         x="167.67917"
+         height="8"
+         width="8"
+         id="rect4567-9-1"
+         style="opacity:0.53380953;fill:#80b3ff;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-8-93"
+         y="-13.61658"
+         x="183.15793"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="-13.61658"
+           x="183.15793"
+           id="tspan3916-1-9-23-1"
+           sodipodi:role="line">20-24</tspan></text>
+      <rect
+         y="-22.348759"
+         x="243"
+         height="8"
+         width="8"
+         id="rect4569-2-6"
+         style="opacity:0.53380953;fill:#93a7ac;fill-opacity:1;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-9-7"
+         y="-14.165652"
+         x="256.47876"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="-14.165652"
+           x="256.47876"
+           id="tspan3916-1-9-9-0"
+           sodipodi:role="line">Total, 16+</tspan></text>
+    </g>
+    <rect
+       style="fill:#000064;fill-opacity:0.09677417;stroke:none"
+       id="rect3759-1-4"
+       width="359.90451"
+       height="19.904512"
+       x="48.28207"
+       y="908.7558"
+       rx="5"
+       ry="5" />
+    <rect
+       style="fill:#ffd42a;fill-opacity:0.62365591;stroke:none"
+       id="rect3910-8-5"
+       width="17"
+       height="17"
+       x="21.734343"
+       y="864.70807" />
+    <g
+       transform="translate(0.8656001,-111.9455)"
+       id="g7327-0">
+      <text
+         sodipodi:linespacing="125%"
+         id="text3906-6"
+         y="369.1626"
+         x="45"
+         style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           id="tspan6222-7"
+           y="369.1626"
+           x="45"
+           sodipodi:role="line">Disconnected Youth</tspan></text>
+      <rect
+         y="353.86218"
+         x="20"
+         height="17"
+         width="17"
+         id="rect3910-2"
+         style="fill:#ffd42a;fill-opacity:0.62365591;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-4-6-5-2-3"
+         y="391.54907"
+         x="47.311768"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.58602139;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="391.54907"
+           x="47.311768"
+           sodipodi:role="line"
+           id="tspan7380">What exactly is this indicator? Is it comparable to </tspan><tspan
+           y="407.79907"
+           x="47.311768"
+           sodipodi:role="line"
+           id="tspan7384">&quot;discouraged workers?&quot; The categories need</tspan><tspan
+           y="424.04907"
+           x="47.311768"
+           sodipodi:role="line"
+           id="tspan7386">clarification: Less than an associate's degree, not</tspan><tspan
+           y="440.29907"
+           x="47.311768"
+           sodipodi:role="line"
+           id="tspan7388">enrolled in school, and not working...</tspan></text>
+    </g>
+    <g
+       id="g7018-4"
+       transform="translate(1.3905336,1.9888873)">
+      <rect
+         y="243.11218"
+         x="572.34235"
+         height="86"
+         width="157.27777"
+         id="rect3912-3"
+         style="opacity:0.49523812;fill:#80b2ff;fill-opacity:0.53333543;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-79"
+         y="267.36749"
+         x="591.92023"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="267.36749"
+           x="591.92023"
+           id="tspan3916-16"
+           sodipodi:role="line">Ages 20-24</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3918-46"
+         y="293.11218"
+         x="591.39905"
+         style="font-size:22px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="293.11218"
+           x="591.39905"
+           id="tspan3920-2"
+           sodipodi:role="line">300,000</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-6-3"
+         y="313.18103"
+         x="592.62415"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="313.18103"
+           x="592.62415"
+           id="tspan3916-6-3"
+           sodipodi:role="line">Rank: 12th</tspan></text>
+      <rect
+         y="243.11218"
+         x="396.5"
+         height="86"
+         width="157.27777"
+         id="rect3912-9-7"
+         style="opacity:0.49523812;fill:#80b2ff;fill-opacity:0.53333543;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-8-5"
+         y="267.36749"
+         x="417.68826"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="267.36749"
+           x="417.68826"
+           id="tspan3916-1-7"
+           sodipodi:role="line">Ages 16-19</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3918-9-8"
+         y="293.11218"
+         x="417.16708"
+         style="font-size:22px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="293.11218"
+           x="417.16708"
+           id="tspan3920-5-7"
+           sodipodi:role="line">100,000</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-6-6-0"
+         y="313.18103"
+         x="418.39218"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="313.18103"
+           x="418.39218"
+           id="tspan3916-6-4-2"
+           sodipodi:role="line">Rank: 20th</tspan></text>
+      <rect
+         y="243.11218"
+         x="748.51764"
+         height="86"
+         width="157.27777"
+         id="rect3912-6-3"
+         style="opacity:0.49523812;fill:#80b2ff;fill-opacity:0.53333543;stroke:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-7-9"
+         y="267.36749"
+         x="767.94177"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="267.36749"
+           x="767.94177"
+           id="tspan3916-0-4"
+           sodipodi:role="line">All ages (16+)</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3918-4-7"
+         y="293.11218"
+         x="767.42059"
+         style="font-size:22px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="293.11218"
+           x="767.42059"
+           id="tspan3920-9-4"
+           sodipodi:role="line">1,567,000</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3914-6-8-4"
+         y="313.18103"
+         x="768.64569"
+         style="font-size:13px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.5857143;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="313.18103"
+           x="768.64569"
+           id="tspan3916-6-0-4"
+           sodipodi:role="line">Rank: 3rd</tspan></text>
+    </g>
+  </g>
+</svg>
