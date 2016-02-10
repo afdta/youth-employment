@@ -154,6 +154,7 @@ function MetroInteractive(appWrapperElement){
 		var slide = outer_slide.append("div").classed("metro-interactive-view c-fix out-of-view",true).datum(viewNum);
 			slide.append("div").classed("metro-interactive-view-marker",true);
 		var slideHeader = slide.append("div").classed("metro-interactive-view-header",true);
+		var slideContent = slide.append("div").classed("metro-interactive-view-content",true);
 
 		S.allSlides = S.viewWrap.selectAll(".metro-interactive-view"); //update selection of slides
 
@@ -169,7 +170,7 @@ function MetroInteractive(appWrapperElement){
 		viewOps.refreshHeight = refresh_view_wrap_height;
 		viewOps.dataState = 0; // 0: empty, 1: loading, 2: ready, -1: error
 		viewOps.dataStore = {data: {raw:null, processed:null}, storage: {}}; //placeholder for the view data
-		viewOps.container = viewOps.slide = slide;
+		viewOps.container = viewOps.slide = slideContent;
 		viewOps.header = slideHeader;
 		viewOps.lookup = S.metroLookup;
 		viewOps.name = function(name, title){
