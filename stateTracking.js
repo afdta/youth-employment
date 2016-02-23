@@ -13,25 +13,22 @@ function MetroInteractive(appWrapperElement){
 	//state object, S
 	var S = {};
 
-	//basic structure: A] app wrapper > a] menu wrapper, b] slide/views wrapper
-	S.wrap = d3.select(appWrapperElement).classed("metro-interactive-wrap",true);
-	S.menu = S.wrap.append("div").classed("metro-interactive-menu-wrap",true);
+	//basic structure: A] app wrapper > a] menu (progress bar, forward, backward) wrapper, b] slide/views wrapper; 
+	//				   B] table of contents is a child of S.wrap
+	S.wrap = d3.select(appWrapperElement).classed("metro-interactive-wrap toc-visible",true).style({"position":"relative", "overflow":"hidden"});
+	S.progress = S.wrap.append("div").classed("metro-interactive-progress c-fix",true).style("padding-right","50px");
 	S.viewWrap = S.wrap.append("div").classed("metro-interactive-views",true);
 
-	S.changeEvent = {view:false, metro:false, resize:false} //keep track of what is triggering redraws
-	S.changeEventReset = function(){
-		S.changeEvent.view=false;
-		S.changeEvent.metro=false;
-		S.changeEvent.resize=false;
-	}
+	var viewMenuCtrl = {bilt:false}; //view menu (table of contents) object. built after all views loaded below.
 
-	//keep track of selected metro area and view
-	S.metro = null; //no defaults
-	S.view = null;
+	////////////  APP STATE  //////////////
+		S.metro = null; //no defaults
+		S.view = null;
+		S.TOCShown = true; //is the table of contents slide being shown -- defaults to true -- display controlled by toc-visible class on outer wrapper
 
-	//keep track of which DOM elements to show/hide
-	S.currentSlide = null; //the actual dom element being shown
-	S.allSlides = null;
+		S.currentSlide = null; //the actual dom element being shown
+		S.allSlides = null;
+	///////////////////////////////////////
 
 	//provide external hooks for changing metros and views across the entire application
 	S.setMetro = function(metroCode){qcMetro(metroCode);}
@@ -130,6 +127,36 @@ function MetroInteractive(appWrapperElement){
 		}
 	}
 
+	//bring an element to top of window via scrolltop
+	function scrollToThis(thiz){
+		try{
+			var etop = thiz.getBoundingClientRect().top;
+			if(etop > 0 && etop < 100){throw "Already in view"}
+			var current = window.scrollY;
+			var next = current + etop - 5;
+			var I = d3.interpolateNumber(current, next);
+			var tween = function(){
+				return function(t){
+					window.scroll(0, I(t));
+				}
+			}
+
+			//scroll to top in next tick -- allows any necessary loading/drawing to take place first
+			setTimeout(function(){
+				try{
+					d3.transition().duration(500).tween("scrollToThis",tween);
+				}
+				catch(e){
+					//no-op
+				}
+				//window.scroll(0,next);
+			},0)		
+		}
+		catch(e)
+		{
+			//no-op, unsupported browsers don't get this feature
+		}
+	}
 
 
 	//view listeners need to:
@@ -146,13 +173,12 @@ function MetroInteractive(appWrapperElement){
 	S.addView = function(setupView, redrawView, data_uri, metroLookup){
 		var viewNum = numViews;
 		var viewIndex = "V"+viewNum;
-		var viewName = viewIndex; //can be set by user later - for use in menu
-		var viewTitle = null; //for use in each slide title
+		var nameShort = viewIndex; //can be set by user later - for use in menu
+		var nameLong = null; //for use in each slide title
 
 		//create a "view slide" in the DOM
 		var outer_slide = S.viewWrap.append("div").classed("metro-interactive-view-wrap",true);
 		var slide = outer_slide.append("div").classed("metro-interactive-view c-fix out-of-view",true).datum(viewNum);
-			slide.append("div").classed("metro-interactive-view-marker",true);
 		var slideHeader = slide.append("div").classed("metro-interactive-view-header",true);
 		var slideContent = slide.append("div").classed("metro-interactive-view-content",true);
 
@@ -163,7 +189,7 @@ function MetroInteractive(appWrapperElement){
 		//hold parameters for the current view redrawView will be drawn with this object as the this
 		var viewOps = {};
 		viewOps.formats = S.formats;
-		viewOps.changeEvent = S.changeEvent;
+		//viewOps.changeEvent = S.changeEvent;
 		viewOps.firstDraw = true; //useful for determining if particular information should be shown on first view
 		viewOps.getMetro = function(){return S.metro;}
 		viewOps.setMetro = function(code){S.setMetro(code);}
@@ -173,23 +199,30 @@ function MetroInteractive(appWrapperElement){
 		viewOps.container = viewOps.slide = slideContent;
 		viewOps.header = slideHeader;
 		viewOps.lookup = S.metroLookup;
-		viewOps.name = function(name, title){
-			if(arguments.length===0){
-				return viewName;
+		//allow user to set "short" and "long" names [1-2 words, full title]
+		viewOps.name = function(short, long){
+			if(arguments.length===1){
+				nameShort = short;
 			}
-			else if(arguments.length===1){
-				viewName = name;
-			}
-			else{
-				viewName = name;
-				viewTitle = title;
+			else if(arguments.length > 1){
+				nameShort = short;
+				nameLong = long;
 
-				var title = slideHeader.selectAll("p").data([title]);
+				var title = slideHeader.selectAll("p").data([long]);
 				title.enter().append("p");
 				title.exit().remove();
 				title.text(function(d,i){return d});
 			}
+			return {short:nameShort, long:nameLong};
 		}
+		viewOps.description = function(text){
+			var atext = [].concat(text);
+			var p = slideHeader.selectAll("p.metro-interactive-view-description").data(atext);
+			p.enter().append("p").classed("metro-interactive-view-description",true);
+			p.exit().remove();
+			p.text(function(d,i){return d});
+		}
+
 		viewOps.data = function(name, data){
 			if(arguments.length===0){
 				return viewOps.dataStore.data.raw;
@@ -216,6 +249,13 @@ function MetroInteractive(appWrapperElement){
 		}
 		viewOps.storage = viewOps.store; //maintain for backwards compatibility
 
+		viewOps.changeEvent = {view:false, metro:false, resize:false} //keep track of what is triggering redraws
+		viewOps.changeEventReset = function(){
+			viewOps.changeEvent.view=false;
+			viewOps.changeEvent.metro=false;
+			viewOps.changeEvent.resize=false;
+		}
+
 		//run setup
 		if(!!setupView){setupView.call(viewOps);} //must be synchronous
 
@@ -235,14 +275,15 @@ function MetroInteractive(appWrapperElement){
 						var inBetween = true;
 					}
 					else if(d < current && d > index_to_show){
-						var inBetween = true
+						var inBetween = true;
 					}
 				}
 				catch(e){
 					var inBetween = false;
 				}
-
-				return inBetween;
+				finally{
+					return inBetween;
+				}
 			});
 			S.allSlides.classed("out-right", function(d,i){
 				return d > index_to_show;
@@ -251,21 +292,34 @@ function MetroInteractive(appWrapperElement){
 				return d < index_to_show;
 			});
 
-			//show this view
 			S.currentSlide = slide.classed("out-right out-left out-of-view",false); //S.view is already set in changeView;
 
+			//set the current slide's parent to relative positioning, putting it back in document flow and thus setting viewWrap height automatically -- all others positioned absolutely
+			S.allSlides.each(function(d,i){
+				this.parentNode.style.position = (d===index_to_show ? "relative" : "absolute");
+			});
+			
+			if(!S.TOCShown){scrollToThis(S.wrap.node());} //align wrapper to the top of viewport if the TOC is not shown (necessary test to handle initial load case)
 		}
 
-		function refresh_view_wrap_height(){
-			try{
-				var rect = slide.node().getBoundingClientRect();
-				var h = Math.round(rect.bottom - rect.top)+20; //20px margin
-				if(h<200){throw "BadHeight"}
-				S.viewWrap.style("height",h+"px");
+		//set the view wrap height based on this slide's height -- fallback method in case the relative positioning above fails
+		function refresh_view_wrap_height(H){
+			if(arguments.length===1){
+				S.viewWrap.style("height",H+"px");
 			}
-			catch(e){
-				S.viewWrap.style("height","2000px"); //arbitrary, tall height
-			}			
+			else{
+				try{
+					var rect = slide.node().getBoundingClientRect();
+					var h = Math.round(rect.bottom - rect.top)+20; //20px margin
+					if(h<200){throw "BadHeight"}
+				}
+				catch(e){
+					var h = 2000; //arbitrary, tall height
+				}	
+				finally{
+					S.viewWrap.style("height",h+"px");
+				}
+			}		
 		}
 
 		//TWO FUNCTIONS FOR SHOWING DATA: 1) IF DATA ALREADY LOADED: JUST DRAW IT, 2) DATA NOT LOADED: LOAD DATA AND JUST DRAW IT
@@ -286,16 +340,14 @@ function MetroInteractive(appWrapperElement){
 				slide.classed("bad-view",true);
 			}
 			
-			S.changeEventReset(); //reset the change event in case any code within a view relies on this
-
-			if(viewIndex != S.view){S.changeEvent.view = true} //it is possible that while data for one view is loading, the user switches view. In that case when this callback is executed, it may reset the global changeEvent object that is made available to the second (current) view. This could could cause unexpected results.
-
-			viewOps.firstDraw = false; //it's been drawn
+			viewOps.changeEventReset(); //reset the change event			
 
 			viewLoaded();
 
-			//any time you (re)draw the view, resize the wrapper height
-			refresh_view_wrap_height();
+			//every time the view is (re)drawn, resize the wrapper height
+			//refresh_view_wrap_height(); //no longer necessary due to switch to relative positioning
+			
+			viewOps.firstDraw = false; //it's been drawn
 		}
 
 		//get data and show view
@@ -374,9 +426,20 @@ function MetroInteractive(appWrapperElement){
 	//args
 	//{1 & 2} metroCode and viewCode: metro/view code to change to. if not a valid code, no-op. 
 	//{3} setHash: optional, if truthy, this method will also set the page hash value to metroCode (assuming valid metro code)
-	var viewMenuCtrl = {bilt:false};
 	function changeView(viewCode, metroCode, setHash){
-		var V = validate(viewCode, metroCode)
+		
+		//if called with no args, this is a resize event -- draw with existing geo/view selection
+		if(arguments.length===0){
+			var viewCode = S.view;
+			var metroCode = S.metro;
+			var setHash = false;
+			var isResizeEvent = true;
+		}
+		else{
+			var isResizeEvent = false;
+		}
+
+		var V = validate(viewCode, metroCode);
 
 		//if valid codes...
 		if(V.view && V.metro){
@@ -384,6 +447,7 @@ function MetroInteractive(appWrapperElement){
 			var newhash = viewCode + "G" + metroCode;
 			if(!!setHash){set_hash(newhash)}
 
+			//NOTE FROM PREVIOUS CODE ARCHITECTURE WHERE changeEvent was tracked globally
 			//Do not reset changeEvents here--only reset after changes have been actually drawn (in draw_view). While data is loading asynchronously, 
 			//a resize event could wipe out change view data if you reset here, making code in the redraw callback potentially unreliable. The approach 
 			//below is somewhat conservative, as it "layers" changes. That is, once a change has been recorded, it will not be reset until the view 
@@ -393,26 +457,41 @@ function MetroInteractive(appWrapperElement){
 			//are initialized to null and so for the first draw, these changeEvent flags will always be set. Note that the resize flag is only set to 
 			//true when changeView is called from qcRedraw.
 
+			//EDIT (2/17): Note that the resize flag is only set to true when changeView is called with no arguments.
+
+			var VO = viewRegister[viewCode];
+
 			if(S.view != viewCode){
-				S.changeEvent.view = true;
+				VO.changeEvent.view = true;
 			}
 			if(S.metro != metroCode){
-				S.changeEvent.metro = true;
+				VO.changeEvent.metro = true;
+			}
+			if(isResizeEvent){
+				VO.changeEvent.resize = true;
 			}
 
 			//state must be updated before show is called because it relies on the current state -- if the user changes metro while the redraw method is called asynchronously, you want that callback to use the new metro. It might redraw twice, but it will do so with the right data.
 			S.view = viewCode;
 			S.metro = metroCode;
 
-			
-			//show this view -- eventually calls the low level function draw_view associated with each view -- it will reset state
-			viewRegister[viewCode].show();
 			if(viewMenuCtrl.bilt){
+				//if drawing a view, hide the view menu (TOC) -- necessary to enable back/forward, otherwise the TOC could become persistently "stuck"
+				//the !VO.firstDraw condition handles the initial load of the app when the TOC is shown, but the first, default view is still drawn underneath. 
+				//If the non-default view is drawn on initial load, the cap method will take care of hiding the TOC
+				//Other methods of selecting a view from the viewMenu will also handle hiding the toc
+				if(!VO.firstDraw){viewMenuCtrl.hide();} 
 				viewMenuCtrl.syncButtons();
 			}
+
+			//show this view -- eventually calls the low level function draw_view associated with each view -- it will reset state
+			VO.show();
 		} 
 		else{
-			//no-op
+			//bad hashes, go back to menu
+			if(viewMenuCtrl.bilt){
+				viewMenuCtrl.show();
+			}
 		}
 	}
 
@@ -420,33 +499,232 @@ function MetroInteractive(appWrapperElement){
 	function qcMetro(metroCode){changeView(S.view, metroCode, true);}
 	function qcView(viewCode){changeView(viewCode, S.metro, true);}
 	
-	//redraw the current view -- for resize events -- doesn't reset hash
-	function qcRedraw(){
-		S.changeEvent.resize = true;
-		changeView(S.view, S.metro, false);
+	//set about information text
+	S.aboutData = {title:[], description:[], footnotes:[]};
+	S.about = function(prop, value){
+		if(arguments.length==1){
+			var rval = S.aboutData[prop];
+		}
+		else if(arguments.length > 1){
+			var aval = [].concat(value);
+			S.aboutData[prop] = aval;
+			var rval = aval;
+		}
+		else{
+			var rval = [];
+		}
+		return rval;
 	}
 
 	//build_view_nav can only be called once everything has been registered -- i.e. in S.cap
 	viewMenuCtrl.build = function(){
-		var buttons = S.menu.selectAll("div.nav-menu-button").data(viewList);
-		buttons.enter().append("div").classed("nav-menu-button",true).append("p");
-		buttons.exit().remove();
-		buttons.select("p").text(function(d,i){return viewRegister[d].name()});
-		buttons.on("mousedown", function(d,i){
+		var self = this;
+		S.TOCShown = true;
+
+		//divs to hold the menu view, menu view header, and menu view content
+		var slide = S.wrap.append("div").classed("metro-interactive-view-menu",true).style("overflow-y","auto");
+		var header = slide.append("div").style({"padding":"7px 15px 5px 15px", "background-color":"#0D73D6"});
+			header.append("p").text(!!S.about("title") ? S.about("title") : "Table of contents").classed("metro-interactive-header-text",true).style({"color":"#ffffff","line-height":"1em"});
+		var content = slide.append("div").style("padding","5px 15px");
+
+		var descriptionText = S.about("description");
+		
+		//add the intro paragraph
+		if(descriptionText.length > 0){
+			content.append("p").text(descriptionText[0]).classed("metro-interactive-description",true);		
+		}
+
+		//build the table of contents structure
+		var toc = content.append("div").classed("metro-interactive-toc-box",true).append("div");
+		toc.append("p").text("EXPLORE THE DATA").style({"font-size":"13px","color":"#0D73D6","margin-top":"10px"});
+		var tocTable = toc.append("div").classed("as-table",true);
+
+		//fill in all description text -- the DOM structure has been set accordingly: intro, toc, remaining paragraphs
+		content.selectAll("p.metro-interactive-description").data(descriptionText).enter().append("p").classed("metro-interactive-description",true)
+		.text(function(d,i){return d})	
+
+		//forward/back buttons
+		var back = S.progress.append("div").style({"float":"left", "width":"15%", "height":"100%", "position":"relative", "cursor":"pointer"});
+		var backSVG = back.append("svg").style({"width":"50px","height":"100%","position":"absolute","left":"0px","top":"0px", "pointer-events":"none"});
+		var middle = S.progress.append("div").style({"float":"left", "width":"70%", "height":"100%", "position":"relative"}).append("svg").style({"width":"100%","height":"100%","position":"absolute","left":"0px","top":"0px"});
+		
+		var forward = S.progress.append("div").style({"float":"right", "width":"15%", "height":"100%", "position":"relative", "cursor":"pointer"});
+		var forwardSVG = forward.append("svg").style({"width":"50px","height":"100%","position":"absolute","right":"0px","top":"0px", "pointer-events":"none"});
+		
+		var infoButton = S.progress.append("div").classed("metro-interactive-info-button",true).append("div");
+
+		backSVG.append("path").attr("d","M20,0 l-13,10 l13,10").attr("stroke-linecap","round");
+		forwardSVG.append("path").attr("d","M35,0 l13,10 l-13,10").attr("stroke-linecap","round");
+
+		
+		//set up the slide indicator dots
+		var r = 3; //default radius
+		//build array with positions of dots
+		var spacing = function(){
+			var num_dots = viewList.length;
+			var min_percent = 3; //in percent of svg width
+			var pref_percent = 9;
+			var real_percent = pref_percent;
+			while(real_percent >= min_percent){
+				if(real_percent*num_dots < 100){break}
+				real_percent--;
+			}
+			r = real_percent > 7 ? 3 : (real_percent > 4 ? 2.5 : 2); 
+			var block_width = real_percent*num_dots;
+			var start = (100-block_width)/2;
+			var dotPos = [];
+			for(var i=0; i<num_dots; i++){
+				dotPos.push(start+(i*real_percent));
+			}
+			return dotPos;
+		}
+		var buttonX = spacing(); 
+		var buttons = middle.selectAll("circle").data(viewList).enter().append("circle")
+							.attr({"cy":"50%","r":r})
+							.attr("cx",function(d,i){return buttonX[i] + "%"});
+		
+		this.syncButtons = function(){
+			buttons.style("fill",function(d,i){
+				return d===S.view ? "#0D73D6" : "#aaaaaa";
+			});
+
+			forward.classed("menu-button-inactive", function(d,i){
+				return S.view === viewList[viewList.length-1];
+			});
+
+			back.classed("menu-button-inactive", function(d,i){
+				return S.view === viewList[0];
+			});			
+		}
+
+		this.show = function(snapToTop){
+			/*var minh = 500;
+			var max = 0;
+			S.allSlides.each(function(d,i){
+				try{
+					var b = this.getBoundingClientRect();
+					var h = Math.round(b.bottom - b.top); 
+				}
+				catch(e){
+					var h = 0;
+				}
+				finally{
+					//update max
+					if(h > max){max = h}
+				}
+			});*/
+
+
+			//check menu height itself
+			/*try{
+				var slideBox = slide.node().getBoundingClientRect();
+				var slideH = Math.round(slideBox.bottom - slideBox.top);
+				if(slideH > max){max = slideH}
+			}
+			catch(e){
+
+			}*/
+
+			/*if(max < minh){max = minh}*/
+
+			S.TOCShown = true;
+			S.wrap.classed("toc-visible",true);
+			slide.node().scrollTop = 0;
+
+			set_hash("TableOfContents"); //set an invalid hash value -- calls to changeView with this hash will result in menu being shown -- useful for browser back
+		
+			if(snapToTop){
+				scrollToThis(S.wrap.node());
+			}
+		}
+
+		infoButton.on("mousedown",function(d,i){
+			self.show(true);
+		})
+
+		this.hide = function(snapToTop){
+			S.TOCShown = false;
+			S.wrap.classed("toc-visible",false);
+			if(snapToTop){
+				scrollToThis(S.wrap.node());
+			}
+		}
+
+		var next = function(inc){
+			//determine current view
+			try{
+				var idx = viewList.indexOf(S.view);
+			}
+			catch(e){
+				var idx = S.view;
+				idx = +idx.replace("V","");
+			}
+
+			var n = idx+inc;
+			if(n === -1){
+				self.show(true);
+			}
+			else if(S.TOCShown){
+				changeView(S.view, S.metro, true); //redraw current view & geo, set hash -- this will hide the TOC
+			}
+			else if(n >= 0 && n < viewList.length){
+				self.hide();
+				qcView(viewList[n]);
+			}
+			 
+		}
+		back.on("mousedown",function(d,i){next(-1)});
+		forward.on("mousedown",function(d,i){next(1)});
+
+		window.addEventListener("keydown",function(ev){
+			try{
+				if(ev.keyCode === 39){var inc = 1;}
+				else if(ev.keyCode === 37){var inc = -1;}
+				else{var inc = 0;}
+			}
+			catch(e){
+				var inc = 0;
+			}
+			finally{
+				if(inc === 1 || inc === -1){
+					next(inc);
+				}
+			}
+		});
+
+		//links to populate the TOC page
+		var links = tocTable.selectAll("div.metro-interactive-content-link").data(viewList);
+		links.enter().append("div").classed("metro-interactive-content-link as-table-row",true);
+
+		var linkCells = links.selectAll("p").data(function(d,i){
+			return [(i+1)+".", d];
+		})
+		linkCells.enter().append("p").text(function(d,i){
+			if(i===0){
+				return d;
+			}
+			else{
+				var view = viewRegister[d];
+				var names = view.name();
+				return (names.long ? names.long : names.short) + " » ";				
+			}
+		}).classed("as-table-cell",true)
+		.style({"vertical-align":"top","padding":"10px 3px"})
+		.style("text-align",function(d,i){return i===0 ? "right" : "left"})
+		.style("width",function(d,i){return i===0 ? "20px" : "auto"})
+		;
+
+		links.on("mousedown", function(d,i){
 			qcView(d);
-			//changeView, called by qcView, calls this.syncButtons
+			self.hide();
+			//changeView, called by qcView, calls syncButtons
 		});
 
 		this.bilt = true;
-		this.syncButtons = function(){
-			buttons.classed("nav-menu-button-selected",function(d,i){
-				return d===S.view;
-			});		
-		}
 		return this;
 	}
 
-	//"cap off" the app: load the default view/metro, otherwise no setup is performed
+	//"cap off" the app: load the default view/metro, otherwise no setup is performed -- it must set S.metro and S.view
 	S.cap = function(){
 		//try and determine the proper metro/view selections from the location hash
 		var hash = get_hash();
@@ -473,7 +751,15 @@ function MetroInteractive(appWrapperElement){
 			changeView(VD, metro, true);
 		}
 
-		viewMenuCtrl.build().syncButtons();
+		viewMenuCtrl.build().syncButtons(); //build the menu and menu page and sync
+
+		if(S.view != VD){
+			viewMenuCtrl.hide(true); //default is for TOC to be shown, if the default view is not selected, hide toc and snap to top
+		}
+		else{
+			viewMenuCtrl.show(); //even though the default is to show TOC, use fn for layout side effects
+		}
+
 	}
 
 	//hash changes
@@ -501,7 +787,7 @@ function MetroInteractive(appWrapperElement){
 		var h = get_hash(); 
 
 		if(h.metro !== S.metro || h.view !== S.view){
-			changeView(h.view, h.metro); //validation is performed in changeView -- this is a no-op if thes are bad hashes
+			changeView(h.view, h.metro); //validation is performed in changeView
 		}
 	}
 
@@ -511,12 +797,15 @@ function MetroInteractive(appWrapperElement){
 	var resize_timer;
 	window.addEventListener("resize",function(){
 		clearTimeout(resize_timer);
-		resize_timer = setTimeout(qcRedraw, 200);
+		//only set resize timer if TOC isn't shown
+		if(!S.TOCShown){
+			resize_timer = setTimeout(changeView, 200);
+		}
 	});
 
 
 	function append_loading_icon(wrapper_selection){
-		var svg = wrapper_selection.append("div").style({width:"65px", height:"65px", position:"absolute", top:"400px", left:"50%"})
+		var svg = wrapper_selection.append("div").style({width:"65px", height:"65px", position:"absolute", top:"40%", left:"50%"})
 									.classed("metro-interactive-loading-icon",true)
 									.append("svg").style({"width":"100%","height":"100%","margin-left":"-32px"})
 									.append("g").attr("transform","translate(5,5)");
