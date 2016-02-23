@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="940"
+   height="1100"
+   viewBox="0 0 940.00001 1100"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="view0.svg"
+   inkscape:export-filename="/home/alec/Dropbox/Projects/Brookings/DataViz/youth-employment/wireframes/view0.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="marker10217"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#808080;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path10219"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend"
+       style="overflow:visible"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path8525"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#808080;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="SquareL"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="SquareL"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path8592"
+         d="M -5,-5 -5,5 5,5 5,-5 -5,-5 Z"
+         style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#808080;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.8,0.8)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Lend-6"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8525-1"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         style="fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:#808080;stroke-width:1pt;stroke-opacity:1"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="493.60519"
+     inkscape:cy="707.64715"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1776"
+     inkscape:window-height="1028"
+     inkscape:window-x="59"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,47.63784)">
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072"
+       width="178.57143"
+       height="20"
+       x="3.619823"
+       y="139.36215" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="2.0377917"
+       y="112.64789"
+       id="text8083"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8085"
+         x="2.0377917"
+         y="112.64789">Employment rates by age</tspan></text>
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:0.74509804;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-5"
+       width="260"
+       height="20"
+       x="3.619823"
+       y="171.36218" />
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:0.31372549;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-8"
+       width="390"
+       height="20"
+       x="3.619823"
+       y="203.36218" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="2.0475574"
+       y="397.64789"
+       id="text8083-6"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8085-9"
+         x="2.0475574"
+         y="397.64789">Unemployment rates by age</tspan></text>
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:0.31372549;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-6"
+       width="178.57143"
+       height="20"
+       x="3.6295886"
+       y="-508.36218"
+       transform="scale(1,-1)" />
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:0.74509804;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-5-3"
+       width="260"
+       height="20"
+       x="3.6295886"
+       y="-476.36218"
+       transform="scale(1,-1)" />
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-8-3"
+       width="390"
+       height="20"
+       x="3.6295886"
+       y="-444.36212"
+       transform="scale(1,-1)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1.4570308"
+       y="656.4411"
+       id="text8083-6-5"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8085-9-1"
+         x="1.4570308"
+         y="656.4411">Disconnected youth (%)</tspan></text>
+    <g
+       id="g8253"
+       transform="matrix(1,0,0,0.84204585,53.619823,57.634157)">
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path8211"
+         d="M 524.37687,196.46336 564.8169,161.40923 608.12638,198.95064 661.57818,152.61768 725.01153,127.099 767.96111,131.61571 808.27992,115.39579 877.90726,115.39579"
+         style="fill:none;fill-rule:evenodd;stroke:#0d73df;stroke-width:3.26928949;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.31372549" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path8211-2"
+         d="M 877.64993,178.73451 837.20989,152.95449 793.90042,180.56372 740.44862,146.48889 677.01527,124.99304 634.06568,133.56983 593.74688,121.64113 524.11952,152.64113"
+         style="fill:none;fill-rule:evenodd;stroke:#0d73df;stroke-width:3.26928949;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="path8211-6"
+         d="M 524.29636,177.22885 564.7364,171.01584 608.04587,194.80499 661.49768,165.44482 724.93102,149.2742 767.8806,108.41254 808.19942,98.134333 877.82676,98.134333"
+         style="fill:none;fill-rule:evenodd;stroke:#0c73df;stroke-width:3.26928949;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.74509804" />
+    </g>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 559.11982,122.17518 559.11982,241.38481"
+       id="path8251"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-0"
+       width="25"
+       height="25"
+       x="4"
+       y="11.36216" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="39.579296"
+       y="29.647877"
+       id="text8331"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8333"
+         x="39.579296"
+         y="29.647877">16-19</tspan></text>
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:0.74509804;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-5-9"
+       width="25"
+       height="25"
+       x="117"
+       y="11.36216" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="154.42923"
+       y="29.647877"
+       id="text8335"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8337"
+         x="154.42923"
+         y="29.647877">20-24</tspan></text>
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:0.31372549;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-8-0"
+       width="25"
+       height="25"
+       x="232"
+       y="11.36216" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="269.19125"
+       y="29.647877"
+       id="text8339"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8341"
+         x="269.19125"
+         y="29.647877">25-54</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="3.9345546"
+       y="-5.5841293"
+       id="text8083-7"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8085-96"
+         x="3.9345546"
+         y="-5.5841293">Age groups</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0d73df;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.31372549"
+       d="M 577.99669,517.25861 618.43672,487.74143 661.7462,519.35301 715.198,480.33854 778.63135,458.85064 821.58093,462.65392 861.89974,448.996 931.52708,448.996"
+       id="path8211-22"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0c73df;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.74509804"
+       d="M 577.91618,501.06227 618.35622,495.83063 661.66569,515.86219 715.1175,491.13958 778.55084,477.52317 821.50042,443.11578 861.81924,434.46106 931.44658,434.46106"
+       id="path8211-6-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       id="path8995"
+       style="fill:#cccccc;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 577.18508,497.82186 577.18508,470.75607 646.81244,427.81173 687.13124,437.85624 730.08083,430.63418 793.51418,465.57555 846.96598,494.26809 890.27545,462.59942 930.81058,484.56107 930.90558,518.49661 930.09628,519.14516 890.27545,498.08568 846.96598,512.91343 793.51418,484.22089 730.08083,480.96135 687.13124,487.3425 646.81244,480.1389 577.18508,497.82186"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccccccccc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#0d73df;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 931.26975,502.33011 890.82971,480.62215 847.52024,503.87039 794.06844,475.17782 730.63509,457.07732 687.6855,464.29938 647.3667,454.25486 577.73934,480.35828"
+       id="path8211-2-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 559.11982,416.36847 559.11982,535.57811"
+       id="path8251-9"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="553.64886"
+       y="402.64789"
+       id="text8083-2-5"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8085-1-5"
+         x="553.64886"
+         y="402.64789">Unemployment rate over time</tspan></text>
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:1;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-66"
+       width="178.57143"
+       height="20"
+       x="3.6295896"
+       y="681.36218" />
+    <rect
+       style="opacity:1;fill:#0d73df;fill-opacity:0.74509804;stroke:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect8072-5-2"
+       width="260"
+       height="20"
+       x="3.6295896"
+       y="713.36218" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="3.619823"
+       y="312.36215"
+       id="text8484"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8486"
+         x="3.619823"
+         y="312.36215">Room for text to describe numbers above. Call out levels (e.g. number of employed)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="421.08981"
+       y="692.10938"
+       id="text8484-5"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         x="421.08981"
+         y="692.10938"
+         id="tspan8506">Room for text to describe numbers at left</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1.4765625"
+       y="852.36218"
+       id="text8508"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8510"
+         x="1.4765625"
+         y="852.36218">NOTES</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="2.3847656"
+       y="888.07648"
+       id="text8512"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8514"
+         x="2.3847656"
+         y="888.07648">Margin of errors will be included in the charts above. Doing this for the bar charts is relatively</tspan><tspan
+         sodipodi:role="line"
+         x="2.3847656"
+         y="910.57648"
+         id="tspan8950">straightforward, but will be more challenging for the line graphs. Perhaps hovering over each </tspan><tspan
+         sodipodi:role="line"
+         x="2.3847656"
+         y="933.07648"
+         id="tspan8952">line to reveal the margin of error will reduce clutter.</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#SquareL);marker-end:url(#SquareL)"
+       d="M 112.19125,691.50502 310.76268,691.50502"
+       id="path8516"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:120.00000477%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="356.76709"
+       y="794.15906"
+       id="text9000"
+       sodipodi:linespacing="120%"><tspan
+         sodipodi:role="line"
+         id="tspan9002"
+         x="356.76709"
+         y="794.15906">margin of error</tspan><tspan
+         sodipodi:role="line"
+         x="356.76709"
+         y="812.15906"
+         id="tspan10571">(on hover)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Lend)"
+       d="M 366.05138,777.99662 366.05138,746.50929 321.63814,700.81278"
+       id="path9004"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:120.00000477%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="760.88159"
+       y="571.88159"
+       id="text9000-7"
+       sodipodi:linespacing="120%"><tspan
+         sodipodi:role="line"
+         id="tspan9002-9"
+         x="760.88159"
+         y="571.88159">margin of error</tspan><tspan
+         sodipodi:role="line"
+         x="760.88159"
+         y="589.88159"
+         id="tspan10569">(on hover)</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#808080;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker10217)"
+       d="M 770.1659,559.57629 770.1659,532.22047 805.75266,495.426"
+       id="path9004-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15px;line-height:150%;font-family:Arial;-inkscape-font-specification:Arial;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="553.64886"
+       y="112.64789"
+       id="text8083-2-5-5"
+       sodipodi:linespacing="150%"><tspan
+         sodipodi:role="line"
+         id="tspan8085-1-5-2"
+         x="553.64886"
+         y="112.64789">Employment rate over time</tspan></text>
+  </g>
+</svg>

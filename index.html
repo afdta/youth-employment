@@ -10,23 +10,31 @@
 <link rel="stylesheet" type="text/css" href="metroInteractiveStyles.css">
 </head>
 
-<body style="min-height:1000px">
+<body style="">
 <script src="d3min.js" type="text/javascript"></script>
 <script src="stateTracking.js" type="text/javascript"></script>
 <script src="mapClass.js"></script>
 
-<div style="position:relative;max-width:650px;width:100%;min-width:320px;min-height:600px;height:100%;margin:auto">
+<div style="width:100%;height:300px"></div>
+
+<div style="max-width:950px;width:100%;min-width:320px;min-height:600px;margin:auto">
 	<div id="youth-employment-wrap"></div>
 </div>
 
+<div style="width:100%;height:300px"></div>
+
 <script>
 	var YouthEmployment2016 = MetroInteractive(document.getElementById("youth-employment-wrap"));
+	YouthEmployment2016.about("title","Youth and young adult employment in metropolitan america");
+	YouthEmployment2016.about("description",["Description of the research and the data that can be found within this interactive feature. Any other relevant directions on how to use the interactive. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lobortis, purus non pellentesque mollis, quam libero condimentum libero, non sollicitudin odio ex quis nisl. Nullam vitae dui eu orci commodo tempus sed non felis.","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lobortis, purus non pellentesque mollis, quam libero condimentum libero, non sollicitudin odio ex quis nisl. Nullam vitae dui eu orci commodo tempus sed non felis. Praesent ultricies rutrum lorem, nec dapibus tellus maximus vitae. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lobortis, purus non pellentesque mollis, quam libero condimentum libero, non sollicitudin odio ex quis nisl. Nullam vitae dui eu orci commodo tempus sed non felis. Praesent ultricies rutrum lorem, nec dapibus tellus maximus vitae. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."]);
 </script>
 
 <!--<script src="aboutView.js"></script>-->
 <script src="view0.js"></script>
+<script src="view1.js"></script>
+<script src="view2.js"></script>
 	
-
+<!--<script src="viewX.js"></script>-->
 
 <script>
 	YouthEmployment2016.cap(); //tell the app to try and auto-draw based on hash and defaults

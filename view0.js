@@ -13,30 +13,18 @@
 				console.log(path);
 
 	var setup = function(){
-		this.name("view0","Initial view of youth employment")
-		this.store("svg",this.slide.append("svg").style("width","100%").style("height","500px"));
+		this.name("Overall","Overall state of the youth and young adult labor market");
+		this.description("Area to add some overview text. E.g. what is the unemployment rate? What is the employment rate? What does it mean? What does disconnected youth mean? Etc. ...");
+		//this.store("svg",this.slide.append("svg").style("width","100%").style("height","500px"));
+		this.slide.append("div").style({"width":"100%","margin-left":"0%"})
+			.append("img").attr("src","wireframes/view0.png").style({"width":"100%", "max-width":"950px"});
 
 	};
 	var redraw = function(){
-		var svg = this.store("svg");
-		svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
-		console.log(this.data());
-	}
-
-	YouthEmployment2016.addView(setup,redraw,dataFile);
-
-})();
-
-
-(function(){
-	var dataFile = null;
-
-	var setup = function(){
-		this.name("view1","Second view of youth employment")
-
-	};
-	var redraw = function(){
-		console.log(this.data());
+		//var svg = this.store("svg");
+		//svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
+		//console.log(this.data());
+		//console.log(this.changeEvent);
 	}
 
 	YouthEmployment2016.addView(setup,redraw,dataFile);

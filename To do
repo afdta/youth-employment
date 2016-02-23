@@ -1,4 +1,12 @@
-+ Make state tracking a per-view thing
++ Make state tracking a per-view thing - Done (2/17) -- NEED TO TEST
 + Add legends to map
 + Enhance the view menu
 + limit 
++ add in the error message
++ revise to allow loading, caching of data without drawing
++ review the timing of the TOCShow, to make sure the var is set properly at all times that the minimum possible number of calls to viewMenuCtrl.show/hide are made.
++ review the slide transition -- especially no longer setting S.viewWrap height explicitely.
++ add functionality to scroll view back to top when showing view, in case the user has done so from the bottom of the menu
+
++review the basic height paradigm. height is set on viewwrap to match the shown view. the TOC height is set to be between 100% of current viewWrap height and the max view height. review this scheme, especially where height is refreshed.
+++keep in mind that when toc is shown, resize does not redraw any views
