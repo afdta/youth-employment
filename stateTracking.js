@@ -4,7 +4,7 @@
 //produce a state/navigation object for MPP interactives
 function MetroInteractive(appWrapperElement){
 	
-	//BROWSER TESTING
+	//test that browser supports SVG
 	if(!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1")){
 		appWrapperElement.innerHTML = '<p style="font-style:italic;text-align:center;margin:30px 0px 30px 0px;">This interactive feature requires a modern browser such as Chrome, Firefox, IE9+, or Safari.</p>';
 		return null;
@@ -16,8 +16,22 @@ function MetroInteractive(appWrapperElement){
 	//basic structure: A] app wrapper > a] menu (progress bar, forward, backward) wrapper, b] slide/views wrapper; 
 	//				   B] table of contents is a child of S.wrap
 	S.wrap = d3.select(appWrapperElement).classed("metro-interactive-wrap toc-visible",true).style({"position":"relative", "overflow":"hidden"});
-	S.progress = S.wrap.append("div").classed("metro-interactive-progress c-fix",true).style("padding-right","50px");
+	S.progress = S.wrap.append("div").classed("metro-interactive-progress c-fix",true).style("padding-right","65px");
 	S.viewWrap = S.wrap.append("div").classed("metro-interactive-views",true);
+
+	//run matchMedia queries
+	S.viewport = {};
+	function matchMedia(){
+		try{
+			S.viewport.desktop = window.matchMedia("(min-width: 640px)").matches;
+			S.viewport.mobile = !S.viewport.desktop;
+		}
+		catch(e){
+			S.viewport.desktop = null;
+			S.viewport.mobile = null;
+		}		
+	}
+	matchMedia();
 
 	var viewMenuCtrl = {bilt:false}; //view menu (table of contents) object. built after all views loaded below.
 
@@ -130,10 +144,11 @@ function MetroInteractive(appWrapperElement){
 	//bring an element to top of window via scrolltop
 	function scrollToThis(thiz){
 		try{
+			var snapThreshold = S.viewport.mobile ? 1 : 300;
 			var etop = thiz.getBoundingClientRect().top;
-			if(etop > 0 && etop < 100){throw "Already in view"}
+			if(etop > 50 && etop < snapThreshold){throw "Already in view"}
 			var current = window.scrollY;
-			var next = current + etop - 5;
+			var next = current + etop + 1;
 			var I = d3.interpolateNumber(current, next);
 			var tween = function(){
 				return function(t){
@@ -144,7 +159,12 @@ function MetroInteractive(appWrapperElement){
 			//scroll to top in next tick -- allows any necessary loading/drawing to take place first
 			setTimeout(function(){
 				try{
-					d3.transition().duration(500).tween("scrollToThis",tween);
+					if(Math.abs(next-current) <= 25){
+						window.scroll(0,next);
+					}
+					else{
+						d3.transition().duration(500).tween("scrollToThis",tween);
+					}
 				}
 				catch(e){
 					//no-op
@@ -523,25 +543,41 @@ function MetroInteractive(appWrapperElement){
 
 		//divs to hold the menu view, menu view header, and menu view content
 		var slide = S.wrap.append("div").classed("metro-interactive-view-menu",true).style("overflow-y","auto");
-		var header = slide.append("div").style({"padding":"7px 15px 5px 15px", "background-color":"#0D73D6"});
-			header.append("p").text(!!S.about("title") ? S.about("title") : "Table of contents").classed("metro-interactive-header-text",true).style({"color":"#ffffff","line-height":"1em"});
-		var content = slide.append("div").style("padding","5px 15px");
+		var content = slide.append("div").classed("c-fix",true);
+
+		try{
+			if(S.about("title").length > 0){
+				var header = slide.append("div").style({"padding":"7px 15px 5px 15px", "background-color":"#0D73D6"});
+				header.append("p").text(S.about("title")).classed("metro-interactive-header-text",true).style({"color":"#ffffff","line-height":"1em"});			
+				content.style("padding","5px 15px");
+			}
+			else{
+				content.style("padding","3px 3px");
+			}
+		}
+		catch(e){
+			//no-op
+		}
+
+		
 
 		var descriptionText = S.about("description");
 		
-		//add the intro paragraph
+		//add the intro paragraph -- basically get the first paragraph before the toc-box
 		if(descriptionText.length > 0){
 			content.append("p").text(descriptionText[0]).classed("metro-interactive-description",true);		
 		}
 
 		//build the table of contents structure
 		var toc = content.append("div").classed("metro-interactive-toc-box",true).append("div");
-		toc.append("p").text("EXPLORE THE DATA").style({"font-size":"13px","color":"#0D73D6","margin-top":"10px"});
+		toc.append("p").text("EXPLORE THE DATA").style({"font-size":"13px","color":"#0D73D6","margin":"5px 0px 10px","padding":"3px 5px","border-bottom":"1px solid #0D73D6"});
 		var tocTable = toc.append("div").classed("as-table",true);
 
 		//fill in all description text -- the DOM structure has been set accordingly: intro, toc, remaining paragraphs
-		content.selectAll("p.metro-interactive-description").data(descriptionText).enter().append("p").classed("metro-interactive-description",true)
-		.text(function(d,i){return d})	
+		var contentP = content.selectAll("p.metro-interactive-description").data(descriptionText);
+		contentP.enter().append("p").classed("metro-interactive-description",true).text(function(d,i){return d});
+		contentP.exit().remove();
+		contentP.classed("first-graph-emphasis",function(d,i){return i===0});
 
 		//forward/back buttons
 		var back = S.progress.append("div").style({"float":"left", "width":"15%", "height":"100%", "position":"relative", "cursor":"pointer"});
@@ -553,7 +589,7 @@ function MetroInteractive(appWrapperElement){
 		
 		var infoButton = S.progress.append("div").classed("metro-interactive-info-button",true).append("div");
 
-		backSVG.append("path").attr("d","M20,0 l-13,10 l13,10").attr("stroke-linecap","round");
+		backSVG.append("path").attr("d","M25,0 l-13,10 l13,10").attr("stroke-linecap","round");
 		forwardSVG.append("path").attr("d","M35,0 l13,10 l-13,10").attr("stroke-linecap","round");
 
 		
@@ -570,7 +606,7 @@ function MetroInteractive(appWrapperElement){
 				real_percent--;
 			}
 			r = real_percent > 7 ? 3 : (real_percent > 4 ? 2.5 : 2); 
-			var block_width = real_percent*num_dots;
+			var block_width = real_percent*(num_dots-1);
 			var start = (100-block_width)/2;
 			var dotPos = [];
 			for(var i=0; i<num_dots; i++){
@@ -598,34 +634,6 @@ function MetroInteractive(appWrapperElement){
 		}
 
 		this.show = function(snapToTop){
-			/*var minh = 500;
-			var max = 0;
-			S.allSlides.each(function(d,i){
-				try{
-					var b = this.getBoundingClientRect();
-					var h = Math.round(b.bottom - b.top); 
-				}
-				catch(e){
-					var h = 0;
-				}
-				finally{
-					//update max
-					if(h > max){max = h}
-				}
-			});*/
-
-
-			//check menu height itself
-			/*try{
-				var slideBox = slide.node().getBoundingClientRect();
-				var slideH = Math.round(slideBox.bottom - slideBox.top);
-				if(slideH > max){max = slideH}
-			}
-			catch(e){
-
-			}*/
-
-			/*if(max < minh){max = minh}*/
 
 			S.TOCShown = true;
 			S.wrap.classed("toc-visible",true);
@@ -640,7 +648,11 @@ function MetroInteractive(appWrapperElement){
 
 		infoButton.on("mousedown",function(d,i){
 			self.show(true);
-		})
+		});
+		infoButton.on("touchstart",function(d,i){
+			d3.event.preventDefault();
+			self.show(true);
+		});
 
 		this.hide = function(snapToTop){
 			S.TOCShown = false;
@@ -650,6 +662,8 @@ function MetroInteractive(appWrapperElement){
 			}
 		}
 
+		var ftimer;
+		var btimer;
 		var next = function(inc){
 			//determine current view
 			try{
@@ -669,12 +683,31 @@ function MetroInteractive(appWrapperElement){
 			}
 			else if(n >= 0 && n < viewList.length){
 				self.hide();
+				if(inc > 0){
+					clearTimeout(ftimer);
+					forward.classed("menu-button-active",true);
+					ftimer = setTimeout(function(){forward.classed("menu-button-active",false)},200);
+				}
+				else if(inc < 0){
+					clearTimeout(btimer);
+					back.classed("menu-button-active",true);
+					btimer = setTimeout(function(){back.classed("menu-button-active",false)},200);					
+				}
 				qcView(viewList[n]);
 			}
 			 
 		}
 		back.on("mousedown",function(d,i){next(-1)});
 		forward.on("mousedown",function(d,i){next(1)});
+		
+		forward.on("touchstart",function(d,i){
+			d3.event.preventDefault();
+			next(1);
+		});		
+		back.on("touchstart",function(d,i){
+			d3.event.preventDefault();
+			next(-1);
+		});
 
 		window.addEventListener("keydown",function(ev){
 			try{
@@ -758,6 +791,9 @@ function MetroInteractive(appWrapperElement){
 		}
 		else{
 			viewMenuCtrl.show(); //even though the default is to show TOC, use fn for layout side effects
+			if(S.currentSlide){
+				S.currentSlide.classed("out-right",true);
+			}
 		}
 
 	}
@@ -796,6 +832,7 @@ function MetroInteractive(appWrapperElement){
 	//on resize, redraw the current view on a delay
 	var resize_timer;
 	window.addEventListener("resize",function(){
+		matchMedia(); //update viewport property
 		clearTimeout(resize_timer);
 		//only set resize timer if TOC isn't shown
 		if(!S.TOCShown){

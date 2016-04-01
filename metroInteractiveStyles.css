@@ -30,15 +30,15 @@
 
 
 .metro-interactive-wrap{
-	margin:10px 0px;
+	margin:0px 0px;
 	background-color:#ffffff;
 }
 
 .metro-interactive-progress{
 	background-color:#ffffff;
 	margin:0px 0px 10px 0px;
-	padding:6px 0px 0px 0px;
-	height:26px;
+	padding:15px 0px 0px 0px;
+	height:35px;
 	width:100%;
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -52,15 +52,14 @@
 	stroke-width:2px;
 	fill:#ffffff;
 	fill:none;
-}
-.metro-interactive-progress > div:active path, .metro-interactive-progress > div:hover path{
-	stroke:#0D73D6;
+	-webkit-transition:stroke 0.15s ease;
+	-moz-transition:stroke 0.15s ease;
+	-o-transition:stroke 0.15s ease;
+	transition:stroke 0.15s ease;
 }
 
-.metro-interactive-progress .menu-button-inactive path, 
-.metro-interactive-progress .menu-button-inactive:active path, .metro-interactive-progress .menu-button-inactive:hover path{
-	stroke:#dddddd;
-}
+.metro-interactive-progress .menu-button-inactive path{stroke:#dddddd;}
+.metro-interactive-progress .menu-button-active path{stroke:#0D73D6;}
 
 .metro-interactive-wrap div.sort-asc p::after{content:"▲";color:#666666;}
 .metro-interactive-wrap div.sort-desc p::after{content: "▼";color:#666666;}
@@ -105,17 +104,9 @@
 	position:relative;
 	top:0%;
 	left:0%;
-	transition: left 1s;
 	min-height:600px;
 
 	opacity: 1;
-	/*visibility: visible;*/
-
-	/*
-	-webkit-transition:opacity 0.5s ease, left 0.5s ease, visibility 0s 1s;
-	-moz-transition:opacity 0.5s ease, left 0.5s ease, visibility 0s 1s;
-	-o-transition:opacity 0.5s ease, left 0.5s ease, visibility 0s 1s;
-	transition:opacity 0.5s ease, left 0.5s ease, visibility 0s 1s;*/
 
 	-webkit-transition:opacity 0.35s ease, left 0.5s ease;
 	-moz-transition:opacity 0.35s ease, left 0.5s ease;
@@ -173,9 +164,8 @@ p.metro-interactive-view-description{line-height:1.75em;margin-top:0.5em;}
 	top:0%;
 	left:0%;
 	min-height:500px;
-	height:1080px;
-	height:100vh;
-	height:calc(100vh - 10px);
+	/*height:1080px;
+	height:100vh;*/
 	width:100%;
 
 	-webkit-transition:opacity 0.25s ease, visibility 0s 0.25s;
@@ -187,14 +177,14 @@ p.metro-interactive-view-description{line-height:1.75em;margin-top:0.5em;}
  	-moz-box-sizing: border-box;
   	box-sizing: border-box;
 
-  	border:1px solid #0D73D6;
-  	border-width:1px 0px 1px 0px;
+  	border:1px solid #aaaaaa;
+  	border-width:0px 0px 1px 0px;
 
   	padding:0px 0px 10px 0px;
   	z-index:100;
   	background: #ffffff;
 }
-.metro-interactive-view-menu .metro-interactive-view-header{background-color:#0D73D6;border-color:#0D73D6;}
+.metro-interactive-view-menu .metro-interactive-view-header{background-color:#0D73D6;} /*border-color:#0D73D6;*/
 .metro-interactive-view-menu .metro-interactive-view-header p{color:#ffffff;}
 
 /*control of showing/hiding the toc is at bottom to ensure the styles are note overridden*/
@@ -202,18 +192,26 @@ p.metro-interactive-view-description{line-height:1.75em;margin-top:0.5em;}
 p.metro-interactive-description{
 	line-height:1.75em;
 }
-p.metro-interactive-description:first-child{
+
+/*p.metro-interactive-description:first-child{
 	margin:15px 0px;
-	font-size:1.15em;
+	font-size:1.25em;
 	line-height:1.75em;
-}
+}*/
 
 .metro-interactive-toc-box{
 	padding:15px 22px 15px 15px;
-	border:1px solid #0D73D6;
-	margin:6px 30px 0px 0px;
-	width:53%;
-	float:left;
+	border:1px solid #aaaaaa;
+	background-color:#ebebeb;
+	margin:5px 0px 10px 30px;
+	width:50%;
+	float:right;
+}
+
+p.first-graph-emphasis{
+	margin-top:15px;
+	font-size:1.25em;
+	line-height:1.75em;
 }
 
 .metro-interactive-content-link{
@@ -240,7 +238,7 @@ p.metro-interactive-description:first-child{
 .metro-interactive-info-button{
 	position:absolute;
 	right:0px;
-	top:-4px;
+	top:5px;
 	width:30px;
 	height:23px;
 	padding:9px 6px 9px 10px;
@@ -440,7 +438,8 @@ p.metro-interactive-description:first-child{
 
 	.metro-interactive-wrap .no-mobile-display{display:none;}
 	.metro-interactive-wrap .mobile-bottom-buffer{margin-bottom:25px;}
-	.metro-interactive-toc-box{float:none; width:auto; margin:6px 0px 0px 0px;}
+	.metro-interactive-toc-box{float:none; width:auto; margin:0px 0px 0px 0px;}
+	p.first-graph-emphasis{margin-top:1em;}
 }
 @media (min-width:640px){
 	.metro-interactive-wrap .metro-interactive-grid.four-equal > div{width:25%;}
@@ -459,7 +458,8 @@ p.metro-interactive-description:first-child{
 
 	.metro-interactive-wrap .no-mobile-display{display:block;}
 	.metro-interactive-wrap .mobile-bottom-buffer{margin-bottom:0px;}
-	.metro-interactive-toc-box{float:left; width:55%; margin:6px 30px 0px 0px;}
+	.metro-interactive-toc-box{float:right; width:50%; margin:5px 0px 10px 30px;}
+	p.first-graph-emphasis{margin-top:1em;}
 }
 
 /*misc*/
