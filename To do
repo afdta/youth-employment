@@ -10,3 +10,5 @@
 ++keep in mind that when toc is shown, resize does not redraw any views
 
 + test new features -- see long commit message from Feb 23
+
++ revise the slide in/out of menu... shouldn't first slide slide in as well?
