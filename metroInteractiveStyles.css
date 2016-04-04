@@ -45,6 +45,8 @@
 	box-sizing:border-box;
 	position:relative;
 	visibility:visible;
+	z-index:50;
+	left:0%;
 }
 
 .metro-interactive-progress path{
@@ -90,6 +92,8 @@
 	overflow:hidden;
 	border:1px solid #aaaaaa;
 	border-width:0px 0px 0px 0px;
+	z-index:50;
+	left:0%;
 }
 
 .metro-interactive-view-wrap{
@@ -130,13 +134,14 @@
 	background-color: #ffffff;
 	left:0px;
 	position:relative;
-	padding:15px 5px 3px 5px;
+	padding:20px 5px 3px 5px;
 	z-index:15;
 	margin-bottom:0px;
 	min-height:30px;
 }
 
-.metro-interactive-view-header p:first-child, p.metro-interactive-header-text{color:#0D73D6; line-height:1.3em; font-size:1.3em; font-weight:bold; margin:2px 0px 2px 0px;}
+.metro-interactive-view-header p:first-child{color:#0D73D6; line-height:1.3em; font-size:1.3em; font-weight:normal; margin:2px 0px 2px 0px;}
+p.metro-interactive-header-text{color:#0D73D6; line-height:1.3em; font-size:1.3em; font-weight:normal; margin:2px 0px 2px 0px;}
 p.metro-interactive-view-description{line-height:1.75em;margin-top:0.5em;}
 
 .metro-interactive-view-content{
@@ -159,19 +164,24 @@ p.metro-interactive-view-description{line-height:1.75em;margin-top:0.5em;}
 .metro-interactive-view-menu{
 	position:absolute;
 	visibility:hidden;
-	opacity:0;
 
 	top:0%;
-	left:0%;
+	left:-110%;
+
 	min-height:500px;
 	/*height:1080px;
 	height:100vh;*/
 	width:100%;
 
-	-webkit-transition:opacity 0.25s ease, visibility 0s 0.25s;
-	-moz-transition:opacity 0.25s ease, visibility 0s 0.25s;
-	-o-transition:opacity 0.25s ease, visibility 0s 0.25s;
-	transition:opacity 0.25s ease, visibility 0s 0.25s;
+	/*-webkit-transition:opacity 0.25s ease;
+	-moz-transition:opacity 0.25s ease;
+	-o-transition:opacity 0.25s ease;
+	transition:opacity 0.25s ease;*/
+
+	/*-webkit-transition:left 0.25s ease;
+	-moz-transition:left 0.25s ease;
+	-o-transition:left 0.25s ease;
+	transition:left 0.25s ease;*/
 
 	-webkit-box-sizing:border-box;
  	-moz-box-sizing: border-box;
@@ -191,27 +201,21 @@ p.metro-interactive-view-description{line-height:1.75em;margin-top:0.5em;}
 
 p.metro-interactive-description{
 	line-height:1.75em;
+	font-size:1em;
+	margin:1.5em 0px 0px 0px;
 }
 
-/*p.metro-interactive-description:first-child{
-	margin:15px 0px;
-	font-size:1.25em;
-	line-height:1.75em;
-}*/
+p.metro-interactive-description:first-child{
+	font-size:1em;
+	font-weight:bold;
+	margin-top:1em;
+}
 
 .metro-interactive-toc-box{
-	padding:15px 22px 15px 15px;
-	border:1px solid #aaaaaa;
-	background-color:#ebebeb;
-	margin:5px 0px 10px 30px;
+	border:1px solid #0D73D6;
+	margin:15px 30px 15px 0px;
 	width:50%;
-	float:right;
-}
-
-p.first-graph-emphasis{
-	margin-top:15px;
-	font-size:1.25em;
-	line-height:1.75em;
+	float:left;
 }
 
 .metro-interactive-content-link{
@@ -438,8 +442,9 @@ p.first-graph-emphasis{
 
 	.metro-interactive-wrap .no-mobile-display{display:none;}
 	.metro-interactive-wrap .mobile-bottom-buffer{margin-bottom:25px;}
-	.metro-interactive-toc-box{float:none; width:auto; margin:0px 0px 0px 0px;}
+
 	p.first-graph-emphasis{margin-top:1em;}
+	.metro-interactive-toc-box{float:none; width:auto; margin:1.5em 0px 0px 0px;}
 }
 @media (min-width:640px){
 	.metro-interactive-wrap .metro-interactive-grid.four-equal > div{width:25%;}
@@ -458,8 +463,9 @@ p.first-graph-emphasis{
 
 	.metro-interactive-wrap .no-mobile-display{display:block;}
 	.metro-interactive-wrap .mobile-bottom-buffer{margin-bottom:0px;}
-	.metro-interactive-toc-box{float:right; width:50%; margin:5px 0px 10px 30px;}
+
 	p.first-graph-emphasis{margin-top:1em;}
+	.metro-interactive-toc-box{float:left; width:50%; margin:1.8em 2em 0.75em 0em;}
 }
 
 /*misc*/
@@ -471,19 +477,17 @@ body{
 /*toggle between showing the view wrapper and the table of contents*/
 /*it's necessary to toggle the position attribute in order to take these items out of doc flow while hidden -- don't want to use display:none;*/
 .metro-interactive-wrap.toc-visible .metro-interactive-view-menu{
-	opacity:1;
 	position:relative;
 	visibility:visible;
-	-webkit-transition:opacity 0.25s ease, visibility 0s 0s;
-	-moz-transition:opacity 0.25s ease, visibility 0s 0s;
-	-o-transition:opacity 0.25s ease, visibility 0s 0s;
-	transition:opacity 0.25s ease, visibility 0s 0s;
+	left:0%;
 }
 .metro-interactive-wrap.toc-visible .metro-interactive-views{
 	position:absolute;
 	visibility:hidden;
+	left:0%;
 }
 .metro-interactive-wrap.toc-visible .metro-interactive-progress{
 	position:absolute;
 	visibility:hidden;
+	left:0%;
 }

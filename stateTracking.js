@@ -543,23 +543,22 @@ function MetroInteractive(appWrapperElement){
 
 		//divs to hold the menu view, menu view header, and menu view content
 		var slide = S.wrap.append("div").classed("metro-interactive-view-menu",true).style("overflow-y","auto");
+
+		var header = slide.append("div").style({"padding":"24px 15px 8px 0px","border-bottom":"1px solid #0D73D6"}).classed("c-fix",true);
+			header.selectAll("div").data([{c:"#FFEB3B",h:9},{c:"#FFEB3B",h:16},{c:"#FFEB3B",h:12}]).enter().append("div")
+				  .style({"float":"left","width":"7px","margin-right":"3px"})
+				  .style("height",function(d,i){return d.h+"px"})
+				  .style("margin-top",function(d,i){return (12-d.h)+"px"})
+				  .style("background-color",function(d,i){return d.c});
+
+			header.append("p").html("INTERACTIVE FEATURE")
+				  .style({"font-size":"13px", "color":"#0D73D6", "margin":"0px 0px 0px 5px", "line-height":"13px", "height":"13px", "float":"left"})
+
+		var toctitle = slide.append("div").style("margin","22px 0px 0px 0px").selectAll("p").data(S.about("title"))
+							.enter().append("p").classed("metro-interactive-header-text",true)
+							.style({"color":"#0D73D6"}).html(function(d,i){return d});		
+
 		var content = slide.append("div").classed("c-fix",true);
-
-		try{
-			if(S.about("title").length > 0){
-				var header = slide.append("div").style({"padding":"7px 15px 5px 15px", "background-color":"#0D73D6"});
-				header.append("p").text(S.about("title")).classed("metro-interactive-header-text",true).style({"color":"#ffffff","line-height":"1em"});			
-				content.style("padding","5px 15px");
-			}
-			else{
-				content.style("padding","3px 3px");
-			}
-		}
-		catch(e){
-			//no-op
-		}
-
-		
 
 		var descriptionText = S.about("description");
 		
@@ -569,15 +568,15 @@ function MetroInteractive(appWrapperElement){
 		}
 
 		//build the table of contents structure
-		var toc = content.append("div").classed("metro-interactive-toc-box",true).append("div");
-		toc.append("p").text("EXPLORE THE DATA").style({"font-size":"13px","color":"#0D73D6","margin":"5px 0px 10px","padding":"3px 5px","border-bottom":"1px solid #0D73D6"});
-		var tocTable = toc.append("div").classed("as-table",true);
+		var tocw = content.append("div").classed("metro-interactive-toc-box",true);
+		tocw.append("div").style({"padding":"0px","background-color":"rgba(13,115,214,0.25)"}).classed("c-fix",true)
+			.append("p").text("SECTIONS").style({"font-size":"13px", "float":"left","padding":"4px 18px","background-color":"#0D73D6","margin":"0px", "color":"#ffffff"});
+		var tocTable = tocw.append("div").style("padding","8px 15px 8px 10px").append("div").classed("as-table",true);
 
 		//fill in all description text -- the DOM structure has been set accordingly: intro, toc, remaining paragraphs
 		var contentP = content.selectAll("p.metro-interactive-description").data(descriptionText);
 		contentP.enter().append("p").classed("metro-interactive-description",true).text(function(d,i){return d});
 		contentP.exit().remove();
-		contentP.classed("first-graph-emphasis",function(d,i){return i===0});
 
 		//forward/back buttons
 		var back = S.progress.append("div").style({"float":"left", "width":"15%", "height":"100%", "position":"relative", "cursor":"pointer"});
