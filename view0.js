@@ -23,7 +23,7 @@
 	var redraw = function(){
 		//var svg = this.store("svg");
 		//svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
-		console.log(this.data());
+		//console.log(this.data());
 		//console.log(this.changeEvent);
 	}
 
