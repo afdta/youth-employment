@@ -142,7 +142,7 @@
 
 .metro-interactive-view-header p:first-child{color:#0D73D6; line-height:1.3em; font-size:1.3em; font-weight:normal; margin:2px 0px 2px 0px;}
 p.metro-interactive-header-text{color:#0D73D6; line-height:1.3em; font-size:1.3em; font-weight:normal; margin:2px 0px 2px 0px;}
-p.metro-interactive-view-description{line-height:1.75em;margin-top:0.5em;}
+p.metro-interactive-view-description{line-height:1.75em;margin-top:0.5em;margin-bottom:0.5em;}
 
 .metro-interactive-view-content{
 	padding:15px 5px;
@@ -372,6 +372,13 @@ p.metro-interactive-description:first-child{
 	float:left;
 	overflow-x:hidden;
 	overflow-y:auto;
+}
+
+/*clearfix the grid*/
+.metro-interactive-wrap .metro-interactive-grid:after{
+	content:"";
+	display:table;
+	clear:both;
 }
 
 .metro-interactive-wrap .metro-interactive-grid > div{

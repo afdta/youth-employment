@@ -6,7 +6,7 @@
 
 	};
 	var redraw = function(){
-		//console.log(this.data());
+		console.log(this.data());
 	}
 
 	YouthEmployment2016.addView(setup,redraw,dataFile);
