@@ -4,7 +4,7 @@
 library("reshape2")
 library("jsonlite")
 setwd("~/Projects/Brookings/DataViz/youth-employment/data/CSV/")
-#setwd("~/Projects/Brookings/youth-employment/data/CSV/")
+setwd("~/Projects/Brookings/youth-employment/data/CSV/")
 
 for(f in list.files()){
   assign(sub("\\.csv","",f), read.csv(f, na.strings=c(""," "), stringsAsFactors=FALSE) )
@@ -145,6 +145,25 @@ writeLines(toJSON(ERSplit, digits=5, na="null"), "../er.json")
 writeLines(toJSON(URSplit, digits=5, na="null"), "../ur.json")
 writeLines(toJSON(DYSplits, digits=5, na="null"), "../dy.json")
 
+overall <- list()
+overall$er <- lapply(ERSplit, function(e){
+  r <- list("16to19"=e[["16to19"]]$bs$ar$ae, "20to24"=e[["20to24"]]$bs$ar$ae, "25to54"=e[["25to54"]]$bs$ar$ae )
+  return(r)
+})
+overall$ur <- lapply(URSplit, function(e){
+  r <- list("16to19"=e[["16to19"]]$bs$ar$ae, "20to24"=e[["20to24"]]$bs$ar$ae, "25to54"=e[["25to54"]]$bs$ar$ae )
+  return(r)
+})
+overall$dy <- lapply(DYSplits$Rates, function(e){
+  r <- list("16to19"=e[["16to19"]]$bs$ar$an, "20to24"=e[["20to24"]]$bs$ar$an, "25to54"=e[["25to54"]]$bs$ar$an )
+  return(r)
+})
+
+writeLines(toJSON(overall, digits=5, na="null"), "../overall.json")
+
+sum(names(overall$er) == names(ERSplit))
+sum(names(overall$ur) == names(URSplit))
+sum(names(overall$dy) == names(DYSplits$Rates))
 
 #some checks
 unique(er$all[is.na(er$all$MOE_ER) & !is.na(er$all$ER),c("YEAR")]) #MOE is only NA in 2000

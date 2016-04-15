@@ -1,11 +1,11 @@
 //to do -- undefined in accessors
 
 (function(){
-	var dataFile = "data/ur.json";
+	var dataFile = "data/er.json";
 
 	var setup = function(){
 		var self = this;
-		this.name("Unemployment","Unemployment rates in detail");
+		this.name("Employment","Employment rates in detail");
 
 		this.description("Area to add some overview text. E.g. what is the unemployment rate? What is the employment rate? What does it mean? What does disconnected youth mean? Etc. ...");
 
@@ -31,152 +31,6 @@
 
 		this.store("sync")();
 
-		//for bar charts, just pull latest year
-		var latest = function(cohorts){
-
-			var LATEST = cohorts.map(function(d,i,a){
-				var L = null;
-				try{
-					for(var j=0; j<d.dat.length; j++){
-						if(d.dat[j].Y == 14){
-							L = d.dat[j];
-						}
-					}
-				}
-				catch(e){
-					var L = null;
-				}
-
-				try{
-					if(!L || L.SH===null){throw "Bad Dat"}
-					var RET = {}; //copy data
-					RET.SH = L.SH;
-					RET.SH_M = L.SH_M;
-					RET.Y = L.Y;
-					RET.code = d.age;
-				}
-				catch(e){
-					//bars still show up if data is null
-					var RET = {SH:null, SH_M:null, y:2014, code:d.age};
-				}
-
-				return RET;
-			});
-
-			return LATEST;
-		}
-
-		var ranges = function(cohorts){
-			var max = null;
-			var min = null;
-			var maxYr = null;
-			var minYr = null;
-			for(var i=0; i<cohorts.length; i++){
-				try{
-					//there will be nulls
-					for(var j=0; j<cohorts[i].dat.length; j++){
-						var v = cohorts[i].dat[j].SH;
-						var pm = cohorts[i].dat[j].SH_M;
-						if((v+pm) > max || max===null){
-							max = v+pm;
-							maxYr = cohorts[i].dat[j].Y;
-						}
-						if((v-pm) < min || min===null){
-							min = v-pm;
-							minYr = cohorts[i].dat[j].Y;
-						}
-					}
-				}
-				catch(e){
-					//no-op
-				}
-			}
-			return {vals: [min, max], yrs: [minYr, maxYr]};
-		}
-
-		//get latest value here... handle missings
-		var accessor = function(){
-
-			var dat = self.data();
-			var metdat = dat[self.getMetro()];
-
-			var cut = self.store("cut");
-			var sexes = [{c:"F", l:"Female"}, {c:"M", l:"Male"}];
-			var races = [{c:"W", l:"White"}, {c:"B", l:"Black"}, {c:"L", l:"Latino"}, {c:"A", l:"Asian"}, {c:"O", l:"Other"}];
-			var edus = [{c:"InSch", l:"In school"},
-						{c:"LTHS", l:"Less than high school"}, 
-						{c:"HS", l:"High school"}, 
-						{c:"SC", l:"Some college"},
-						{c:"AA", l:"Associate's degree"}, 
-						{c:"BAPlus", l:"Bachelor's and above"}]
-
-			if(cut=="Sex"){
-				var dat = [];
-				var c1 = sexes.map(function(d,i){
-					try{ var row0 = {age:"16to19", dat:metdat["16to19"][d.c].ar.ae} }
-					catch(e){ var row0 = {age:"16to19", dat:null} }
-
-					try{ var row1 = {age:"20to24", dat:metdat["20to24"][d.c].ar.ae} }
-					catch(e){ var row1 = {age:"20to24", dat:null } }
-
-					try{ var row2 = {age:"25to54", dat:metdat["25to54"][d.c].ar.ae} }
-					catch(e){ var row2 = {age:"25to54", dat:null} }
-
-					var cohorts = [row0, row1, row2];
-
-					return {group:d, cohorts:cohorts, latest:latest(cohorts), range:ranges(cohorts).vals };
-				});
-			}
-			else if(cut=="Race"){
-				var c1 = races.map(function(d,i){
-					try{ var row0 = {age:"16to19", dat:metdat["16to19"].bs[d.c].ae} }
-					catch(e){ var row0 = {age:"16to19", dat:null} }
-
-					try{ var row1 = {age:"20to24", dat:metdat["20to24"].bs[d.c].ae} }
-					catch(e){ var row1 = {age:"20to24", dat:null} }
-
-					try{ var row2 = {age:"25to54", dat:metdat["25to54"].bs[d.c].ae} }
-					catch(e){ var row2 = {age:"25to54", dat:null} }
-
-					var cohorts = [row0, row1, row2];
-
-					return {group:d, cohorts:cohorts, latest:latest(cohorts), range:ranges(cohorts).vals };
-				});
-
-			}
-			else if(cut=="Education"){
-				var c1 = edus.map(function(d,i){
-					try{ 
-						var row0 = {age:"16to19", dat:metdat["16to19"].bs.ar[d.c]};
-						if(typeof row0.dat === "undefined"){throw "Bad data"} 
-					}
-					catch(e){ var row0 = {age:"16to19", dat:null} }
-
-					try{ 
-						var row1 = {age:"20to24", dat:metdat["20to24"].bs.ar[d.c]} 
-						if(typeof row1.dat === "undefined"){throw "Bad data"} 
-					}
-					catch(e){ var row1 = {age:"20to24", dat:null} }
-
-					try{ 
-						var row2 = {age:"25to54", dat:metdat["25to54"].bs.ar[d.c]} 
-						if(typeof row2.dat === "undefined"){throw "Bad data"} 
-					}
-					catch(e){ var row2 = {age:"25to54", dat:null} }
-
-					var cohorts = [row0, row1, row2];
-
-					return {group:d, cohorts:cohorts, latest:latest(cohorts), range:ranges(cohorts).vals };
-				});
-			}
-			else{
-				var c1 = null;
-			}
-		return c1;
-		}
-
-		this.store("accessor", accessor);
-
 	};
 
 	var redraw = function(){
@@ -189,13 +43,13 @@
 		var met = this.getMetro();
 
 		var grid = this.store("grid");
-		var acc = this.store("accessor");
 
 		var sync = this.store("sync");
 
 		var getDataAndDraw = function(){
-			var allBarDat = acc(); 
-			var allLineDat = acc();
+			var cut = self.store("cut");
+
+			var allBarDat = chartFN.ETL(cut, met, dat); 
 
 			var maxmax = d3.max(allBarDat, function(d,i){return d.range[1]});
 			var minmin = d3.min(allBarDat, function(d,i){return d.range[0]});
@@ -204,7 +58,7 @@
 			var allDat = [];
 			for(var i=0; i<allBarDat.length; i++){
 				allDat.push(allBarDat[i]);
-				allDat.push(allLineDat[i]);
+				allDat.push(allBarDat[i]);
 			}
 
 			var plots = grid.selectAll("div.grid-box").data(allDat);
@@ -224,6 +78,7 @@
 				}
 			});
 		}
+
 		getDataAndDraw(); //initialize
 
 		var buttons = this.store("buttons");
