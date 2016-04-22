@@ -50,6 +50,7 @@ er$race[,c("ed_label","sex_label")] <- list(a="ae",b="bs")
 er$sex[,c("ed_label","re_label")] <- list(a="ae",b="ar")
 er$overall[,c("ed_label","sex_label","re_label")] <- list(a="ae",b="bs",c="ar")
 er$all <- rbind(er$edu,er$race,er$sex,er$overall)
+  max(er$all$ER, na.rm=TRUE)
 
 er$all$age_recode <- sub("-","to",er$all$age_recode)
 er$all$sex_label <- sub("ale|emale","",er$all$sex_label)
@@ -61,6 +62,8 @@ ur$race[,c("ed_label","sex_label")] <- list(a="ae",b="bs")
 ur$sex[,c("ed_label","re_label")] <- list(a="ae",b="ar")
 ur$overall[,c("ed_label","sex_label","re_label")] <- list(a="ae",b="bs",c="ar")
 ur$all <- rbind(ur$edu,ur$race,ur$sex,ur$overall)
+  max(ur$all$UR, na.rm=TRUE)
+  highUR <- ur$all[ur$all$UR>0.9 & !is.na(ur$all$UR), ]
 
 ur$all$age_recode <- sub("-","to",ur$all$age_recode)
 ur$all$sex_label <- sub("ale|emale","",ur$all$sex_label)
@@ -75,6 +78,7 @@ dy$all <- rbind(dy$overall, dy$nativity, dy$race, dy$sex)
 dy$all$age_recode <- sub("-","to",dy$all$age_recode)
 dy$all$sex_label <- sub("ale|emale","",dy$all$sex_label)
 dy$all$re_label <- sub("sian|lack|hite|ther|atino","",dy$all$re_label)
+  max(dy$all$ShareDY, na.rm=TRUE)
 
 splitter <- function(df, keep, renames=keep, dy=FALSE){
   if("YEAR" %in% names(df)){

@@ -42,11 +42,11 @@
 
 						var cohorts = [row0, row1];
 
-						//if(!isdy){
+						if(!isdy){
 							try{ var row2 = {age:"25to54", dat:metdat["25to54"][d.c].ar[anae]} }
 							catch(e){ var row2 = {age:"25to54", dat:null} }
 							cohorts.push(row2);
-						//}
+						}
 
 						return {group:d, cohorts:cohorts, latest:latest(cohorts, isdy), range:ranges(cohorts).vals };
 					});
@@ -62,11 +62,11 @@
 
 						var cohorts = [row0, row1];
 
-						//if(!isdy){
+						if(!isdy){
 							try{ var row2 = {age:"25to54", dat:metdat["25to54"].bs[d.c][anae]} }
 							catch(e){ var row2 = {age:"25to54", dat:null} } 
 							cohorts.push(row2);						
-						//}
+						}
 
 						return {group:d, cohorts:cohorts, latest:latest(cohorts, isdy), range:ranges(cohorts).vals };
 					});
@@ -89,14 +89,14 @@
 
 						var cohorts = [row0, row1];
 
-						//if(!isdy){
+						if(!isdy){
 							try{ 
 								var row2 = {age:"25to54", dat:metdat["25to54"].bs.ar[d.c]} 
 								if(typeof row2.dat === "undefined"){throw "Bad data"} 
 							}
 							catch(e){ var row2 = {age:"25to54", dat:null} }
 							cohorts.push(row2);
-						//}
+						}
 
 						return {group:d, cohorts:cohorts, latest:latest(cohorts, isdy), range:ranges(cohorts).vals };
 					});
@@ -117,7 +117,7 @@
 						}
 						catch(e){ var row1 = {age:"20to24", dat:null} }
 
-						var cohorts = [row0, row1, {age:"25to54", dat:null}];
+						var cohorts = [row0, row1]; // {age:"25to54", dat:null}
 
 						return {group:d, cohorts:cohorts, latest:latest(cohorts, isdy), range:ranges(cohorts).vals };
 					});				
@@ -141,14 +141,14 @@
 
 						var cohorts = [row0, row1];
 
-						//if(!isdy){
+						if(!isdy){
 							try{ 
 								var row2 = {age:"25to54", dat:metdat["25to54"]} 
 								if(typeof row2.dat === "undefined"){throw "Bad data"} 
 							}
 							catch(e){ var row2 = {age:"25to54", dat:null} }
 							cohorts.push(row2);
-						//}
+						}
 
 						return {group:d, cohorts:cohorts, latest:latest(cohorts, isdy), range:ranges(cohorts).vals };
 
@@ -158,6 +158,20 @@
 				else{
 					var c1 = null;
 				}
+
+				//characteristics
+				try{
+					if(data.Char){
+						var CHAR = data.Char;
+					}
+					else{
+						throw "No.Char";
+					}
+				}
+				catch(e){
+					var CHAR = null;
+				}
+
 			}
 			catch(e){
 				console.log(e)
@@ -246,9 +260,39 @@
 			"25to54":{col:"#b3d3f5", label:"25–54"}
 		}
 
+		//add a legend to container
+		YE2016.legend = function(container, dy){
+			var wrap = d3.select(container).append("div").classed("c-fix",true).style("padding","10px 0px 10px 0px");
+
+			swatchData = [YE2016.colors["16to19"], YE2016.colors["20to24"]]
+			if(!dy){
+				swatchData.push(YE2016.colors["25to54"])
+			}
+
+			wrap.append("p").style({"float":"left", "line-height":"15px", "margin":"2px 20px 0px 10px"}).text("Age groups: ");
+
+			var swatches = wrap.selectAll("div").data(swatchData);
+			swatches.enter().append("div").classed("c-fix", true).style({"float":"left", "margin-right":"20px"});
+			swatches.exit().remove();
+
+			//this should only be called once during setup
+			swatches.append("div").style({"width":"20px", "height":"20px", "margin-right":"5px", "float":"left"})
+								  .style("background-color", function(d,i){return d.col});
+
+			swatches.append("p").text(function(d,i){return d.label}).style({"float":"left", "line-height":"15px", "margin":"2px 0px 0px 0px"});
+		}
+
 		//data for barChart should look like: [{code:16to19, SH:xx.x, SH_M: yy.y}, {code, SH, SH_M}, {}]
-		YE2016.barChart = function(container, data, maxval){
-			var chartHeight = 130;
+		YE2016.barChart = function(container, data, maxval, isdy){
+
+			var YR = !!isdy ? ", 2012–14" : ", 2014";
+
+			try{
+				var chartHeight = data.latest.length===3 ? 130 : 90;
+			}
+			catch(e){
+				var chartHeight = 130;
+			}
 			var topPad = 8;
 
 			var MAXSHARE = !!maxval ? maxval : 100;
@@ -261,7 +305,7 @@
 				var title = wrap.selectAll("p").data([data.group.l]);
 				title.enter().insert("p", "svg");
 				title.exit().remove();
-				title.html(function(d,i){return d + ", 2014"}).style("margin","0px");
+				title.html(function(d,i){return d + YR}).style("margin","0px");
 
 				var svg = wrap.select("svg").style({"width":"100%", "height":chartHeight+"px"}); //bind data to svg
 
@@ -477,7 +521,8 @@
 		//DYCHAR
 		YE2016.dyChar = function(container, data, range){
 			var chartHeight = 130;
-			
+		
+
 			var wrap = d3.select(container).selectAll("div.bar-chart-wrap").data([data]);
 			var SE = wrap.enter().append("div").classed("bar-chart-wrap", true).append("svg");
 			wrap.exit().remove();
@@ -499,15 +544,111 @@
 
 		}
 		//END DY CHAR
-	//
+		YE2016.scrollToTop = function(metro, rows){
+			try{
+				var metRow = rows.filter(function(d,i){return d[0].val==metro});
+
+				var metNode = metRow.node();
+				var parNode = metNode.parentNode;
+				var tableOuter = d3.select(parNode.parentNode); //container that scrolls
+
+				var outerT = parNode.getBoundingClientRect().top;
+				var rowT = metNode.getBoundingClientRect().top;
+				var T = Math.round(rowT - outerT)-27; 						
+
+				var tweenGen = function(){
+					var current = this.scrollTop; //get current amount
+					var interpolate = d3.interpolateNumber(current, T);
+					return function(t){
+						this.scrollTop = interpolate(t);
+					}
+				}
+
+				tableOuter.transition().duration(700).tween("scrollTopTween", tweenGen);
+			}
+			catch(e){
+				var T = 0;
+			}
+		}
 
 	YouthEmployment2016.ChartFN = YE2016; //store in the global scope for subsequent views to use
 
 	var setup = function(){
-		this.name("Overall","Overall labor market outcomes");
-		this.description("Area to add some overview text. E.g. what is the unemployment rate? What is the employment rate? What does it mean? What does disconnected youth mean? Etc. ...");
+		var self = this;
+		this.name("Overall","Top line data: employment rates, unemployment rates, and rates of disconnected youth");
+		//this.description("Area to add some overview text. E.g. what is the unemployment rate? What is the employment rate? What does it mean? What does disconnected youth mean? Etc. ...");
 		//this.store("svg",this.slide.append("svg").style("width","100%").style("height","500px"));
-		this.store("grid", this.slide.append("div").classed("metro-interactive-grid two-equal", true) );
+		
+		this.store("format", "Charts");
+		this.store("cut", "er");
+
+		var selectWrap = this.slide.append("div").style({"margin-bottom":"15px"}).classed("c-fix",true);
+		selectWrap.append("p").classed("text-accent-uc1",true).text("Select a metro area");
+		YouthEmployment2016.selectMenu(selectWrap.append("div").node());
+
+		var menuWrap = this.slide.append("div").classed("c-fix",true).style("background-color","#ebebeb")
+																	 .style("margin","0px 10px 15px 0px")
+																	 .style("padding","10px")
+																	 .style("visibility", "hidden");
+
+		var menu0 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
+		var menu1 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
+
+		menu0.append("p").text("View data in").classed("text-accent-uc1",true);
+		var buttons0 = menu0.selectAll("div.generic-button").data([{"l":"Charts", c:"Charts"}, {"l":"Tables", "c":"Tables"}]);
+		buttons0.enter().append("div").classed("generic-button",true).append("p");
+		buttons0.exit().remove();
+
+		buttons0.select("p").style("text-align","center").text(function(d,i){return d.l});
+
+		menu1.append("p").text("Select an indicator").classed("text-accent-uc1",true);
+		var buttons1 = menu1.selectAll("div.generic-button").data([{l:"Employment rates", c:"er"}, 
+																 {l:"Unemployment rates", c:"ur"}, 
+																 {l:"Disconnected youth", c:"dy"}]);
+		buttons1.enter().append("div").classed("generic-button",true).append("p");
+		buttons1.exit().remove();
+
+		buttons1.select("p").style({"text-align":"center"}).text(function(d,i){return d.l});
+
+		this.store("buttons0", buttons0);
+		this.store("buttons1", buttons1);
+
+		var gridWrap = this.slide.append("div");
+		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node()); //add a legend
+
+		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
+		var tableWrapHeader = tableWrap.append("div").classed("as-table",true)
+		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
+
+		this.store("sync", function(){
+			menuWrap.style("visibility","visible");
+			buttons0.classed("generic-button-selected",function(d,i){
+				return d.c == self.store("format");
+			})
+
+			var format = self.store("format");
+			menu1.classed("out-of-flow", format==="Charts");
+			gridWrap.classed("out-of-flow", format==="Tables");
+			tableWrap.classed("out-of-flow", format==="Charts");
+
+
+			buttons1.classed("generic-button-selected",function(d,i){
+				return d.c == self.store("cut");
+			})
+
+		});
+		
+		this.store("grid", gridWrap.append("div").classed("metro-interactive-grid two-equal", true) );
+		this.store("gridWrap", gridWrap);
+		this.store("tableWrap", tableWrap);
+		this.store("htable", tableWrapHeader);
+		this.store("table", tableWrapScroll.append("div").classed("as-table",true));
+		
+		this.store("tableSortIndex", 0); //geo
+		this.store("tableSortDirection", -1); //ascending	
+
+		tableWrapScroll.append("div").style("height","250px").style("width","100%"); //dummy space
+
 	};
 
 	var redraw = function(){
@@ -518,6 +659,10 @@
 		//svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
 		var dat = this.data();
 		var met = this.getMetro();
+		var syncButtons = this.store("sync");
+		var buttons0 = this.store("buttons0");
+		var buttons1 = this.store("buttons1");
+		syncButtons();
 
 		var grid = this.store("grid");
 
@@ -525,35 +670,225 @@
 
 			var allBarDat = chartFN.ETL("Overall", met, dat); 
 
-			var maxmax = d3.max(allBarDat, function(d,i){return d.range[1]});
-			var minmin = d3.min(allBarDat, function(d,i){return d.range[0]});
-			var rangerange = [minmin, maxmax];
+			var format = self.store("format");
 
-			var allDat = [];
-			for(var i=0; i<allBarDat.length; i++){
-				allDat.push(allBarDat[i]);
-				if(i<allBarDat.length-1)allDat.push(allBarDat[i]);
+			if(format==="Charts"){
+				var allDat = [];
+				for(var i=0; i<allBarDat.length; i++){
+					allDat.push(allBarDat[i]);
+					if(i<allBarDat.length-1)allDat.push(allBarDat[i]);
+				}
+
+				var plots = grid.selectAll("div.grid-box").data(allDat);
+				plots.enter().append("div").classed("grid-box",true)
+					.style({"padding":"5px 10px 5px 0px"})
+					.append("div").classed("inner-grid-div",true)
+					.style({"margin":"0px"});
+				plots.exit().remove();
+
+				plots.select("div.inner-grid-div").style({background:"#ffffff", "border":"1px solid #aaaaaa", "padding":"5px 10px 10px 10px"})
+					.each(function(d,i,a){
+					if(i%2===0){
+						var max = d.group.c === "dy" ? 35 : 100;
+						chartFN.barChart(this, d, max);
+					}
+					else{
+						chartFN.lineChart(this, d);
+					}
+				});
+			}
+			else if(format==="Tables"){
+				var cut = self.store("cut");
+				var datcut = dat[cut];
+
+				var tableDat = [];
+
+				(function(){
+					for(var p in datcut){
+						if(datcut.hasOwnProperty(p)){
+							var geo = self.lookup[p][0];
+							var metdat = datcut[p];
+							var row = [{val:geo.CBSA_Code, label:geo.CBSA_Title}];
+							try{
+								var D = metdat["16to19"][0];
+								if(D.SH===null){throw "Suppression"}
+								row[1] = {val: D.SH, label: D.SH+"%"+ ' <span style="color:#888888;font-size:0.8em;"> (+/-'+ D.SH_M +'%)</span>'}
+							}
+							catch(e){
+								row[1] = {val: null, label:'<span style="color:#888888;font-size:0.8em;">N/A</span>'}
+							}
+
+							try{
+								var D = metdat["20to24"][0];
+								if(D.SH===null){throw "Suppression"}
+								row[2] = {val: D.SH, label: D.SH+"%"+ ' <span style="color:#888888;font-size:0.8em;"> (+/-'+ D.SH_M +'%)</span>'}
+							}
+							catch(e){
+								row[2] = {val: null, label:'<span style="color:#888888;font-size:0.8em;">N/A</span>'}
+							}
+
+							if(cut !== "dy"){
+								try{
+									var D = metdat["25to54"][0];
+									if(D.SH===null){throw "Suppression"}
+									row[3] = {val: D.SH, label: D.SH+"%"+ ' <span style="color:#888888;font-size:0.8em;"> (+/-'+ D.SH_M +'%)</span>'}
+								}
+								catch(e){
+									row[3] = {val: null, label:'<span style="color:#888888;font-size:0.8em;">N/A</span>'}
+								}
+							}
+
+							tableDat.push(row);
+						}
+					}	
+				})();
+				
+
+				var table = self.store("table");
+				var htable = self.store("htable");
+
+				//TABLE HEADER
+				var headerData = [{label:"<b>Metropolitan area</b>"}, 
+								  {label:"<b>16–19</b>"}, 
+								  {label:"<b>20–24</b>"}, 
+								  {label:"<b>25–54</b>"}]
+
+				if(cut=="dy"){headerData.pop()}
+
+				var trh = htable.selectAll("div.as-table-row").data([headerData]);
+				trh.enter().append("div").classed("as-table-row",true);
+				trh.exit().remove();
+
+				var tdh = trh.selectAll("div.as-table-cell").data(function(d,i){return d});
+				tdh.enter().append("div").classed("as-table-cell disable-text-select",true).append("p");
+				tdh.exit().remove();
+
+				tdh.style("width",function(d,i){return i==0 ? "36%" : "18%"}).style("cursor","pointer");
+
+				tdh.select("p").html(function(d,i){return d.label});
+				//END TABLE HEADER
+
+				//DRAW TABLE BODY
+				var drawTable = function(){
+					//sort info
+					var si = self.store("tableSortIndex");
+					var sd = self.store("tableSortDirection");
+
+					tableDat.sort(function(a,b){
+						var aval = a[si].val;
+						var bval = b[si].val;
+						var bvalTB = b[0].val; //tie break is alpha
+						var avalTB = a[0].val;
+						
+						if(avalTB=="0"){return 1}
+						else if(bvalTB=="0"){return -1}
+						else if(aval===null && bval===null){return 0}
+						else if(aval===bval){return avalTB - bvalTB}
+						else if(aval===null){return 1}
+						else if(bval===null){return -1}
+						else{
+							return (bval-aval)*sd;
+						}
+					});
+
+					//add in rankings -- U.S. is always 101 (see sort above)
+					for(var s=0; s<tableDat.length; s++){
+						if(s===0){
+							tableDat[s][0].rank = 1;
+						}
+						else if(tableDat[s][si].val==tableDat[s-1][si].val){
+							tableDat[s][0].rank = tableDat[s-1][0].rank
+						}
+						else{
+							tableDat[s][0].rank = s+1;
+						}
+					}
+
+
+					var tr = table.selectAll("div.as-table-row").data(tableDat);
+					tr.enter().append("div").classed("as-table-row",true);
+					tr.exit().remove();
+
+					var td = tr.selectAll("div.as-table-cell").data(function(d,i){return d});
+					td.enter().append("div").classed("as-table-cell border-bottom",true).append("p");
+					td.exit().remove();
+
+					tr.classed("row-is-highlighted",function(d,i){
+						return d[0].val == met;
+					})
+
+					td.style("width",function(d,i){return i==0 ? "36%" : "18%"})
+
+					td.select("p").html(function(d,i){
+
+						if(i===0){
+							var txt = (d.val != "0") ? '<span style="font-size:0.8em; color:#888888">'+d.rank+'. </span>' + d.label : d.label; //don't print U.S. "rank"
+						}
+						else{
+							var txt = d.label;
+						}
+						return txt;
+
+					});
+
+					//match widths
+					setTimeout(function(){
+						try{
+							var trbox = tr.node().getBoundingClientRect();
+							var trwidth = trbox.right - trbox.left;
+							htable.style("width",trwidth+"px");	
+						}
+						catch(e){
+							console.log(e);
+						}
+					},0);
+
+					chartFN.scrollToTop(met, tr); //scroll to selected metro
+				}
+
+				var syncSort = function(){
+					tdh.classed("sort-asc",function(d,i){
+						return i===self.store("tableSortIndex") && self.store("tableSortDirection")==-1;
+					});
+					tdh.classed("sort-desc",function(d,i){
+						return i===self.store("tableSortIndex") && self.store("tableSortDirection")==1;
+					});
+					drawTable()				
+				}
+				syncSort();
+
+				tdh.on("mousedown",function(d,i){
+					var si = self.store("tableSortIndex");
+					var sd = self.store("tableSortDirection");
+					if(i===si){
+						self.store("tableSortDirection", sd*-1);
+					}
+					else{
+						self.store("tableSortDirection", -1);
+						self.store("tableSortIndex", i);
+					}
+					syncSort();
+				});
+
 			}
 
-			var plots = grid.selectAll("div.grid-box").data(allDat);
-			plots.enter().append("div").classed("grid-box",true)
-				.style({"padding":"5px 10px 5px 0px"})
-				.append("div").classed("inner-grid-div",true)
-				.style({"margin":"0px"});
-			plots.exit().remove();
 
-			plots.select("div.inner-grid-div").style({background:"#ffffff", "border":"1px solid #aaaaaa", "padding":"5px 10px 10px 10px"})
-				.each(function(d,i,a){
-				if(i%2===0){
-					chartFN.barChart(this, d);
-				}
-				else{
-					chartFN.lineChart(this, d);
-				}
-			});
 		}
 
 		getDataAndDraw(); //initialize
+
+		buttons0.on("mousedown",function(d,i){
+			self.store("format", d.c);
+			syncButtons();
+			getDataAndDraw();
+
+		});
+
+		buttons1.on("mousedown",function(d,i){
+			self.store("cut", d.c);
+			syncButtons();
+			getDataAndDraw();
+		});
 
 		//console.log(this.changeEvent);
 	}
