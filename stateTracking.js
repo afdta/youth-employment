@@ -57,6 +57,43 @@ function MetroInteractive(appWrapperElement){
 		S.metroLookup[c] = [{"CBSA_Code":c, "CBSA_Title":name, "lon":null, "lat":null}];
 	}
 
+	var allSelects = [];
+	var syncSelects = function(){
+		try{
+			for(var i=0; i<allSelects.length; i++){
+				allSelects[i].node().value = S.metro;
+			}
+		}
+		catch(e){
+			//no-op
+		}
+	}
+
+	//add a select menu to the container node
+	S.selectMenu = function(container){
+		var wrap = d3.select(container);
+		var sel = wrap.append("select");
+		var opt = [];
+		for(var c in S.metroLookup){
+			if(S.metroLookup.hasOwnProperty(c)){
+				opt.push({val:S.metroLookup[c][0].CBSA_Code, label:S.metroLookup[c][0].CBSA_Title});
+			}
+		}
+		var options = sel.selectAll("option").data(opt);
+		options.enter().append("option");
+		options.exit().remove();
+
+		options.attr("value", function(d,i){return d.val})
+			   .text(function(d,i){return d.label});
+
+		sel.on("change", function(d,i){
+			S.setMetro(this.value);
+			this.blur();
+		})
+
+		allSelects.push(sel);
+	}
+
 	//function to determine default metro area
 	function metroDefault(obj){
 		var firstKey = null;
@@ -149,7 +186,7 @@ function MetroInteractive(appWrapperElement){
 	//bring an element to top of window via scrolltop
 	function scrollToThis(thiz){
 		try{
-			var snapThreshold = S.viewport.mobile ? 1 : 300;
+			var snapThreshold = S.viewport.mobile ? 1 : 200;
 			var etop = thiz.getBoundingClientRect().top;
 			if(etop > 50 && etop < snapThreshold){throw "Already in view"}
 			var current = window.scrollY;
@@ -500,6 +537,8 @@ function MetroInteractive(appWrapperElement){
 			S.view = viewCode;
 			S.metro = metroCode;
 
+			syncSelects(); //make sure all select menus reflect new metro selection
+
 			if(viewMenuCtrl.bilt){
 				//if drawing a view, hide the view menu (TOC) -- necessary to enable back/forward, otherwise the TOC could become persistently "stuck"
 				//the !VO.firstDraw condition handles the initial load of the app when the TOC is shown, but the first, default view is still drawn underneath. 
@@ -550,7 +589,7 @@ function MetroInteractive(appWrapperElement){
 		var slide = S.wrap.append("div").classed("metro-interactive-view-menu",true).style("overflow-y","auto");
 
 		var header = slide.append("div").style({"padding":"24px 15px 8px 0px","border-bottom":"1px solid #0D73D6"}).classed("c-fix",true);
-			header.selectAll("div").data([{c:"#FFEB3B",h:9},{c:"#FFEB3B",h:16},{c:"#FFEB3B",h:12}]).enter().append("div")
+			header.selectAll("div").data([{c:"#0D73D6",h:9},{c:"#0D73D6",h:16},{c:"#0D73D6",h:12}]).enter().append("div")
 				  .style({"float":"left","width":"7px","margin-right":"3px"})
 				  .style("height",function(d,i){return d.h+"px"})
 				  .style("margin-top",function(d,i){return (12-d.h)+"px"})
