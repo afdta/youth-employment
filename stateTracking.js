@@ -282,7 +282,7 @@ function MetroInteractive(appWrapperElement){
 			var p = slideHeader.selectAll("p.metro-interactive-view-description").data(atext);
 			p.enter().append("p").classed("metro-interactive-view-description",true);
 			p.exit().remove();
-			p.text(function(d,i){return d});
+			p.html(function(d,i){return d});
 		}
 
 		viewOps.data = function(name, data){
@@ -608,7 +608,7 @@ function MetroInteractive(appWrapperElement){
 		
 		//add the intro paragraph -- basically get the first paragraph before the toc-box
 		if(descriptionText.length > 0){
-			content.append("p").text(descriptionText[0]).classed("metro-interactive-description",true);		
+			content.append("p").html(descriptionText[0]).classed("metro-interactive-description",true);		
 		}
 
 		//build the table of contents structure
@@ -619,7 +619,7 @@ function MetroInteractive(appWrapperElement){
 
 		//fill in all description text -- the DOM structure has been set accordingly: intro, toc, remaining paragraphs
 		var contentP = content.selectAll("p.metro-interactive-description").data(descriptionText);
-		contentP.enter().append("p").classed("metro-interactive-description",true).text(function(d,i){return d});
+		contentP.enter().append("p").classed("metro-interactive-description",true).html(function(d,i){return d});
 		contentP.exit().remove();
 
 		//forward/back buttons
