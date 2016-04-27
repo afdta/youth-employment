@@ -11,7 +11,7 @@
 		var self = this;
 		this.name("Disconnected","Rates of disconnected youth by sex, race, and nativity");
 
-		//this.description("Area to add some overview text. E.g. what is the unemployment rate? What is the employment rate? What does it mean? What does disconnected youth mean? Etc. ...");
+		this.description('While there is broad agreement that the terms "disconnected youth" or "opportunity youth" refers to young people not working and not in school, there is not a standard methodology or data source to create estimates of the number of such youth or their characteristics. Thus, different reports are likely to produce different figures, based on the use of different data sources and definitions. In this analysis, people are considered disconnected if they meet the following criteria: they are between the ages of 16–24, not working, not enrolled in school, living below 200 percent of the federal poverty line, with an educational attainment of less than an associate degree, not in the Armed Forces, and not living in group quarters. For more information, please see the Methodology section of the report.');
 
 		var selectWrap = this.slide.append("div").style({"margin-bottom":"15px"}).classed("c-fix",true);
 		selectWrap.append("p").classed("text-accent-uc1",true).text("Select a metro area");
@@ -42,7 +42,7 @@
 		buttons1.select("p").style({"text-align":"center"}).text(function(d,i){return d.l});
 
 		var gridWrap = this.slide.append("div");
-		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node()); //add a legend
+		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node(), "isdy"); //add a legend
 		
 		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
@@ -79,6 +79,8 @@
 		});
 
 		this.store("sync")();
+
+		gridWrap.append("p").text("Notes: The margins of error displayed with the bar charts represent the 90% confidence intervals around the estimated values. Margins of error are not displayed on the line charts, but they are available in the data downloads accompanying this report. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
 
 	};
 

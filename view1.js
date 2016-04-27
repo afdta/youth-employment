@@ -13,6 +13,7 @@
 	//   add a truthy last argument to the 2 ETL calls and to the barchart call
 	// remove 25-54 from header data and 
 	// change td widths accordingly to 50/25
+	// make sure legend doesn't include 25-54 y/o
 	// maxval for bar charts should be 35 (also change this in overview)
 
 (function(){
@@ -92,6 +93,8 @@
 		});
 
 		this.store("sync")();
+
+		gridWrap.append("p").text("Notes: The margins of error displayed with the bar charts represent the 90% confidence intervals around the estimated values. Margins of error are not displayed on the line charts, but they are available in the data downloads accompanying this report. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
 
 	};
 

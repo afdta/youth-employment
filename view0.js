@@ -260,6 +260,16 @@
 			"25to54":{col:"#b3d3f5", label:"25–54"}
 		}
 
+		YE2016.colors = {
+			"16to19":{col:"#00649f", label:"16–19"},
+			"20to24":{col:"#65a4e5", label:"20–24"},
+			"25to54":{col:"#bbbbbb", label:"25–54"}
+		}
+
+
+
+		
+
 		//add a legend to container
 		YE2016.legend = function(container, dy){
 			var wrap = d3.select(container).append("div").classed("c-fix",true).style("padding","10px 0px 10px 0px");
@@ -280,6 +290,17 @@
 								  .style("background-color", function(d,i){return d.col});
 
 			swatches.append("p").text(function(d,i){return d.label}).style({"float":"left", "line-height":"15px", "margin":"2px 0px 0px 0px"});
+		
+			var moe = wrap.append("div").classed("c-fix", true).style({"float":"left", "margin-left":"10px"});
+			var moebar = moe.append("svg").style({"width":"50px","height":"20px","float":"left"});
+
+			moebar.append("line").attr({"stroke":"#E46524", x1:15, x2:40, y1:11, y2:11, "stroke-width":"2px", "shape-rendering":"crispEdges"});
+			moebar.selectAll("circle").data([15, 40]).enter()
+					.append("circle").attr({r:3, stroke:"#E46524", fill:"#ffffff", cy:11}).attr("cx", function(d,i){return d});
+
+			moe.append("p").style({"float":"left", "line-height":"15px", "margin":"2px 0px 0px 0px"}).text("Margin of error")
+
+
 		}
 
 		//data for barChart should look like: [{code:16to19, SH:xx.x, SH_M: yy.y}, {code, SH, SH_M}, {}]
@@ -295,7 +316,7 @@
 			}
 			var topPad = 8;
 
-			var MAXSHARE = !!maxval ? maxval : 100;
+			var MAXSHARE = !!maxval ? maxval : 120;
 
 			var wrap = d3.select(container).selectAll("div.bar-chart-wrap").data([data]);
 			wrap.enter().append("div").classed("bar-chart-wrap", true).append("svg");
@@ -325,7 +346,7 @@
 						return d.SH===null ? "#f0f0f0" : YE2016.colors[d.code].col;
 					})
 					.attr("width", function(d,i){
-						return d.SH===null ? "1000%" : ((d.SH/MAXSHARE)*100)+"%";
+						return d.SH===null ? "100%" : ((d.SH/MAXSHARE)*100)+"%";
 					})
 
 				var MOE = bars.select("g");
@@ -648,6 +669,8 @@
 		this.store("tableSortDirection", -1); //ascending	
 
 		tableWrapScroll.append("div").style("height","250px").style("width","100%"); //dummy space
+
+		gridWrap.append("p").text("Notes: The margins of error displayed with the bar charts represent the 90% confidence intervals around the estimated values. Margins of error are not displayed on the line charts, but they are available in the data downloads accompanying this report.").style({"margin":"10px 0px 0px 0px"});
 
 	};
 
