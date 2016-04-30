@@ -16,6 +16,10 @@
 	// make sure legend doesn't include 25-54 y/o
 	// maxval for bar charts should be 35 (also change this in overview)
 
+	// add this characteristics chart wrap before the "grid": this.store("characteristics", gridWrap.append("div").classed("c-fix",true ) );
+	// add legend after adding characteristics
+	// add titles separating two sections
+
 (function(){
 	var dataFile = "data/er.json";
 
@@ -34,6 +38,8 @@
 																	 .style("margin","0px 10px 15px 0px")
 																	 .style("padding","10px");
 
+		this.store("gridTitle", menuWrap.append("p").text("...").style({"margin":"0px 3px", "font-weight":"bold"}));
+
 			var menu0 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
 			var menu1 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
 			var tableMenu = menuWrap.append("div").style({float:"left", "margin":"5px 0px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
@@ -45,7 +51,7 @@
 
 		buttons0.select("p").style("text-align","center").text(function(d,i){return d.l});
 
-		menu1.append("p").text("Cut data by").classed("text-accent-uc1",true);
+		menu1.append("p").text("Group data by").classed("text-accent-uc1",true);
 		var buttons1 = menu1.selectAll("div.generic-button").data([{l:"Sex", c:"Sex"}, 
 																 {l:"Race", c:"Race"}, 
 																 {l:"Educational attainment", c:"Education"}]);
@@ -79,7 +85,7 @@
 		this.store("format", "Charts");
 		this.store("group", null);
 
-		tableWrapScroll.append("div").style("height","250px").style("width","100%"); //dummy space
+		//tableWrapScroll.append("div").style("height","250px").style("width","100%"); //dummy space
 
 		this.store("sync", function(){
 			buttons0.classed("generic-button-selected",function(d,i){
@@ -106,6 +112,9 @@
 		//svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
 		var dat = this.data();
 		var met = this.getMetro();
+		var metName = this.lookup[met][0].CBSA_Title;
+		var metNameFull = met=="0" ? metName : metName+" metropolitan area";
+		this.store("gridTitle").text("Employment rates in the " + metNameFull + " by sex, race, and highest level of educational attainment");
 
 		var grid = this.store("grid");
 		var sync = this.store("sync");

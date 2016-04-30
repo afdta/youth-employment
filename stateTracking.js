@@ -299,8 +299,8 @@ function MetroInteractive(appWrapperElement){
 		}
 		viewOps.viewData = viewOps.data; //for backwards compatibility
 
-		//get or set arbitrary name-value pairs in dataStore.storage.
-		viewOps.store = function(name, value){
+		//get or set arbitrary name-value pairs in dataStore.storage. -- enable global scoping (to do)
+		viewOps.store = function(name, value, global){
 			if(arguments.length===1){
 				return viewOps.dataStore.storage[name];
 			}

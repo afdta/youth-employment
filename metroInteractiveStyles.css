@@ -190,13 +190,13 @@
 
 .metro-interactive-wrap .metro-interactive-view-header p:first-child{color:#0D73D6; line-height:1.3em; font-size:1.3em; font-weight:normal; margin:2px 0px 2px 0px;}
 .metro-interactive-wrap .metro-interactive-header-text{color:#0D73D6; line-height:1.3em; font-size:1.3em; font-weight:normal; margin:2px 0px 2px 0px;}
-.metro-interactive-wrap .metro-interactive-view-description{line-height:1.75em;margin-top:0.5em;margin-bottom:0.5em;}
+.metro-interactive-wrap .metro-interactive-view-description{line-height:1.6em;margin-top:0.5em;margin-bottom:0.5em;}
 
 .metro-interactive-view-content{
 	padding:5px 5px;
 }
 
-.metro-interactive-view-content p, .metro-interactive-view-content li{line-height:1.75em;}
+.metro-interactive-view-content p, .metro-interactive-view-content li{line-height:1.6em;}
 
 .metro-interactive-view.out-left{left:-110%; opacity:0; z-index:1;}
 .metro-interactive-view.out-right{left:110%; opacity:0; z-index:1;}
@@ -257,15 +257,15 @@
 /*control of showing/hiding the toc is at bottom to ensure the styles are note overridden*/
 
 p.metro-interactive-description{
-	line-height:1.75em;
+	line-height:1.6em;
 	font-size:1em;
-	margin:1.5em 0px 0px 0px;
+	margin:0.8em 0px 0px 0px;
 }
 
 p.metro-interactive-description:first-child{
 	font-size:1em;
 	font-weight:bold;
-	margin-top:1em;
+	margin-top:0.8em;
 }
 
 .metro-interactive-toc-box{
@@ -526,7 +526,7 @@ p.metro-interactive-description:first-child{
 	.metro-interactive-wrap .mobile-bottom-buffer{margin-bottom:25px;}
 
 	p.first-graph-emphasis{margin-top:1em;}
-	.metro-interactive-toc-box{float:none; width:auto; margin:1.5em 0px 0px 0px;}
+	.metro-interactive-toc-box{float:none; width:auto; margin:1em 0px 1em 0px;}
 
 	.metro-interactive-wrap p, .metro-interactive-wrap a, .metro-interactive-wrap i, .metro-interactive-wrap li, 
 	.metro-interactive-wrap td, .metro-interactive-wrap p span{
@@ -554,7 +554,7 @@ p.metro-interactive-description:first-child{
 	.metro-interactive-wrap .mobile-bottom-buffer{margin-bottom:0px;}
 
 	p.first-graph-emphasis{margin-top:1em;}
-	.metro-interactive-toc-box{float:left; width:50%; margin:1.8em 2em 0.75em 0em;}
+	.metro-interactive-toc-box{float:left; width:50%; margin:1em 2em 1em 0em;}
 
 	.metro-interactive-wrap p, .metro-interactive-wrap a, .metro-interactive-wrap i, .metro-interactive-wrap li, 
 	.metro-interactive-wrap td, .metro-interactive-wrap p span{

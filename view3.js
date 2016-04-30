@@ -9,7 +9,7 @@
 	var setup = function(){
 
 		var self = this;
-		this.name("Disconnected","Rates of disconnected youth by sex, race, and nativity");
+		this.name("Disconnected","Characteristics of disconnected youth and rates of disconnected youth by sex, race, and nativity");
 
 		this.description('While there is broad agreement that the terms "disconnected youth" or "opportunity youth" refers to young people not working and not in school, there is not a standard methodology or data source to create estimates of the number of such youth or their characteristics. Thus, different reports are likely to produce different figures, based on the use of different data sources and definitions. In this analysis, people are considered disconnected if they meet the following criteria: they are between the ages of 16–24, not working, not enrolled in school, living below 200 percent of the federal poverty line, with an educational attainment of less than an associate degree, not in the Armed Forces, and not living in group quarters. For more information, please see the Methodology section of the report.');
 
@@ -17,9 +17,17 @@
 		selectWrap.append("p").classed("text-accent-uc1",true).text("Select a metro area");
 		YouthEmployment2016.selectMenu(selectWrap.append("div").node());
 
+		var charWrap = this.slide.append("div").style("margin","0px 10px 45px 0px");
+		var charHeader = charWrap.append("div").style({"padding":"4px", "background-color":"#ebebeb"});
+		var charTextWrap = charHeader.append("div").classed("c-fix",true).style({padding:"4px 10px"}).classed("c-fix",true);
+		var charButtonWrap = charHeader.append("div").classed("c-fix",true).style({padding:"4px 10px"}).classed("c-fix",true);
+
 		var menuWrap = this.slide.append("div").classed("c-fix",true).style("background-color","#ebebeb")
 																	 .style("margin","0px 10px 15px 0px")
 																	 .style("padding","10px");
+
+		this.store("gridTitle", menuWrap.append("p").text("...").style({"margin":"0px 3px", "font-weight":"bold"}));
+		this.store("gridSubTitle", menuWrap.append("p").text("...").style({"margin":"0px 3px 5px 3px", "font-weight":"normal"}));
 
 			var menu0 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
 			var menu1 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
@@ -32,7 +40,7 @@
 
 		buttons0.select("p").style("text-align","center").text(function(d,i){return d.l});
 
-		menu1.append("p").text("Cut data by").classed("text-accent-uc1",true);
+		menu1.append("p").text("Group data by").classed("text-accent-uc1",true);
 		var buttons1 = menu1.selectAll("div.generic-button").data([{l:"Sex", c:"Sex"}, 
 																 {l:"Race", c:"Race"}, 
 																 {l:"Nativity", c:"Nativity"}]);
@@ -42,7 +50,6 @@
 		buttons1.select("p").style({"text-align":"center"}).text(function(d,i){return d.l});
 
 		var gridWrap = this.slide.append("div");
-		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node(), "isdy"); //add a legend
 		
 		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
@@ -53,6 +60,8 @@
 		this.store("buttons0", buttons0);
 		this.store("buttons1", buttons1);
 		this.store("groupButtons", null);
+		
+		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node(), "isdy"); //add a legend
 		this.store("grid", gridWrap.append("div").classed("metro-interactive-grid two-equal", true) );
 		this.store("gridWrap", gridWrap);
 		this.store("tableWrap", tableWrap);
@@ -65,7 +74,9 @@
 		this.store("format", "Charts");
 		this.store("group", null);
 
-		tableWrapScroll.append("div").style("height","250px").style("width","100%"); //dummy space
+		this.store("charTextWrap", charTextWrap);
+
+		//tableWrapScroll.append("div").style("height","250px").style("width","100%"); //dummy space
 
 		this.store("sync", function(){
 			buttons0.classed("generic-button-selected",function(d,i){
@@ -80,6 +91,16 @@
 
 		this.store("sync")();
 
+		//characteristics menu/buttons
+		var charButtons = charButtonWrap.selectAll("div.generic-button").data([{code:"Sex", label:"Male versus female?"},
+																			 {code:"Race", label:"White, black, Asian, or Latino?"},
+																			 {code:"Nativity", label:"Foreign born versus native born?"},
+																			 {code:"Edu", label:"Have a high school diploma?"}]);
+		charButtons.enter().append("div").classed("generic-button",true).append("p");
+		charButtons.exit().remove();
+
+		charButtons.select("p").text(function(d,i){return d.label});
+
 		gridWrap.append("p").text("Notes: The margins of error displayed with the bar charts represent the 90% confidence intervals around the estimated values. Margins of error are not displayed on the line charts, but they are available in the data downloads accompanying this report. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
 
 	};
@@ -92,9 +113,15 @@
 		//svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
 		var dat = this.data();
 		var met = this.getMetro();
+		var metName = this.lookup[met][0].CBSA_Title;
+		var metNameFull = met=="0" ? metName : metName+" metropolitan area";
+		this.store("gridTitle").text("Rates of disconnected youth in the "+ metNameFull +" by sex, race, and nativity");
+		this.store("gridSubTitle").text("Who is most at risk? These data demonstrate which demographic groups have high or low rates of disconnection.");
 
 		var grid = this.store("grid");
 		var sync = this.store("sync");
+
+		var charTextWrap = this.store("charTextWrap");
 
 		var getDataAndDraw = function(){
 			var cut = self.store("cut");
@@ -127,6 +154,20 @@
 						chartFN.barChart(this, d, 35, "isdy");
 	
 				});
+
+				//characteristics
+				var T = "<b>Characteristics of disconnected youth in the " + (met=="0" ? metName : metName+" metropolitan area</b>" );
+
+				var charText = charTextWrap.selectAll("p.characteristics-description").data([T, "These data describe the demographics of disconnected youth. Within the disconnected youth population, what share are:"]);
+				charText.enter().append("p").classed("characteristics-description", true);
+				charText.exit().remove();
+
+				charText.html(function(d,i){return d}).style({"margin":"0px"});
+
+				console.log(dat); //left off here -- where to put
+				console.log(cut);
+
+
 			}
 			else if(format=="Tables"){
 				var tableMenu = self.store("tableMenu").classed("out-of-flow",false);

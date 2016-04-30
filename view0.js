@@ -596,7 +596,7 @@
 
 	var setup = function(){
 		var self = this;
-		this.name("Overall","Top line data: employment rates, unemployment rates, and rates of disconnected youth");
+		this.name("Overall","Topline data: employment rates, unemployment rates, and rates of disconnected youth");
 		//this.description("Area to add some overview text. E.g. what is the unemployment rate? What is the employment rate? What does it mean? What does disconnected youth mean? Etc. ...");
 		//this.store("svg",this.slide.append("svg").style("width","100%").style("height","500px"));
 		
@@ -611,6 +611,8 @@
 																	 .style("margin","0px 10px 15px 0px")
 																	 .style("padding","10px")
 																	 .style("visibility", "hidden");
+
+		this.store("gridTitle", menuWrap.append("p").text("...").style({"margin":"0px 3px", "font-weight":"bold"}));
 
 		var menu0 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
 		var menu1 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
@@ -668,7 +670,7 @@
 		this.store("tableSortIndex", 0); //geo
 		this.store("tableSortDirection", -1); //ascending	
 
-		tableWrapScroll.append("div").style("height","250px").style("width","100%"); //dummy space
+		//tableWrapScroll.append("div").style("height","250px").style("width","100%"); //dummy space
 
 		gridWrap.append("p").text("Notes: The margins of error displayed with the bar charts represent the 90% confidence intervals around the estimated values. Margins of error are not displayed on the line charts, but they are available in the data downloads accompanying this report.").style({"margin":"10px 0px 0px 0px"});
 
@@ -682,6 +684,10 @@
 		//svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
 		var dat = this.data();
 		var met = this.getMetro();
+		var metName = this.lookup[met][0].CBSA_Title;
+		var metNameFull = met=="0" ? metName : metName+" metropolitan area";
+		this.store("gridTitle").text("Topline data for the " + metNameFull );
+
 		var syncButtons = this.store("sync");
 		var buttons0 = this.store("buttons0");
 		var buttons1 = this.store("buttons1");
