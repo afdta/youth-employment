@@ -164,8 +164,8 @@
 
 				charText.html(function(d,i){return d}).style({"margin":"0px"});
 
-				console.log(dat); //left off here -- where to put
-				console.log(cut);
+				//console.log(dat); //left off here -- where to put
+				//console.log(cut);
 
 
 			}
