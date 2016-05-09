@@ -15,7 +15,7 @@ function MetroInteractive(appWrapperElement){
 
 	//basic structure: A] app wrapper > a] menu (progress bar, forward, backward) wrapper, b] slide/views wrapper; 
 	//				   B] table of contents is a child of S.wrap
-	S.wrap = d3.select(appWrapperElement).classed("metro-interactive-wrap toc-visible",true).style({"position":"relative", "overflow":"hidden"});
+	S.wrap = d3.select(appWrapperElement).classed("metro-interactive-wrap",true).style({"position":"relative", "overflow":"hidden"});
 	S.progress = S.wrap.append("div").classed("metro-interactive-progress c-fix",true).style("padding-right","65px");
 	S.viewWrap = S.wrap.append("div").classed("metro-interactive-views",true);
 
@@ -38,7 +38,6 @@ function MetroInteractive(appWrapperElement){
 	////////////  APP STATE  //////////////
 		S.metro = null; //no defaults
 		S.view = null;
-		S.TOCShown = true; //is the table of contents slide being shown -- defaults to true -- display controlled by toc-visible class on outer wrapper
 
 		S.currentSlide = null; //the actual dom element being shown
 		S.allSlides = null;
@@ -361,7 +360,7 @@ function MetroInteractive(appWrapperElement){
 				this.parentNode.style.position = (d===index_to_show ? "relative" : "absolute");
 			});
 			
-			if(!S.TOCShown){scrollToThis(S.wrap.node());} //align wrapper to the top of viewport if the TOC is not shown (necessary test to handle initial load case)
+			scrollToThis(S.wrap.node()); //align wrapper to the top of viewport
 		}
 
 		//set the view wrap height based on this slide's height -- fallback method in case the relative positioning above fails
@@ -583,7 +582,6 @@ function MetroInteractive(appWrapperElement){
 	//build_view_nav can only be called once everything has been registered -- i.e. in S.cap
 	viewMenuCtrl.build = function(){
 		var self = this;
-		S.TOCShown = true;
 
 		//divs to hold the menu view, menu view header, and menu view content
 		var slide = S.wrap.append("div").classed("metro-interactive-view-menu",true).style("overflow-y","auto");
@@ -678,8 +676,6 @@ function MetroInteractive(appWrapperElement){
 
 		this.show = function(snapToTop){
 
-			S.TOCShown = true;
-			S.wrap.classed("toc-visible",true);
 			slide.node().scrollTop = 0;
 
 			set_hash("TableOfContents"); //set an invalid hash value -- calls to changeView with this hash will result in menu being shown -- useful for browser back
@@ -698,8 +694,6 @@ function MetroInteractive(appWrapperElement){
 		});
 
 		this.hide = function(snapToTop){
-			S.TOCShown = false;
-			S.wrap.classed("toc-visible",false);
 			if(snapToTop){
 				scrollToThis(S.wrap.node());
 			}
@@ -720,9 +714,6 @@ function MetroInteractive(appWrapperElement){
 			var n = idx+inc;
 			if(n === -1){
 				self.show(true);
-			}
-			else if(S.TOCShown){
-				changeView(S.view, S.metro, true); //redraw current view & geo, set hash -- this will hide the TOC
 			}
 			else if(n >= 0 && n < viewList.length){
 				self.hide();
@@ -877,10 +868,8 @@ function MetroInteractive(appWrapperElement){
 	window.addEventListener("resize",function(){
 		matchMedia(); //update viewport property
 		clearTimeout(resize_timer);
-		//only set resize timer if TOC isn't shown
-		if(!S.TOCShown){
-			resize_timer = setTimeout(changeView, 200);
-		}
+
+		resize_timer = setTimeout(changeView, 200);
 	});
 
 
