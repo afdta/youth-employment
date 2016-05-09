@@ -874,10 +874,12 @@ function MetroInteractive(appWrapperElement){
 
 
 	function append_loading_icon(wrapper_selection){
-		var svg = wrapper_selection.append("div").style({width:"65px", height:"65px", position:"absolute", top:"40%", left:"50%"})
+		var svg = wrapper_selection.append("div").style({width:"76px", height:"76px", position:"absolute", top:"40%", left:"50%"})
 									.classed("metro-interactive-loading-icon",true)
-									.append("svg").style({"width":"100%","height":"100%","margin-left":"-32px"})
-									.append("g").attr("transform","translate(5,5)");
+									.append("svg").style({"width":"100%","height":"100%","margin-left":"-38px"});
+
+		svg.append("rect").style({width:"100%", height:"100%"}).attr({fill:"#ffffff", x:"0", y:"0", rx:"0", ry:"0", stroke:"#65a4e5", "stroke-width":"4px"});
+		var barwrap = svg.append("g").attr("transform","translate(11,20)");
 		
 		var widths = [14,14,14];
 		var xs = [0,20,40];
@@ -885,13 +887,13 @@ function MetroInteractive(appWrapperElement){
 		var heights = [15,25,20];
 		var cols = ["#3e83c1","#65a4e5","#8ac6ff"];
 
-		var bar1 = svg.selectAll("rect").data(heights).enter().append("rect").attr({width:14})
+		var bar1 = barwrap.selectAll("rect").data(heights).enter().append("rect").attr({width:14})
 						.attr("x",function(d,i){return i*20})
 						.attr("height",function(d,i){return d+"px"})
 						.attr("y",function(d,i){return 25-d})
 						.attr("fill",function(d,i){return cols[i]});
 
-		svg.append("text").style({"font-family":"arial","font-size":"13px"}).attr({x:"27",y:"43","text-anchor":"middle"}).text("LOADING");
+		svg.append("text").style({"font-family":"arial","font-size":"10px"}).attr({x:"38",y:"60","text-anchor":"middle"}).text("LOADING");
 
 	}
 
