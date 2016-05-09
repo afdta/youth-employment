@@ -577,22 +577,3 @@ body{
 	-webkit-user-select: none;   
 	user-select: none;
 }
-
-/*show/hide toc*/
-/*toggle between showing the view wrapper and the table of contents*/
-/*it's necessary to toggle the position attribute in order to take these items out of doc flow while hidden -- don't want to use display:none;*/
-.metro-interactive-wrap.toc-visible .metro-interactive-view-menu{
-	position:relative;
-	visibility:visible;
-	left:0%;
-}
-.metro-interactive-wrap.toc-visible .metro-interactive-views{
-	position:absolute;
-	visibility:hidden;
-	left:0%;
-}
-.metro-interactive-wrap.toc-visible .metro-interactive-progress{
-	position:absolute;
-	visibility:hidden;
-	left:0%;
-}
