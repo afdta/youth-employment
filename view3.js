@@ -420,7 +420,7 @@
 					var svg = thiz.selectAll("svg").data([mapped]);
 					svg.enter().append("svg");
 					svg.exit().remove();
-					svg.style({"width":"130%", "height":(48*(mapped.length))+12});
+					svg.style({"width":"130%", "height":((48*(mapped.length))+12)+"px"});
 
 					var bars = svg.selectAll("g.bar-group").data(function(d,i){return d});
 
