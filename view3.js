@@ -384,7 +384,8 @@
 						 {code:"S_Other", label:"Other", moe:"MOE_Sother"}
 						],
 				"Nativity": [{code:"S_FB", label:"Foreign born", moe:"MOE_Sfb"}, {code:"S_NB", label:"Native born", moe:"MOE_Snb"}],
-				"Edu": [{code:"S_hs", label:"With a high school diploma", moe:"MOE_Shs"}, 
+				"Edu": [{code:"S_sc", label:"With a high school diploma and some college", moe:"MOE_Ssc"}, 
+						{code:"S_hs", label:"With a high school diploma", moe:"MOE_Shs"}, 
 						{code:"S_lths", label:"Without a high school diploma", moe:"MOE_Slths"}
 						]	
 			}
