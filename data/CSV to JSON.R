@@ -27,7 +27,7 @@ ur <- list()
 dy$char_edu <- DY_Char_Edu[,c(1,3,5,10,12,17,19,24,26,31:37)]
 dy$char_nativity <- DY_Char_Nativity[,c(1,3,5,10,12,17,19,24:28)]
 dy$char_race <- DY_Char_Race[,c(1,3,5,10,12,17,19,24,26,31,33,38,40,45,46:55)]
-dy$char_sex <- DY_Char_Sex[,c(1,3,5,10,12,17,19,24,25,26)]
+dy$char_sex <- DY_Char_Sex[,c(1,3,5,10,12,17,19,24:28)]
 dy$nativity <- DY_Nativity[,c(1,3,5,7,12,14,19,20,21)]
 dy$race <- DY_Race[,c(1,3,5,7,12,14,19,20,21)]
 dy$sex <- DY_Sex[,c(1,3,5,7,12,14,19,20,21)]
