@@ -273,15 +273,18 @@
 		//add a legend to container
 		YE2016.legend = function(container, dy){
 			var wrap = d3.select(container).append("div").classed("c-fix",true).style("padding","10px 0px 10px 0px");
+			var p1 = wrap.append("div").classed("c-fix",true).style({"float":"left", "margin":"7px 10px 5px 0px"});
+			var p2 = wrap.append("div").classed("c-fix",true).style({"float":"left", "margin":"7px 10px 5px 0px"});
 
 			swatchData = [YE2016.colors["16to19"], YE2016.colors["20to24"]]
 			if(!dy){
 				swatchData.push(YE2016.colors["25to54"])
 			}
 
-			wrap.append("p").style({"float":"left", "line-height":"15px", "margin":"2px 20px 0px 10px"}).text("Age groups: ");
+			p1.append("p").style({"float":"left", "line-height":"15px", "margin":"2px 10px 5px 10px"}).text("Age groups: ");
 
-			var swatches = wrap.selectAll("div").data(swatchData);
+			var swatches = p1.append("div").style({"float":"left", "margin":"0px 10px"}).classed("c-fix",true)
+			.selectAll("div").data(swatchData);
 			swatches.enter().append("div").classed("c-fix", true).style({"float":"left", "margin-right":"20px"});
 			swatches.exit().remove();
 
@@ -291,16 +294,28 @@
 
 			swatches.append("p").text(function(d,i){return d.label}).style({"float":"left", "line-height":"15px", "margin":"2px 0px 0px 0px"});
 		
-			var moe = wrap.append("div").classed("c-fix", true).style({"float":"left", "margin-left":"10px"});
-			var moebar = moe.append("svg").style({"width":"50px","height":"20px","float":"left"});
-
-			moebar.append("line").attr({"stroke":"#E46524", x1:15, x2:40, y1:11, y2:11, "stroke-width":"2px", "shape-rendering":"crispEdges"});
-			moebar.selectAll("circle").data([15, 40]).enter()
-					.append("circle").attr({r:3, stroke:"#E46524", fill:"#ffffff", cy:11}).attr("cx", function(d,i){return d});
-
-			moe.append("p").style({"float":"left", "line-height":"15px", "margin":"2px 0px 0px 0px"}).text("Margin of error")
+			
 
 
+			var pp = p2.append("p").style({"float":"left", "line-height":"15px", "margin":"2px 0px 5px 10px"}).text("Margins of error are indicated by ");
+			
+			var moebar = pp.append("span").append("svg").style({"width":"35px","height":"15px", "display":"inline","vertical-align":"middle"});
+
+			moebar.append("line").attr({"stroke":"#E46524", x1:5, x2:28, y1:7, y2:7, "stroke-width":"2px", "shape-rendering":"crispEdges"});
+			moebar.selectAll("circle").data([5, 28]).enter()
+					.append("circle").attr({r:3, stroke:"#E46524", fill:"#ffffff", cy:7}).attr("cx", function(d,i){return d});
+
+			pp.append("span").text(" on the bar charts ");
+
+			if(!dy){
+				pp.append("span").text(" and by ");
+				var moearea = pp.append("span").append("svg").style({"width":"35px","height":"20px","display":"inline","vertical-align":"middle"});
+				moearea.append("path").attr({"stroke":"#bbbbbb", "fill":"#bbbbbb", "d":"M2,8 l10,-4 l10,4 l10,-4 l0,6 l-10,4 l-10,-4 l-10,4 z" , "stroke-width":"1px"});
+				pp.append("span").text(" when hovering over the line charts. ");
+			}
+			//moe.append("p").style({"float":"left", "line-height":"15px", "margin":"2px 0px 0px 0px"}).text("Margin of error")
+
+			//wrap.selectAll("p").style("font-size","13px");
 		}
 
 		//data for barChart should look like: [{code:16to19, SH:xx.x, SH_M: yy.y}, {code, SH, SH_M}, {}]
@@ -391,22 +406,7 @@
 				MOE_CIRC.attr("cx",function(d,i){
 					return ((d/MAXSHARE)*100)+"%";
 				})
-				.attr({"cy":29, stroke:"#E46524", "fill":"#ffffff", "r":"3"}); //.style("shape-rendering","crispEdges");
-
-				/*var MOE_TICKS = MOE.selectAll("line.moe_tick").data(function(d,i){
-					return [(d.SH-d.SH_M), (d.SH+d.SH_M)];
-				});
-				MOE_TICKS.enter().append("line").classed("moe_tick",true);
-				MOE_TICKS.exit().remove();
-				MOE_TICKS.attr("x1",function(d,i){
-					//var off = i==0 ? -1.5 : 1.5
-					var off=0;
-					return (((d/MAXSHARE)*100)+off)+"%";
-				})
-				.attr("x2",function(d,i){
-					return ((d/MAXSHARE)*100)+"%";
-				})
-				.attr({"y1":-2, "y2":2, stroke:"#E46524", "stroke-width":"2px",  "shape-rendering":"crispEdges"});*/
+				.attr({"cy":29, stroke:"#E46524", "fill":"#ffffff", "r":"3"});
 
 				bars.select("text").attr("x", function(d,i){
 					return d.SH===null ? "0%" : ((d.SH/MAXSHARE)*100)+"%"
@@ -429,10 +429,11 @@
 			var chartHeight = 130;
 			var bottomPad = 20;
 			var leftPad = 35;
-			var rightPad = 15;
-			var topPad = 10;
+			var rightPad = 20;
+			var topPad = 15;
 			var wrap = d3.select(container).selectAll("div.bar-chart-wrap").data([data]);
 				var SE = wrap.enter().append("div").classed("bar-chart-wrap", true).append("svg");
+				SE.append("g").classed("moe-areas", true);
 				SE.append("g").classed("x-axis-group",true).attr("transform","translate(0,"+(chartHeight-bottomPad)+")");
 				SE.append("g").classed("y-axis-group",true).attr("transform","translate("+leftPad+",0)");
 
@@ -452,6 +453,9 @@
 				//axis <g>roups
 				var yAxisG = svg.select("g.y-axis-group");
 				var xAxisG = svg.select("g.x-axis-group");
+
+				//<g> for margin of error bars
+				var moeg = svg.select("g.moe-areas");
 
 				//get chart width;
 				var svgBox = svg.node().getBoundingClientRect();
@@ -480,11 +484,30 @@
 
 				//line generator
 				var val = function(obs){return obs.SH}
+				var valm = function(obs, aors){
+					try{
+						var v = obs.SH;
+						var m = obs.SH_M;
+						if(v == null || m == null){throw "No data"}
+						var f = v + (aors*m); //aors should be 1 or -1
+					}
+					catch(e){
+						var f = null;
+					}
+					return f;
+				}
 				var year = function(obs){return obs.Y}
 
 				var y = function(obs){return scaleY(val(obs))}
+				var y0 = function(obs){return scaleY(valm(obs, -1))}
+				var y1 = function(obs){return scaleY(valm(obs, 1))}
 				var x = function(obs){return scaleX(year(obs))}
 				var line = d3.svg.line().x(x).y(y).defined(function(d,i){return d.SH!==null}); //line not defined for null values
+				var area = d3.svg.area().x(x).y0(y0).y1(y1).defined(function(d,i){return d.SH!=null && d.SH_M!=null});
+				
+				var area2 = d3.svg.area().x(x)
+										 .y0(function(obs){return y(obs)-10})
+										 .y1(function(obs){return y(obs)+10}).defined(function(d,i){return d.SH!=null && d.SH_M!=null});
 
 				var lines = svg.selectAll("path.metro-trend-line").data(function(d,i){return d.cohorts});
 				lines.enter().append("path").classed("metro-trend-line",true);
@@ -494,8 +517,8 @@
 					return YE2016.colors[d.age].col;
 				}).attr({"fill":"none", "stroke-width":"2px"})
 				.attr("d",function(d,i){
-					return d.dat === null ? "M0,0" : line(d.dat); //if data missing alltogether...
-				});
+					return d.dat === null ? "M0,0" : line(d.dat); //if entire data property missing alltogether...
+				}).style("pointer-events", "none");
 
 				var dotG = svg.selectAll("g.metro-circle-marker-groups").data(function(d,i){return d.cohorts});
 				dotG.enter().append("g").classed("metro-circle-marker-groups",true);
@@ -525,6 +548,87 @@
 					return scaleY(d.SH);
 				})
 				.attr("r",3);
+
+
+				//Annotation
+				var dotGA = svg.selectAll("g.metro-circle-anno-groups").data(function(d,i){return d.cohorts});
+				dotGA.enter().append("g").classed("metro-circle-anno-groups",true);
+				dotGA.exit().remove();
+
+				var textA = dotGA.selectAll("text.metro-circle-marker")
+				.data(function(d,i){
+					var final = [];
+					if(d.dat !== null){
+						for(var j=0; j<d.dat.length; j++){
+							if(d.dat[j].SH !== null){
+								final.push({SH:d.dat[j].SH, Y:d.dat[j].Y, age:d.age});
+							}
+						}
+					}
+					return final;
+				});
+				textA.enter().append("text").classed("metro-circle-marker",true);
+				textA.exit().remove();
+				textA.style("fill",function(d,i){
+					return "#333333";
+				})
+				.attr("x",function(d,i){
+					return scaleX(d.Y);
+				})
+				.attr("y",function(d,i){
+					return scaleY(d.SH);
+				})
+				.attr({dy:"-4", "text-anchor":"middle"})
+				.style({"font-size":"11px"})
+				.text(function(d,i){return d.SH+"%"});
+
+				dotGA.style({"opacity":"0", "pointer-events":"none"});
+
+				//MOE bars
+				var moe_area = moeg.selectAll("path.metro-moe-area").data(function(d,i){return d.cohorts});
+				moe_area.enter().append("path").classed("metro-moe-area",true);
+				moe_area.exit().remove();
+
+				moe_area.attr("stroke",function(d,i){
+					return "#dddddd";
+					//return YE2016.colors[d.age].col;
+				}).attr({"fill":"#dddddd", "stroke-width":"1px"})
+				.attr("d",function(d,i){
+					return d.dat === null ? "M0,0" : area(d.dat); //if entire data property missing alltogether...
+				});	
+				moe_area.style({"opacity":"0", "pointer-events":"none"});
+
+				//hover bars -- used to activate a buffer area around each line
+				var hov_area = moeg.selectAll("path.metro-hov-area").data(function(d,i){return d.cohorts});
+				hov_area.enter().append("path").classed("metro-hov-area",true);
+				hov_area.exit().remove();
+
+				hov_area.attr("stroke","none").attr({"fill":"none", "stroke-width":"0px"})
+				.style({"visibility":"hidden", "pointer-events":"all"})
+				.attr("d",function(d,i){
+					return d.dat === null ? "M0,0" : area2(d.dat); //if entire data property missing alltogether...
+				});		
+
+				var displayAnno = function(d,i){
+					dotGA.transition().style("opacity",function(d,j){return j==i ? 1 : 0});
+					dotG.transition().style("opacity",function(d,j){return j==i ? 1 : 0.25});
+					lines.transition().style("opacity",function(d,j){return j==i ? 1 : 0.25});
+					moe_area.transition().style("opacity",function(d,j){return j==i ? 1 : 0});
+					yAxisG.transition().style("opacity",0.25);
+				}
+				var resetAnno = function(){
+					dotGA.transition().duration(400).style("opacity",0);
+					dotG.transition().duration(400).style("opacity",1);
+					lines.transition().duration(400).style("opacity",1);
+					moe_area.transition().duration(400).style("opacity",0);
+					yAxisG.transition().duration(400).style("opacity",1);
+				}
+
+				hov_area.on("mouseenter", displayAnno);
+				dotG.on("mouseenter", displayAnno);
+
+				hov_area.on("mouseleave", resetAnno);
+				dotG.on("mouseleave", resetAnno);
 
 
 
@@ -640,6 +744,7 @@
 		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node()); //add a legend
 
 		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
+		var tableNote = tableWrap.append("p").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"}).text("Click on the column headers to sort and rank the metro areas in the table. Margins of error are listed in parentheses next to each value.");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true)
 		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
 
@@ -670,9 +775,7 @@
 		this.store("tableSortIndex", 0); //geo
 		this.store("tableSortDirection", -1); //ascending	
 
-		//tableWrapScroll.append("div").style("height","250px").style("width","100%"); //dummy space
-
-		gridWrap.append("p").text("Notes: The margins of error displayed with the bar charts represent the 90% confidence intervals around the estimated values. Margins of error are not displayed on the line charts, but they are available in the data downloads accompanying this report.").style({"margin":"10px 0px 0px 0px"});
+		gridWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
 
 	};
 
@@ -698,6 +801,8 @@
 		var getDataAndDraw = function(){
 
 			var allBarDat = chartFN.ETL("Overall", met, dat); 
+			var MinMax = [d3.min(allBarDat, function(d){return d.range[0]}), 
+						  d3.max(allBarDat, function(d){return d.range[1]})];
 
 			var format = self.store("format");
 
@@ -722,7 +827,7 @@
 						chartFN.barChart(this, d, max);
 					}
 					else{
-						chartFN.lineChart(this, d);
+						chartFN.lineChart(this, d); //don't require global ranges here
 					}
 				});
 			}

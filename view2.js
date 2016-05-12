@@ -56,6 +56,7 @@
 		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node()); //add a legend
 		
 		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
+		var tableNote = tableWrap.append("p").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"}).text("Click on the column headers to sort and rank the metro areas in the table. Margins of error are listed in parentheses next to each value.");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
 		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
 
@@ -91,7 +92,7 @@
 
 		this.store("sync")();
 
-		gridWrap.append("p").text("Notes: The margins of error displayed with the bar charts represent the 90% confidence intervals around the estimated values. Margins of error are not displayed on the line charts, but they are available in the data downloads accompanying this report. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
+		gridWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
 
 	};
 
@@ -119,6 +120,8 @@
 			self.store("gridWrap").classed("out-of-flow", format=="Tables");
 
 			var allBarDat = chartFN.ETL(cut, met, dat); 
+			var MinMax = [d3.min(allBarDat, function(d){return d.range[0]}), 
+						  d3.max(allBarDat, function(d){return d.range[1]})];
 
 			if(format=="Charts"){
 				var tableMenu = self.store("tableMenu").classed("out-of-flow",true);
@@ -142,7 +145,7 @@
 						chartFN.barChart(this, d);
 					}
 					else{
-						chartFN.lineChart(this, d);
+						chartFN.lineChart(this, d, MinMax);
 					}
 				});
 			}
@@ -187,7 +190,6 @@
 
 				var pos = {"16to19":1, "20to24":2, "25to54":3};
 				var tableDat2 = tableDat.map(function(d,i,a){
-					//console.log(d);
 					var row = [{val:d.geo.CBSA_Code, label:d.geo.CBSA_Title}];
 					var L = d.d.latest;
 					for(var j=0; j<L.length; j++){
@@ -288,7 +290,6 @@
 							htable.style("width",trwidth+"px");	
 						}
 						catch(e){
-							console.log(e);
 						}
 					},0);
 
@@ -338,7 +339,6 @@
 			sync();
 		})
 
-		//console.log(this.changeEvent);
 	}
 
 	YouthEmployment2016.addView(setup,redraw,dataFile);
