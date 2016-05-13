@@ -748,6 +748,7 @@ function MetroInteractive(appWrapperElement){
 
 		links.on("mousedown", function(d,i){
 			qcView(d);
+			viewMenuCtrl.showHideOptMenu("hide");
 			//changeView, called by qcView, calls syncButtons
 		});
 
