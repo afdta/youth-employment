@@ -27,6 +27,7 @@
 			var menu0 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
 			var menu1 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
 			var tableMenu = menuWrap.append("div").style({float:"left", "margin":"5px 0px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
+				tableMenu.append("p").text("Select a group").classed("text-accent-uc1",true);
 
 		menu0.append("p").text("View data in").classed("text-accent-uc1",true);
 		var buttons0 = menu0.selectAll("div.generic-button").data([{"l":"Charts", c:"Charts"}, {"l":"Tables", "c":"Tables"}]);
@@ -45,44 +46,50 @@
 		buttons1.select("p").style({"text-align":"center"}).text(function(d,i){return d.l});
 
 		var gridWrap = this.slide.append("div");
+		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node(), "isdy"); //add a legend
 		
 		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
 		var tableNote = tableWrap.append("p").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"}).text("Click on the column headers to sort and rank the metro areas in the table. Margins of error are listed in parentheses next to each value.");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
 		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
 
-		tableMenu.append("p").text("Select a group").classed("text-accent-uc1",true);
-
 		this.store("buttons0", buttons0);
 		this.store("buttons1", buttons1);
-		this.store("groupButtons", null);
 		
-		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node(), "isdy"); //add a legend
 		this.store("grid", gridWrap.append("div").classed("metro-interactive-grid two-equal", true) );
 		this.store("gridWrap", gridWrap);
 		this.store("tableWrap", tableWrap);
-		this.store("tableMenu", tableMenu);
 		this.store("htable", tableWrapHeader);
+		this.store("table", tableWrapScroll.append("div").classed("as-table",true));
 		this.store("tableSortIndex", 0); //geo
 		this.store("tableSortDirection", -1); //ascending
-		this.store("table", tableWrapScroll.append("div").classed("as-table",true));
+		
 		this.store("cut","Sex");
 		this.store("format", "Charts");
 		this.store("group", null);
+		this.store("tableMenu", tableMenu);
 
-
+		//sync button state and show/hide table or chart containers -- doesn't change state variables
 		this.store("sync", function(){
+			menuWrap.style("visibility","visible");
+			var format = self.store("format");
+
+			//which menu sections to show/hide?
+			tableMenu.classed("out-of-flow", format==="Charts"); //no need for the tableMenu when Charts selected
+
+			gridWrap.classed("out-of-flow", format==="Tables");
+			tableWrap.classed("out-of-flow", format==="Charts");
+
 			buttons0.classed("generic-button-selected",function(d,i){
 				return d.c == self.store("format");
-			})
+			});
 
 			buttons1.classed("generic-button-selected",function(d,i){
 				return d.c == self.store("cut");
-			})
+			});
 
+			//buttons in the tableMenu--group--are synced in the getDataAndDraw() function
 		});
-
-		this.store("sync")();
 
 
 		//characteristics of dy
@@ -115,9 +122,6 @@
 				return d.code == self.store("charcut");
 			});
 		});
-
-		this.store("charsync")();
-
 		
 		charWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
 
@@ -127,8 +131,6 @@
 		var self = this;
 
 		var chartFN = YouthEmployment2016.ChartFN;
-		//var svg = this.store("svg");
-		//svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
 		var dat = this.data();
 		var met = this.getMetro();
 		var metName = this.lookup[met][0].CBSA_Title;
@@ -146,14 +148,10 @@
 			var cut = self.store("cut");
 			var format = self.store("format");
 			var group = self.store("group");
-			
-			self.store("tableWrap").classed("out-of-flow", format=="Charts");
-			self.store("gridWrap").classed("out-of-flow", format=="Tables");
 
 			var allBarDat = chartFN.ETL(cut, met, dat, "isdy"); 
 
 			if(format=="Charts"){
-				var tableMenu = self.store("tableMenu").classed("out-of-flow",true);
 
 				var allDat = [];
 				for(var i=0; i<allBarDat.length; i++){
@@ -175,7 +173,7 @@
 				});
 			}
 			else if(format=="Tables"){
-				var tableMenu = self.store("tableMenu").classed("out-of-flow",false);
+				var tableMenu = self.store("tableMenu");
 
 				var buttons = tableMenu.selectAll("div.generic-button").data(allBarDat);
 				buttons.enter().append("div").classed("generic-button",true).append("p");
@@ -518,24 +516,25 @@
 			});	//end each	
 		}
 
-
+		sync();
+		this.store("charsync")();
 		getDataAndDraw(); //initialize
 		getCharAndDraw();
 
 		var buttons0 = this.store("buttons0");
 		buttons0.on("mousedown",function(d,i){
 			self.store("format", d.c);
-			getDataAndDraw();
 			sync();
-		})
+			getDataAndDraw();
+		});
 
 		var buttons1 = this.store("buttons1");
 		buttons1.on("mousedown",function(d,i){
 			self.store("cut", d.c);
 			self.store("group", null); //reset the group selection
-			getDataAndDraw();
 			sync();
-		})
+			getDataAndDraw();
+		});
 
 		var charButtons = this.store("charButtons");
 		charButtons.on("mousedown", function(d,i){
