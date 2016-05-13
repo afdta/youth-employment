@@ -199,7 +199,6 @@
 
 				var pos = {"16to19":1, "20to24":2, "25to54":3};
 				var tableDat2 = tableDat.map(function(d,i,a){
-					//console.log(d);
 					var row = [{val:d.geo.CBSA_Code, label:d.geo.CBSA_Title}];
 					var L = d.d.latest;
 					for(var j=0; j<L.length; j++){
@@ -300,7 +299,7 @@
 							htable.style("width",trwidth+"px");	
 						}
 						catch(e){
-							console.log(e);
+
 						}
 					},0);
 
@@ -350,7 +349,6 @@
 			sync();
 		})
 
-		//console.log(this.changeEvent);
 	}
 
 	YouthEmployment2016.addView(setup,redraw,dataFile);
