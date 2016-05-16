@@ -11,7 +11,7 @@
 		var self = this;
 		this.name("Disconnected","Characteristics of disconnected youth and rates of disconnected youth by sex, race, and nativity");
 
-		this.description('While there is broad agreement that the terms "disconnected youth" or "opportunity youth" refers to young people not working and not in school, there is not a standard methodology or data source to create estimates of the number of such youth or their characteristics. Thus, different reports are likely to produce different figures, based on the use of different data sources and definitions. In this analysis, people are considered disconnected if they meet the following criteria: they are between the ages of 16–24, not working, not enrolled in school, living below 200 percent of the federal poverty line, with an educational attainment of less than an associate degree, not in the Armed Forces, and not living in group quarters. For more information, please see the Methodology section of the report.');
+		this.description('The terms "disconnected youth" or "opportunity youth" refer to young people not working and not in school. Please see the methodology section of the paper for more details about how these figures were derived.');
 
 		var selectWrap = this.slide.append("div").style({"margin-bottom":"15px"}).classed("c-fix",true);
 		selectWrap.append("p").classed("text-accent-uc1",true).text("Select a metro area");
@@ -49,7 +49,9 @@
 		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node(), "isdy"); //add a legend
 		
 		var tableWrap = this.slide.append("div").classed("out-of-flow zee10",true).style("margin-top","10px");
-		var tableNote = tableWrap.append("p").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"}).text("Click on the column headers to sort and rank the metro areas in the table. Margins of error are listed in parentheses next to each value.");
+		var tableNote = tableWrap.append("p").text("Time period: 2012-14 (pooled) ")
+								.append("span").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"})
+								.html(" • Click on the column headers to sort/rank the metro areas. Margins of error are listed in parentheses next to each value.");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
 		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
 
@@ -123,8 +125,8 @@
 			});
 		});
 		
-		charWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. In some cases, margins of error are very small and are not visible in the charts above. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
-		charWrap.append("p").text("Source: Brookings analysis of pooled 2012-2014 American Community Survey microdata.");	
+		this.slide.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. In some cases, margins of error are very small and are not visible in the charts above. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
+		this.slide.append("p").text("Source: Brookings analysis of pooled 2012-2014 American Community Survey microdata.");	
 	
 	};
 
@@ -383,7 +385,8 @@
 						 {code:"S_Other", label:"Other", moe:"MOE_Sother"}
 						],
 				"Nativity": [{code:"S_FB", label:"Foreign born", moe:"MOE_Sfb"}, {code:"S_NB", label:"Native born", moe:"MOE_Snb"}],
-				"Edu": [{code:"S_hs", label:"With a high school diploma", moe:"MOE_Shs"}, 
+				"Edu": [{code:"S_sc", label:"With a high school diploma and some college", moe:"MOE_Ssc"}, 
+						{code:"S_hs", label:"With a high school diploma", moe:"MOE_Shs"}, 
 						{code:"S_lths", label:"Less than a high school diploma", moe:"MOE_Slths"}
 						]	
 			}
