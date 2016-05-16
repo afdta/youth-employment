@@ -11,7 +11,7 @@
 		var self = this;
 		this.name("Disconnected","Characteristics of disconnected youth and rates of disconnected youth by sex, race, and nativity");
 
-		this.description('While there is broad agreement that the terms "disconnected youth" or "opportunity youth" refers to young people not working and not in school, there is not a standard methodology or data source to create estimates of the number of such youth or their characteristics. Thus, different reports are likely to produce different figures, based on the use of different data sources and definitions. In this analysis, people are considered disconnected if they meet the following criteria: they are between the ages of 16–24, not working, not enrolled in school, living below 200 percent of the federal poverty line, with an educational attainment of less than an associate degree, not in the Armed Forces, and not living in group quarters. For more information, please see the Methodology section of the report.');
+		this.description('The terms "disconnected youth" or "opportunity youth" refer to young people not working and not in school. Please see the methodology section of the paper for more details about how these figures were derived.');
 
 		var selectWrap = this.slide.append("div").style({"margin-bottom":"15px"}).classed("c-fix",true);
 		selectWrap.append("p").classed("text-accent-uc1",true).text("Select a metro area");
@@ -27,6 +27,7 @@
 			var menu0 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
 			var menu1 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
 			var tableMenu = menuWrap.append("div").style({float:"left", "margin":"5px 0px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
+				tableMenu.append("p").text("Select a group").classed("text-accent-uc1",true);
 
 		menu0.append("p").text("View data in").classed("text-accent-uc1",true);
 		var buttons0 = menu0.selectAll("div.generic-button").data([{"l":"Charts", c:"Charts"}, {"l":"Tables", "c":"Tables"}]);
@@ -44,45 +45,53 @@
 
 		buttons1.select("p").style({"text-align":"center"}).text(function(d,i){return d.l});
 
-		var gridWrap = this.slide.append("div");
+		var gridWrap = this.slide.append("div").classed("zee10",true);;
+		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node(), "isdy"); //add a legend
 		
-		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
-		var tableNote = tableWrap.append("p").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"}).text("Click on the column headers to sort and rank the metro areas in the table. Margins of error are listed in parentheses next to each value.");
+		var tableWrap = this.slide.append("div").classed("out-of-flow zee10",true).style("margin-top","10px");
+		var tableNote = tableWrap.append("p").text("Time period: 2012-14 (pooled) ")
+								.append("span").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"})
+								.html(" • Click on the column headers to sort/rank the metro areas. Margins of error are listed in parentheses next to each value.");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
 		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
 
-		tableMenu.append("p").text("Select a group").classed("text-accent-uc1",true);
-
 		this.store("buttons0", buttons0);
 		this.store("buttons1", buttons1);
-		this.store("groupButtons", null);
 		
-		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node(), "isdy"); //add a legend
 		this.store("grid", gridWrap.append("div").classed("metro-interactive-grid two-equal", true) );
 		this.store("gridWrap", gridWrap);
 		this.store("tableWrap", tableWrap);
-		this.store("tableMenu", tableMenu);
 		this.store("htable", tableWrapHeader);
+		this.store("table", tableWrapScroll.append("div").classed("as-table",true));
 		this.store("tableSortIndex", 0); //geo
 		this.store("tableSortDirection", -1); //ascending
-		this.store("table", tableWrapScroll.append("div").classed("as-table",true));
+		
 		this.store("cut","Sex");
 		this.store("format", "Charts");
 		this.store("group", null);
+		this.store("tableMenu", tableMenu);
 
-
+		//sync button state and show/hide table or chart containers -- doesn't change state variables
 		this.store("sync", function(){
+			menuWrap.style("visibility","visible");
+			var format = self.store("format");
+
+			//which menu sections to show/hide?
+			tableMenu.classed("out-of-flow", format==="Charts"); //no need for the tableMenu when Charts selected
+
+			gridWrap.classed("out-of-flow", format==="Tables");
+			tableWrap.classed("out-of-flow", format==="Charts");
+
 			buttons0.classed("generic-button-selected",function(d,i){
 				return d.c == self.store("format");
-			})
+			});
 
 			buttons1.classed("generic-button-selected",function(d,i){
 				return d.c == self.store("cut");
-			})
+			});
 
+			//buttons in the tableMenu--group--are synced in the getDataAndDraw() function
 		});
-
-		this.store("sync")();
 
 
 		//characteristics of dy
@@ -99,9 +108,9 @@
 
 
 		//characteristics menu/buttons
-		var charButtons = charButtonWrap.selectAll("div.generic-button").data([{code:"Sex", label:"Male versus female?"},
-																			 {code:"Race", label:"White, black, Latino, or Asian?"},
-																			 {code:"Nativity", label:"Foreign born versus native born?"},
+		var charButtons = charButtonWrap.selectAll("div.generic-button").data([{code:"Sex", label:"Are male vs. female?"},
+																			 {code:"Race", label:"Are white, black, Latino, or Asian?"},
+																			 {code:"Nativity", label:"Are foreign born vs. native born?"},
 																			 {code:"Edu", label:"Have a high school diploma?"}]);
 		charButtons.enter().append("div").classed("generic-button",true).append("p");
 		charButtons.exit().remove();
@@ -115,20 +124,16 @@
 				return d.code == self.store("charcut");
 			});
 		});
-
-		this.store("charsync")();
-
 		
-		charWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
-
+		this.slide.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. In some cases, margins of error are very small and are not visible in the charts above. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
+		this.slide.append("p").text("Source: Brookings analysis of pooled 2012-2014 American Community Survey microdata.");	
+	
 	};
 
 	var redraw = function(){
 		var self = this;
 
 		var chartFN = YouthEmployment2016.ChartFN;
-		//var svg = this.store("svg");
-		//svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
 		var dat = this.data();
 		var met = this.getMetro();
 		var metName = this.lookup[met][0].CBSA_Title;
@@ -146,14 +151,10 @@
 			var cut = self.store("cut");
 			var format = self.store("format");
 			var group = self.store("group");
-			
-			self.store("tableWrap").classed("out-of-flow", format=="Charts");
-			self.store("gridWrap").classed("out-of-flow", format=="Tables");
 
 			var allBarDat = chartFN.ETL(cut, met, dat, "isdy"); 
 
 			if(format=="Charts"){
-				var tableMenu = self.store("tableMenu").classed("out-of-flow",true);
 
 				var allDat = [];
 				for(var i=0; i<allBarDat.length; i++){
@@ -175,7 +176,7 @@
 				});
 			}
 			else if(format=="Tables"){
-				var tableMenu = self.store("tableMenu").classed("out-of-flow",false);
+				var tableMenu = self.store("tableMenu");
 
 				var buttons = tableMenu.selectAll("div.generic-button").data(allBarDat);
 				buttons.enter().append("div").classed("generic-button",true).append("p");
@@ -353,7 +354,7 @@
 			//characteristics data, always displayed
 			var T = "<b>Characteristics of disconnected youth in the " + (met=="0" ? metName : metName+" metropolitan area</b>" );
 
-			var charText = charTextWrap.selectAll("p.characteristics-description").data([T, "These data describe the demographics of disconnected youth. Within the disconnected youth population, what share are:"]);
+			var charText = charTextWrap.selectAll("p.characteristics-description").data([T, "These data describe the demographics of disconnected youth. Within the disconnected youth population, what share:"]);
 			charText.enter().append("p").classed("characteristics-description", true);
 			charText.exit().remove();
 
@@ -386,7 +387,7 @@
 				"Nativity": [{code:"S_FB", label:"Foreign born", moe:"MOE_Sfb"}, {code:"S_NB", label:"Native born", moe:"MOE_Snb"}],
 				"Edu": [{code:"S_sc", label:"With a high school diploma and some college", moe:"MOE_Ssc"}, 
 						{code:"S_hs", label:"With a high school diploma", moe:"MOE_Shs"}, 
-						{code:"S_lths", label:"Without a high school diploma", moe:"MOE_Slths"}
+						{code:"S_lths", label:"Less than a high school diploma", moe:"MOE_Slths"}
 						]	
 			}
 
@@ -519,24 +520,25 @@
 			});	//end each	
 		}
 
-
+		sync();
+		this.store("charsync")();
 		getDataAndDraw(); //initialize
 		getCharAndDraw();
 
 		var buttons0 = this.store("buttons0");
 		buttons0.on("mousedown",function(d,i){
 			self.store("format", d.c);
-			getDataAndDraw();
 			sync();
-		})
+			getDataAndDraw();
+		});
 
 		var buttons1 = this.store("buttons1");
 		buttons1.on("mousedown",function(d,i){
 			self.store("cut", d.c);
 			self.store("group", null); //reset the group selection
-			getDataAndDraw();
 			sync();
-		})
+			getDataAndDraw();
+		});
 
 		var charButtons = this.store("charButtons");
 		charButtons.on("mousedown", function(d,i){

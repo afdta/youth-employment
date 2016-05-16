@@ -1,6 +1,4 @@
 (function(){
-	var dataFile = "data/overall.json";
-
 	//CHARTING FUNCTIONS
 	//TO DO: HOW TO SCALE BARS? SEE MAXSHARE in barChart() // ALSO LINE CHARTS YOU MISS VARIATION WHEN SCALING THE SAME
 	//NOTE: SHARES NOT EXPRESSED AS DECIMAL FRACTIONS
@@ -698,14 +696,15 @@
 
 	YouthEmployment2016.ChartFN = YE2016; //store in the global scope for subsequent views to use
 
+	///END CHARTING FUNCTIONS
+
+	var dataFile = "data/overall.json";
+
 	var setup = function(){
 		var self = this;
 		this.name("Overall","Topline data: employment rates, unemployment rates, and rates of disconnected youth");
-		//this.description("Area to add some overview text. E.g. what is the unemployment rate? What is the employment rate? What does it mean? What does disconnected youth mean? Etc. ...");
-		//this.store("svg",this.slide.append("svg").style("width","100%").style("height","500px"));
 		
-		this.store("format", "Charts");
-		this.store("cut", "er");
+
 
 		var selectWrap = this.slide.append("div").style({"margin-bottom":"15px"}).classed("c-fix",true);
 		selectWrap.append("p").classed("text-accent-uc1",true).text("Select a metro area");
@@ -718,8 +717,9 @@
 
 		this.store("gridTitle", menuWrap.append("p").text("...").style({"margin":"0px 3px", "font-weight":"bold"}));
 
-		var menu0 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
-		var menu1 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
+			var menu0 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
+			var menu1 = menuWrap.append("div").style({float:"left", "margin":"5px 30px 5px 0px", "padding":"3px", "border-top":"0px dotted #aaaaaa"}).classed("c-fix",true);
+
 
 		menu0.append("p").text("View data in").classed("text-accent-uc1",true);
 		var buttons0 = menu0.selectAll("div.generic-button").data([{"l":"Charts", c:"Charts"}, {"l":"Tables", "c":"Tables"}]);
@@ -737,74 +737,83 @@
 
 		buttons1.select("p").style({"text-align":"center"}).text(function(d,i){return d.l});
 
-		this.store("buttons0", buttons0);
-		this.store("buttons1", buttons1);
-
-		var gridWrap = this.slide.append("div");
+		var gridWrap = this.slide.append("div").classed("zee10",true);
 		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node()); //add a legend
 
-		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
-		var tableNote = tableWrap.append("p").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"}).text("Click on the column headers to sort and rank the metro areas in the table. Margins of error are listed in parentheses next to each value.");
-		var tableWrapHeader = tableWrap.append("div").classed("as-table",true)
+		var tableWrap = this.slide.append("div").classed("out-of-flow zee10",true).style("margin-top","10px");
+		var tableNoteWrap = tableWrap.append("p");
+		var tableNoteTime = tableNoteWrap.append("span").text("Time period: 2014 ");
+		var tableNote = tableNoteWrap.append("span").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"})
+								.html(" • Click on the column headers to sort/rank the metro areas. Margins of error are listed in parentheses next to each value.");
+		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
 		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
 
-		this.store("sync", function(){
-			menuWrap.style("visibility","visible");
-			buttons0.classed("generic-button-selected",function(d,i){
-				return d.c == self.store("format");
-			})
-
-			var format = self.store("format");
-			menu1.classed("out-of-flow", format==="Charts");
-			gridWrap.classed("out-of-flow", format==="Tables");
-			tableWrap.classed("out-of-flow", format==="Charts");
-
-
-			buttons1.classed("generic-button-selected",function(d,i){
-				return d.c == self.store("cut");
-			})
-
-		});
-		
+		this.store("buttons0", buttons0);
+		this.store("buttons1", buttons1);
 		this.store("grid", gridWrap.append("div").classed("metro-interactive-grid two-equal", true) );
 		this.store("gridWrap", gridWrap);
 		this.store("tableWrap", tableWrap);
 		this.store("htable", tableWrapHeader);
 		this.store("table", tableWrapScroll.append("div").classed("as-table",true));
-		
 		this.store("tableSortIndex", 0); //geo
 		this.store("tableSortDirection", -1); //ascending	
 
-		gridWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
+		this.store("cut", "er");
+		this.store("format", "Charts");
+		this.store("tableNoteTime", tableNoteTime);
 
+
+		//sync button state and show/hide table or chart containers -- doesn't change state variables
+		this.store("sync", function(){
+			menuWrap.style("visibility","visible");
+			var format = self.store("format");
+
+			//which menu sections to show/hide?
+			menu1.classed("out-of-flow", format==="Charts"); //no need for cuts when Charts selected
+
+			gridWrap.classed("out-of-flow", format==="Tables");
+			tableWrap.classed("out-of-flow", format==="Charts");
+
+			buttons0.classed("generic-button-selected",function(d,i){
+				return d.c == self.store("format");
+			});
+
+			buttons1.classed("generic-button-selected",function(d,i){
+				return d.c == self.store("cut");
+			});
+
+
+		});
+
+		this.slide.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. In some cases, margins of error are very small and are not visible in the charts above. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
+		this.slide.append("p").text("Sources: Brookings analysis of American Community Survey Public Use Microdata, 2008-2014, for employment and unemployment; and Brookings analysis of pooled 2012-2014 American Community Survey microdata, for disconnected youth.");	
 	};
 
 	var redraw = function(){
 		var self = this;
 
 		var chartFN = YouthEmployment2016.ChartFN;
-		//var svg = this.store("svg");
-		//svg.selectAll("path").data([path]).enter().append("path").attr("d",function(d,i){return d}).style("fill","red").style("stroke","red");
+
 		var dat = this.data();
 		var met = this.getMetro();
 		var metName = this.lookup[met][0].CBSA_Title;
 		var metNameFull = met=="0" ? metName : metName+" metropolitan area";
 		this.store("gridTitle").text("Topline data for the " + metNameFull );
 
-		var syncButtons = this.store("sync");
-		var buttons0 = this.store("buttons0");
-		var buttons1 = this.store("buttons1");
-		syncButtons();
-
 		var grid = this.store("grid");
+		var sync = this.store("sync");
 
 		var getDataAndDraw = function(){
+			var cut = self.store("cut");
+			var format = self.store("format");
+
 
 			var allBarDat = chartFN.ETL("Overall", met, dat); 
 			var MinMax = [d3.min(allBarDat, function(d){return d.range[0]}), 
 						  d3.max(allBarDat, function(d){return d.range[1]})];
 
-			var format = self.store("format");
+			
+
 
 			if(format==="Charts"){
 				var allDat = [];
@@ -832,11 +841,28 @@
 				});
 			}
 			else if(format==="Tables"){
-				var cut = self.store("cut");
+				
+				var get14 = function(dat){
+					var ret = null;
+					if(cut==="dy"){
+						var ret = dat[0];
+					}
+					else{
+						for(var i=0; i<dat.length; i++){
+							if(dat[i].Y==14){
+								ret = dat[i];
+								break;
+							}
+						}
+					}
+					return ret;
+				}
+
+				//861
 				var datcut = dat[cut];
-
+				self.store("tableNoteTime").text("Time period: " + (cut==="dy" ? "2012-14 (pooled) " : "2014 "));
+				
 				var tableDat = [];
-
 				(function(){
 					for(var p in datcut){
 						if(datcut.hasOwnProperty(p)){
@@ -844,7 +870,7 @@
 							var metdat = datcut[p];
 							var row = [{val:geo.CBSA_Code, label:geo.CBSA_Title}];
 							try{
-								var D = metdat["16to19"][0];
+								var D = get14(metdat["16to19"]);
 								if(D.SH===null){throw "Suppression"}
 								row[1] = {val: D.SH, label: D.SH+"%"+ ' <span style="color:#888888;font-size:0.8em;"> (+/-'+ D.SH_M +'%)</span>'}
 							}
@@ -853,7 +879,7 @@
 							}
 
 							try{
-								var D = metdat["20to24"][0];
+								var D = get14(metdat["20to24"]);
 								if(D.SH===null){throw "Suppression"}
 								row[2] = {val: D.SH, label: D.SH+"%"+ ' <span style="color:#888888;font-size:0.8em;"> (+/-'+ D.SH_M +'%)</span>'}
 							}
@@ -863,7 +889,7 @@
 
 							if(cut !== "dy"){
 								try{
-									var D = metdat["25to54"][0];
+									var D = get14(metdat["25to54"]);
 									if(D.SH===null){throw "Suppression"}
 									row[3] = {val: D.SH, label: D.SH+"%"+ ' <span style="color:#888888;font-size:0.8em;"> (+/-'+ D.SH_M +'%)</span>'}
 								}
@@ -908,6 +934,14 @@
 					var si = self.store("tableSortIndex");
 					var sd = self.store("tableSortDirection");
 
+					if(cut=="dy" && si>2){
+						si = 2;
+						self.store("tableSortIndex", si);
+						sd = -1;
+						self.store("tableSortDirection", sd);
+						tdh.classed("sort-asc",function(d,i){return i===2});
+					}
+
 					tableDat.sort(function(a,b){
 						var aval = a[si].val;
 						var bval = b[si].val;
@@ -949,7 +983,10 @@
 
 					tr.classed("row-is-highlighted",function(d,i){
 						return d[0].val == met;
-					})
+					});
+					tr.classed("row-is-bolded", function(d,i){
+						return d[0].val == "0";
+					});
 
 					td.style("width",function(d,i){return i==0 ? "36%" : "18%"})
 
@@ -973,7 +1010,7 @@
 							htable.style("width",trwidth+"px");	
 						}
 						catch(e){
-							console.log(e);
+							
 						}
 					},0);
 
@@ -1009,22 +1046,25 @@
 
 		}
 
+		sync();
 		getDataAndDraw(); //initialize
 
+		var buttons0 = this.store("buttons0");
 		buttons0.on("mousedown",function(d,i){
 			self.store("format", d.c);
-			syncButtons();
+			sync();
 			getDataAndDraw();
 
 		});
 
+		var buttons1 = this.store("buttons1");
 		buttons1.on("mousedown",function(d,i){
 			self.store("cut", d.c);
-			syncButtons();
+			sync();
 			getDataAndDraw();
 		});
 
-		//console.log(this.changeEvent);
+
 	}
 
 	YouthEmployment2016.addView(setup,redraw,dataFile);
