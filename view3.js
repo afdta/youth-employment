@@ -45,10 +45,10 @@
 
 		buttons1.select("p").style({"text-align":"center"}).text(function(d,i){return d.l});
 
-		var gridWrap = this.slide.append("div");
+		var gridWrap = this.slide.append("div").classed("zee10",true);;
 		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node(), "isdy"); //add a legend
 		
-		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
+		var tableWrap = this.slide.append("div").classed("out-of-flow zee10",true).style("margin-top","10px");
 		var tableNote = tableWrap.append("p").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"}).text("Click on the column headers to sort and rank the metro areas in the table. Margins of error are listed in parentheses next to each value.");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
 		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
@@ -106,9 +106,9 @@
 
 
 		//characteristics menu/buttons
-		var charButtons = charButtonWrap.selectAll("div.generic-button").data([{code:"Sex", label:"Male versus female?"},
-																			 {code:"Race", label:"White, black, Latino, or Asian?"},
-																			 {code:"Nativity", label:"Foreign born versus native born?"},
+		var charButtons = charButtonWrap.selectAll("div.generic-button").data([{code:"Sex", label:"Are male vs. female?"},
+																			 {code:"Race", label:"Are white, black, Latino, or Asian?"},
+																			 {code:"Nativity", label:"Are foreign born vs. native born?"},
 																			 {code:"Edu", label:"Have a high school diploma?"}]);
 		charButtons.enter().append("div").classed("generic-button",true).append("p");
 		charButtons.exit().remove();
@@ -123,8 +123,9 @@
 			});
 		});
 		
-		charWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
-
+		charWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. In some cases, margins of error are very small and are not visible in the charts above. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
+		charWrap.append("p").text("Source: Brookings analysis of pooled 2012-2014 American Community Survey microdata.");	
+	
 	};
 
 	var redraw = function(){
@@ -351,7 +352,7 @@
 			//characteristics data, always displayed
 			var T = "<b>Characteristics of disconnected youth in the " + (met=="0" ? metName : metName+" metropolitan area</b>" );
 
-			var charText = charTextWrap.selectAll("p.characteristics-description").data([T, "These data describe the demographics of disconnected youth. Within the disconnected youth population, what share are:"]);
+			var charText = charTextWrap.selectAll("p.characteristics-description").data([T, "These data describe the demographics of disconnected youth. Within the disconnected youth population, what share:"]);
 			charText.enter().append("p").classed("characteristics-description", true);
 			charText.exit().remove();
 
@@ -383,7 +384,7 @@
 						],
 				"Nativity": [{code:"S_FB", label:"Foreign born", moe:"MOE_Sfb"}, {code:"S_NB", label:"Native born", moe:"MOE_Snb"}],
 				"Edu": [{code:"S_hs", label:"With a high school diploma", moe:"MOE_Shs"}, 
-						{code:"S_lths", label:"Without a high school diploma", moe:"MOE_Slths"}
+						{code:"S_lths", label:"Less than a high school diploma", moe:"MOE_Slths"}
 						]	
 			}
 
