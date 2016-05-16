@@ -66,7 +66,9 @@
 		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node()); //add a legend
 		
 		var tableWrap = this.slide.append("div").classed("out-of-flow zee10",true).style("margin-top","10px");
-		var tableNote = tableWrap.append("p").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"}).text("Click on the column headers to sort and rank the metro areas in the table. Margins of error are listed in parentheses next to each value.");
+		var tableNote = tableWrap.append("p").text("Time period: 2014 ")
+								.append("span").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"})
+								.html(" • Click on the column headers to sort/rank the metro areas. Margins of error are listed in parentheses next to each value.");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
 		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
 
@@ -107,8 +109,8 @@
 			//buttons in the tableMenu--group--are synced in the getDataAndDraw() function
 		});
 
-		gridWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. In some cases, margins of error are very small and are not visible in the charts above. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
-		gridWrap.append("p").text("Source: Brookings analysis of American Community Survey Public Use Microdata, 2008-2014.");	
+		this.slide.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. In some cases, margins of error are very small and are not visible in the charts above. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations. Educational attainment data for 16-19-year-olds does not include levels beyond a high school diploma since their age precludes most of them from earning post-secondary credentials.").style({"margin":"10px 0px 0px 0px"});
+		this.slide.append("p").text("Source: Brookings analysis of American Community Survey Public Use Microdata, 2008-2014.");	
 	
 	};
 
