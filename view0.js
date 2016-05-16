@@ -737,10 +737,10 @@
 
 		buttons1.select("p").style({"text-align":"center"}).text(function(d,i){return d.l});
 
-		var gridWrap = this.slide.append("div");
+		var gridWrap = this.slide.append("div").classed("zee10",true);
 		YouthEmployment2016.ChartFN.legend(gridWrap.append("div").node()); //add a legend
 
-		var tableWrap = this.slide.append("div").classed("out-of-flow",true).style("margin-top","10px");
+		var tableWrap = this.slide.append("div").classed("out-of-flow zee10",true).style("margin-top","10px");
 		var tableNote = tableWrap.append("p").style({"font-size":"13px", "font-style":"italic", "color":"#666666", "margin":"1em 0px"}).text("Click on the column headers to sort and rank the metro areas in the table. Margins of error are listed in parentheses next to each value.");
 		var tableWrapHeader = tableWrap.append("div").classed("as-table",true);
 		var tableWrapScroll = tableWrap.append("div").style({"max-height":"500px", "overflow-y":"auto", "border":"1px solid #aaaaaa", "border-width":"1px 0px"});
@@ -782,8 +782,8 @@
 
 		});
 
-		gridWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
-
+		gridWrap.append("p").text("Notes: Each margin of error represents the 90% confidence interval around an estimated value. In some cases, margins of error are very small and are not visible in the charts above. Data on some cross-tabulations are not available due to small sample size. This is more common in smaller metropolitan areas and small sub-populations.").style({"margin":"10px 0px 0px 0px"});
+		gridWrap.append("p").text("Sources: Brookings analysis of American Community Survey Public Use Microdata, 2008-2014, for employment and unemployment; and Brookings analysis of pooled 2012-2014 American Community Survey microdata, for disconnected youth.");	
 	};
 
 	var redraw = function(){
@@ -839,6 +839,16 @@
 			}
 			else if(format==="Tables"){
 				
+				var get14 = function(dat){
+					var ret = null;
+					for(var i=0; i<dat.length; i++){
+						if(dat[i].Y==14){
+							ret = dat[i];
+							break;
+						}
+					}
+					return ret;
+				}
 
 
 
@@ -848,18 +858,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+				//861
 				var datcut = dat[cut];
+				
 				var tableDat = [];
 				(function(){
 					for(var p in datcut){
@@ -868,7 +869,7 @@
 							var metdat = datcut[p];
 							var row = [{val:geo.CBSA_Code, label:geo.CBSA_Title}];
 							try{
-								var D = metdat["16to19"][0];
+								var D = get14(metdat["16to19"]);
 								if(D.SH===null){throw "Suppression"}
 								row[1] = {val: D.SH, label: D.SH+"%"+ ' <span style="color:#888888;font-size:0.8em;"> (+/-'+ D.SH_M +'%)</span>'}
 							}
@@ -877,7 +878,7 @@
 							}
 
 							try{
-								var D = metdat["20to24"][0];
+								var D = get14(metdat["20to24"]);
 								if(D.SH===null){throw "Suppression"}
 								row[2] = {val: D.SH, label: D.SH+"%"+ ' <span style="color:#888888;font-size:0.8em;"> (+/-'+ D.SH_M +'%)</span>'}
 							}
@@ -887,7 +888,7 @@
 
 							if(cut !== "dy"){
 								try{
-									var D = metdat["25to54"][0];
+									var D = get14(metdat["25to54"]);
 									if(D.SH===null){throw "Suppression"}
 									row[3] = {val: D.SH, label: D.SH+"%"+ ' <span style="color:#888888;font-size:0.8em;"> (+/-'+ D.SH_M +'%)</span>'}
 								}
@@ -931,6 +932,14 @@
 					//sort info
 					var si = self.store("tableSortIndex");
 					var sd = self.store("tableSortDirection");
+
+					if(cut=="dy" && si>2){
+						si = 2;
+						self.store("tableSortIndex", si);
+						sd = -1;
+						self.store("tableSortDirection", sd);
+						tdh.classed("sort-asc",function(d,i){return i===2});
+					}
 
 					tableDat.sort(function(a,b){
 						var aval = a[si].val;
