@@ -696,8 +696,8 @@
 
 	///END CHARTING FUNCTIONS
 
-	//var dataFile = "data/overall.json";
-	var dataFile = "/~/media/multimedia/interactives/2016/YouthEmployment/data/overall.json";
+	var dataFile = "data/overall.json";
+	//var dataFile = "/~/media/multimedia/interactives/2016/YouthEmployment/data/overall.json";
 
 	var setup = function(){
 		var self = this;
