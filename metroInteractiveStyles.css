@@ -141,7 +141,6 @@
 	overflow:hidden;
 	border:1px solid #aaaaaa;
 	border-width:0px 0px 0px 0px;
-	z-index:50;
 	left:0%;
 }
 
@@ -244,6 +243,8 @@
 .metro-interactive-view.bad-view{opacity:0.3;}
 .metro-interactive-view.bad-view::before{content:"An error occured while retrieving your data. Please reload the page"; position:absolute; top:50px; left:30px;}
 
+.metro-interactive-view-content > div{position:relative; z-index:10;}
+.metro-interactive-view-content .zee10{z-index:10;}
 .metro-interactive-wrap .out-of-flow{
 	position:absolute;
 	visibility:hidden;
@@ -251,9 +252,6 @@
 	left:0px;
 	z-index:0;
 	pointer-events:none;
-}
-.metro-interactive-wrap .zee10{
-	z-index:10;
 }
 
 /*control of showing/hiding the toc is at bottom to ensure the styles are note overridden*/
