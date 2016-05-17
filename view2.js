@@ -1,6 +1,7 @@
 
 (function(){
-	var dataFile = "data/ur.json";
+	//var dataFile = "data/ur.json";
+	var dataFile = "/~/media/multimedia/interactives/2016/YouthEmployment/data/ur.json";
 
 	var setup = function(){
 

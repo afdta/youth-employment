@@ -21,7 +21,8 @@
 	// add titles separating two sections
 
 (function(){
-	var dataFile = "data/er.json";
+	//var dataFile = "data/er.json";
+	var dataFile = "/~/media/multimedia/interactives/2016/YouthEmployment/data/er.json";
 
 	var setup = function(){
 
