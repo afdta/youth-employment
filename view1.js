@@ -1,4 +1,4 @@
-//to do -- undefined in accessors
+
 //View 1 is the archetype for other views
 	//Disconnected youth changes:
 	// ETL needs to indicate it's dy
@@ -28,7 +28,7 @@
 		var self = this;
 		this.name("Employment","Employment rates by sex, race, and highest level of educational attainment");
 
-		//this.description("Area to add some overview text. E.g. what is the unemployment rate? What is the employment rate? What does it mean? What does disconnected youth mean? Etc. ...");
+
 
 		var selectWrap = this.slide.append("div").style({"margin-bottom":"15px"}).classed("c-fix",true);
 		selectWrap.append("p").classed("text-accent-uc1",true).text("Select a metro area");

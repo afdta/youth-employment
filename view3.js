@@ -1,7 +1,3 @@
-//to do -- undefined in accessors
-//View 1 is the archetype for other views
-	//Disconnected youth changes:
-	// Need to add in overview data
 
 (function(){
 	var dataFile = "data/dy.json";
@@ -315,7 +311,7 @@
 							htable.style("width",trwidth+"px");	
 						}
 						catch(e){
-							//console.log(e);
+
 						}
 					},0);
 
@@ -507,16 +503,6 @@
 						return d == null ? "#666666" : "#333333";
 					});
 
-
-					/*bars.select("text").attr("x", function(d,i){
-						return d.SH===null ? "0%" : ((d.SH/MAXSHARE)*100)+"%"
-					}).attr({"y":18, "dy":0, "dx":3})
-					.style({"font-size":"13px"})
-					.text(function(d,i){return d.SH===null ? "NA" : d.SH+"%"})
-					.style("fill",function(d,i){
-						return d.SH===null ? "#666666" : "#333333";
-					});*/
-
 			});	//end each	
 		}
 
@@ -547,7 +533,7 @@
 			self.store("charsync")();
 		});
 
-		//console.log(this.changeEvent);
+
 	}
 
 	YouthEmployment2016.addView(setup,redraw,dataFile);

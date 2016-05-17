@@ -1,10 +1,8 @@
 (function(){
 	//CHARTING FUNCTIONS
-	//TO DO: HOW TO SCALE BARS? SEE MAXSHARE in barChart() // ALSO LINE CHARTS YOU MISS VARIATION WHEN SCALING THE SAME
 	//NOTE: SHARES NOT EXPRESSED AS DECIMAL FRACTIONS
 	//MISSINGS: It's possible to have null data alltogether for a cohort and it's possible to have missing years of data for a cohort
 	//IS MOE EVER MISSING WHEN SH IS PRESENT?
-	//ENSURE ORDERING OF LINE CHART ELEMENTS IS OK -- WILL NEED GROUPS
 
 		var YE2016 = {};
 
@@ -311,9 +309,9 @@
 				moearea.append("path").attr({"stroke":"#bbbbbb", "fill":"#bbbbbb", "d":"M2,8 l10,-4 l10,4 l10,-4 l0,6 l-10,4 l-10,-4 l-10,4 z" , "stroke-width":"1px"});
 				pp.append("span").text(" when hovering over the line charts. ");
 			}
-			//moe.append("p").style({"float":"left", "line-height":"15px", "margin":"2px 0px 0px 0px"}).text("Margin of error")
 
-			//wrap.selectAll("p").style("font-size","13px");
+
+
 		}
 
 		//data for barChart should look like: [{code:16to19, SH:xx.x, SH_M: yy.y}, {code, SH, SH_M}, {}]
@@ -589,7 +587,7 @@
 
 				moe_area.attr("stroke",function(d,i){
 					return "#dddddd";
-					//return YE2016.colors[d.age].col;
+
 				}).attr({"fill":"#dddddd", "stroke-width":"1px"})
 				.attr("d",function(d,i){
 					return d.dat === null ? "M0,0" : area(d.dat); //if entire data property missing alltogether...

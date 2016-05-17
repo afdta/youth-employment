@@ -1,16 +1,3 @@
-//to do -- undefined in accessors
-//View 1 is the archetype for other views
-	//Disconnected youth changes:
-	// ETL needs to indicate it's dy
-	// There are no ETL line charts
-	// Need to add in overview data
-	// Menu shouldn't include educational attainment edit button1 data: {l:"Nativity", c:"Nativity"}
-	// When creating table data (tableDat), 2 changes
-	//   for(var p in dat.Rates)
-	//   if(dat.Rates.hasOwnProperty(p))
-	//   note that the ETL function understands the dy structure when you add the argument
-	// remove 25-54 from header data and change td widths accordingly to 50/25
-	// maxval for bar charts should be 35 (also change this in overview)
 
 (function(){
 	var dataFile = "data/ur.json";
@@ -20,7 +7,6 @@
 		var self = this;
 		this.name("Unemployment","Unemployment rates by sex, race, and highest level of educational attainment");
 
-		//this.description("Area to add some overview text. E.g. what is the unemployment rate? What is the employment rate? What does it mean? What does disconnected youth mean? Etc. ...");
 
 		var selectWrap = this.slide.append("div").style({"margin-bottom":"15px"}).classed("c-fix",true);
 		selectWrap.append("p").classed("text-accent-uc1",true).text("Select a metro area");
