@@ -170,7 +170,7 @@
 
 			}
 			catch(e){
-				console.log(e)
+				//console.log(e)
 				var c1 = null;
 			}
 			return c1;
@@ -314,7 +314,7 @@
 
 		}
 
-		//data for barChart should look like: [{code:16to19, SH:xx.x, SH_M: yy.y}, {code, SH, SH_M}, {}]
+		//data for barChart should look like: [{code:16to19, SH:xx.x, SH_M: yy.y}, {code, SH, SH_M}, {}] -- delivered by latest
 		YE2016.barChart = function(container, data, maxval, isdy){
 
 			var YR = !!isdy ? ", 2012–14" : ", 2014";
@@ -414,7 +414,7 @@
 				});
 			}
 			catch(e){
-				console.log(e);
+				//console.log(e);
 				wrap.remove();
 			}
 
@@ -631,7 +631,7 @@
 
 			}
 			catch(e){
-				console.log(e);
+				//console.log(e);
 				wrap.remove();
 			}
 
@@ -658,7 +658,7 @@
 				var svg = wrap.select("svg").style({"width":"100%", "height": chartHeight+"px"});
 			}
 			catch(e){
-				console.log(e);
+				//console.log(e);
 				wrap.remove();
 			}
 
@@ -818,7 +818,7 @@
 				var allDat = [];
 				for(var i=0; i<allBarDat.length; i++){
 					allDat.push(allBarDat[i]);
-					if(i<allBarDat.length-1)allDat.push(allBarDat[i]);
+					if(i<allBarDat.length-1)allDat.push(allBarDat[i]); //duplicate for line charts -- don't dup for dy
 				}
 
 				var plots = grid.selectAll("div.grid-box").data(allDat);
@@ -984,7 +984,7 @@
 						return d[0].val == met;
 					});
 					tr.classed("row-is-bolded", function(d,i){
-						return d[0].val == "0";
+						return d[0].val == "0"; //bold the U.S.
 					});
 
 					td.style("width",function(d,i){return i==0 ? "36%" : "18%"})

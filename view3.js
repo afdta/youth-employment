@@ -360,7 +360,7 @@
 
 			try{
 				var DAT = dat.Char[cut][met];
-				var DAT2 = [DAT["16to19"][0], DAT["20to24"][0]];				
+				var DAT2 = [DAT["16to19"][0], DAT["20to24"][0]]; //double checked this data structure				
 			}
 			catch(e){
 				var DAT2 = [];
@@ -388,6 +388,7 @@
 						]	
 			}
 
+			//reviewed this plot code on 5/18
 			plots.select("div.inner-grid-div").style({background:"#ffffff", "border":"1px solid #aaaaaa", "padding":"5px 10px 10px 10px"})
 				.each(function(dat,i,a){
 					var thiz = d3.select(this);
