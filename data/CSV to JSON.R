@@ -1,6 +1,3 @@
-#to do: test the geo codes here
-#question: why are some obs missing? if num, denom are both NA? is 2000 MOE zero always?
-
 library("reshape2")
 library("jsonlite")
 setwd("~/Projects/Brookings/DataViz/youth-employment/data/CSV/")
