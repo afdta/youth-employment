@@ -634,6 +634,7 @@ function MetroInteractive(appWrapperElement){
 
 	}
 	
+	//drawOptMenu can be called over and over again as it updates links based on registered views in viewList
 	viewMenuCtrl.drawOptMenu = function(){ 
 		var linkData = viewList.slice(0); //includes the TOC page
 		if(linkData.length > 0){
@@ -753,7 +754,7 @@ function MetroInteractive(appWrapperElement){
 
 
 		//links to populate the global options menu
-		viewMenuCtrl.drawOptMenu(); //already called in buildNav, but placed here to refresh (not currently necessary)
+		viewMenuCtrl.drawOptMenu(); //already called in buildNav, but placed here to refresh (not currently necessary here)
 
 
 	}
@@ -892,7 +893,7 @@ function MetroInteractive(appWrapperElement){
 		return this;
 	} //end viewMenuCtrl
 
-	//"cap off" the app: load the default view/metro, otherwise no setup is performed -- it must set S.metro and S.view
+	//"cap off" the app (CRITICAL): load the default view/metro, otherwise no setup is performed -- it must set S.metro and S.view
 	S.cap = function(){
 		//try and determine the proper metro/view selections from the location hash
 		var hash = get_hash();
