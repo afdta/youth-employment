@@ -575,11 +575,6 @@ p.metro-interactive-description:first-child{
 	.metro-interactive-views .metro-interactive-global-options.global-options-out{right:-420px;}
 }
 
-/*misc*/
-body{
-	margin:0px;
-}
-
 /*disable text highlighting*/
 .metro-interactive-wrap .disable-text-select {
 	-moz-user-select: none;
